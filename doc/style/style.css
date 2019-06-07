@@ -1,0 +1,110 @@
+body {
+   font-family: "Verdana";
+   font-size: 14px;
+   max-width: 80%;
+   margin: auto;
+}
+
+a {
+    color: #17a81a;
+    text-decoration: none;
+    transition-duration: 0.3s;
+}
+
+p {
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+h1, h2, h3 {
+    font-weight: 300;
+}
+
+.descr h2 {
+    margin: 2em 0 0.75em;
+}
+
+span.small-subtitle {
+    display: none
+}
+
+div.sidebar {
+    float: right;
+}
+
+h3.fn {
+    color: #26282a;
+    font-size: 1.35em;
+    padding: 15px 0 15px 0;
+    border-bottom: 2px #eee solid;
+    word-wrap: break-word;
+}
+
+h3.fn > .type {
+    font-weight: 600;
+}
+
+h3.fn > .name {
+    font-weight: 600;
+}
+
+h3.fn > code {
+    font-size: 0.75em;
+    float: right;
+    background-color: #eee;
+    padding: 3px;
+    margin: 3px 0 0 20px;
+}
+
+pre {
+    background-color: #F2F2F2;
+    display: block;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin-bottom: 25px;
+    padding: 10px;
+    margin-top: 0.75em;
+}
+
+div.qmlproto {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+hr {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+p.header {
+    margin-bottom: -1em;
+}
+
+p.footer {
+    text-align: right;
+    margin-top: -1em;
+}
+
+div.table {
+    overflow-x: auto;
+}
+
+table, table td, table th {
+    border: 1px solid #eee;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+table .odd {
+    background-color: #f9f9f9;
+}
+
+table td, table th {
+    padding: 5px 20px;
+    line-height: 1.3;
+}

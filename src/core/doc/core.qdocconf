@@ -1,0 +1,5 @@
+#
+include($QPE_SRC_DIR/doc/common.qdocconf)
+
+sourcedirs += ../
+headerdirs += ../
