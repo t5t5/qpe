@@ -15,6 +15,10 @@ RCC_DIR = ./tmp/rcc
 UI_DIR = ./tmp/ui
 DESTDIR = $$QPE_CORE_BUILD_DIR
 
+include(global/global.pri)
+include(math/math.pri)
+include(mpl/mpl.pri)
+
 OTHER_FILES += \
     doc/core.qdocconf
 
