@@ -18,6 +18,7 @@ DESTDIR = $$QPE_CORE_BUILD_DIR
 include(global/global.pri)
 include(math/math.pri)
 include(mpl/mpl.pri)
+include(tools/tools.pri)
 
 OTHER_FILES += \
     doc/core.qdocconf
