@@ -2,11 +2,20 @@
 #include <QDebug>
 
 #include <Qpe/Core/Stringifier>
+#include <Qpe/Core/StaticStringifierDec>
+#include <Qpe/Core/StaticStringifierHex>
 
 class TestNumberStringifier : public QObject
 {
 	Q_OBJECT
 private slots:
+	void benchIntStringifierValue();
+	void benchIntStaticStringifierValue();
+	void benchIntStaticStringifierRef();
+	void benchIntDataByteStatic();
+	void benchIntDataByteMember();
+	void benchIntStdString();
+
 	void testFormatDecChar();
 	void testFormatDecCharLz();
 	void testFormatDecShort();
@@ -113,6 +122,78 @@ private slots:
 	void testFormatHexInt64LzPrefix_str();
 	void testFormatHexInt64LzUpperPrefix_str();
 };
+
+void TestNumberStringifier::benchIntStringifierValue()
+{
+	Qpe::Stringifier st;
+	int n = 0;
+	QBENCHMARK {
+		for (int i = -500000; i <= 500000; ++i) {
+			n += st.format(i).size();
+		}
+	}
+	qDebug() << n;
+}
+
+void TestNumberStringifier::benchIntStaticStringifierValue()
+{
+	typedef Qpe::Static::Stringifier<Qpe::DecBase> h;
+	int n = 0;
+	QBENCHMARK {
+		for (int i = -500000; i <= 500000; ++i) {
+			n += h::format(i).size();
+		}
+	}
+	qDebug() << n;
+}
+
+void TestNumberStringifier::benchIntStaticStringifierRef()
+{
+	typedef Qpe::Static::Stringifier<Qpe::DecBase> h;
+
+	QByteArray x;
+	int n = 0;
+	QBENCHMARK {
+		for (int i = -500000; i <= 500000; ++i) {
+			n += h::format(i, x).size();
+		}
+	}
+	qDebug() << n;
+}
+
+void TestNumberStringifier::benchIntDataByteStatic()
+{
+	int n = 0;
+	QBENCHMARK {
+		for (int i = -500000; i <= 500000; ++i) {
+			n += QByteArray::number(i).size();
+		}
+	}
+	qDebug() << n;
+}
+
+void TestNumberStringifier::benchIntDataByteMember()
+{
+	QByteArray x;
+	int n = 0;
+	QBENCHMARK {
+		for (int i = -500000; i <= 500000; ++i) {
+			n += x.setNum(i).size();
+		}
+	}
+	qDebug() << n;
+}
+
+void TestNumberStringifier::benchIntStdString()
+{
+	int n = 0;
+	QBENCHMARK {
+		for (int i = -500000; i <= 500000; ++i) {
+			n += std::to_string(i).size();
+		}
+	}
+	qDebug() << n;
+}
 
 void TestNumberStringifier::testFormatDecChar()
 {
