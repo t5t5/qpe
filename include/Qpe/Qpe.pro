@@ -15,6 +15,7 @@ HEADERS += \
     Core/Math \
     Core/StaticStringifierDec \
     Core/StaticStringifierHex \
+    Core/Stringifier \
     Core/TypeTraits
 
 # global
