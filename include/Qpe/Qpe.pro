@@ -6,13 +6,17 @@ HEADERS += \
 
 # core private
 HEADERS += \
+    Core/Private/conversionpattern_defines.h \
+    Core/Private/conversionpattern_impl.h \
     Core/Private/digitscount_dec.h \
     Core/Private/digitscount_hex.h \
     Core/Private/static_stringifier.h
 
 # core
 HEADERS += \
+    Core/ConversionPattern \
     Core/Math \
+    Core/SimpleConversionPattern \
     Core/StaticStringifierDec \
     Core/StaticStringifierHex \
     Core/Stringifier \
