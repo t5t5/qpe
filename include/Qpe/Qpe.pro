@@ -15,6 +15,7 @@ HEADERS += \
 # core
 HEADERS += \
     Core/ConversionPattern \
+    Core/DateStringifier \
     Core/Math \
     Core/SimpleConversionPattern \
     Core/StaticStringifierDec \
