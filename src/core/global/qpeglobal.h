@@ -5,18 +5,16 @@
 #pragma once
 #endif
 
-#if defined(_MSC_VER)
-#  if !defined(QPE_CORE_LIB_STATIC)
-#    if defined(QPE_CORE_LIB)
-#      define QPE_CORE_EXPORT __declspec(dllexport)
-#    else
-#      define QPE_CORE_EXPORT __declspec(dllimport)
-#    endif
-#  endif
-#endif
+#include <QtGlobal>
 
-#ifndef QPE_CORE_EXPORT
+#if defined(QPE_CORE_LIB_STATIC)
 #  define QPE_CORE_EXPORT
+#else
+#  if defined(QPE_CORE_LIB)
+#    define QPE_CORE_EXPORT Q_DECL_EXPORT
+#  else
+#    define QPE_CORE_EXPORT Q_DECL_IMPORT
+#  endif
 #endif
 
 // ------------------------------------------------------------------------
