@@ -154,3 +154,34 @@
  * \variable Qpe::integer_traits::MaxDecimal
  * \brief Максимальное число 10^n которое можно вписать в тип T.
  */
+
+
+/*!
+  \class Qpe::is_enum_scoped
+  \inmodule core
+  \brief Проверка \c enum, определен ли он как scoped
+	 (\c{enum class} или \c{enum struct}) или нет.
+  \inheaderfile Qpe/Core/TypeTraits
+  \ingroup core
+
+  Обзор:
+  \code
+  template <typename T>
+  struct is_enum_scoped
+  {
+      static constexpr bool value;
+  };
+  \endcode
+
+  Пример:
+  \code
+  enum SomeEnum1 { ... };
+  bool s1 = is_enum_scoped<SomeEnum1>::value; // false
+
+  enum SomeEnume2 : int { ... };
+  bool s2 = is_enum_scoped<SomeEnum2>::value; // false
+
+  enum class SomeEnume3 : int { ... };
+  bool s3 = is_enum_scoped<SomeEnum3>::value; // true
+  \endcode
+ */

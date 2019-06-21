@@ -18,14 +18,17 @@ namespace Qpe
 template <bool B, class T = void>
 using enable_if_t = typename std::enable_if<B, T>::type;
 
+
 template <bool B, class T, class F>
 using conditional_t = typename std::conditional<B, T, F>::type;
+
 
 template <typename T, T V>
 struct integral_identity { typedef integral_identity<T, V> type; };
 
 template <typename T, T V>
 using integral_identity_t = typename integral_identity<T, V>::type;
+
 
 template <typename... TArgs>
 struct function_identity
@@ -53,6 +56,7 @@ struct function_identity
 	struct ptr : ret<void>::template ptr<TPtr> { };
 };
 
+
 template <typename T>
 struct integer_traits
 {
@@ -70,6 +74,16 @@ struct integer_traits
 	static const int Digits10 = math::ceil(Digits2 / math::Log10Base2);
 	static const T MaxDecimal = mpl::math::power<10, Digits10 - 1, T>::value;
 };
+
+
+template <typename T, bool B = std::is_enum<T>::value>
+struct is_enum_scoped : std::false_type {};
+
+template <typename T>
+struct is_enum_scoped<T, true>
+	: std::integral_constant<bool,
+		!std::is_convertible<T, typename std::underlying_type<T>::type>::value> {};
+
 
 } // namespace Qpe
 
