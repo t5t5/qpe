@@ -16,6 +16,7 @@ HEADERS += \
 HEADERS += \
     Core/ConversionPattern \
     Core/CronTimer \
+    Core/CronTimerExpression \
     Core/DateStringifier \
     Core/Enum \
     Core/Math \

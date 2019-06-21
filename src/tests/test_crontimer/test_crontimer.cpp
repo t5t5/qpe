@@ -28,7 +28,7 @@ void TestConversion::test()
 
 	QVERIFY(!timer->isValid());
 	QVERIFY(!timer->isActive());
-	timer->start("34 * * * * *");
+	timer->start("20 * * * * *");
 	QVERIFY(timer->isValid());
 	QVERIFY(timer->isActive());
 

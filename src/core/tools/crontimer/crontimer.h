@@ -1,5 +1,5 @@
-#ifndef CORE_CRONTIMER_CRONTIMER_H
-#define CORE_CRONTIMER_CRONTIMER_H
+#ifndef TOOLS_CRONTIMER_CRONTIMER_H
+#define TOOLS_CRONTIMER_CRONTIMER_H
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -40,4 +40,4 @@ signals:
 
 } // namespace Qpe
 
-#endif // CORE_CRONTIMER_CRONTIMER_H
+#endif // TOOLS_CRONTIMER_CRONTIMER_H
