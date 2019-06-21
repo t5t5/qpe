@@ -128,7 +128,7 @@ CronTimerExpressionPrivate::CronTimerExpressionPrivate()
 	, monthList({
 		"jan", "feb", "mar", "apr",
 		"may", "jun", "jul", "aug",
-		"sep", "okt", "nov", "dec"
+		"sep", "oct", "nov", "dec"
 	  })
 	, wdayList({"mon", "tue", "wed", "thu", "fri", "sat", "sun"})
 #endif
@@ -158,8 +158,14 @@ bool CronTimerExpressionPrivate::setFormat(const QString& f, const QDateTime& st
 		setPart(m.captured("hour"), Private::Hour, time.hour(), hours) &&
 		setPart(m.captured("day"), Private::Day, date.day(), days) &&
 		setPart(m.captured("month"), Private::Month, date.month(), months) &&
-		setPart(m.captured("wday"), Private::WDay, 0, wdays) &&
-		setPart(m.captured("year"), Private::Year, 0, years);
+		setPart(m.captured("wday"), Private::WDay, 0, wdays);
+	if (valid) {
+		QString yearCapture = m.captured("year");
+		if (!yearCapture.isEmpty()) {
+			valid = setPart(yearCapture, Private::Year, 0, years);
+			years.setInitialized();
+		}
+	}
 	return valid;
 }
 
@@ -266,7 +272,7 @@ bool CronTimerExpressionPrivate::setPart(
 			m.captured("step3").isEmpty())
 		{
 			int range1 = monthList.indexOf(QRegularExpression(
-					m.captured("rangeMonth1"), QRegularExpression::CaseInsensitiveOption));
+					m.captured("rangeMonth1"), QRegularExpression::CaseInsensitiveOption)) + 1;
 			result &= p.set(range1);
 		} else
 		if ((expressionType == Private::Month) &&
@@ -284,7 +290,7 @@ bool CronTimerExpressionPrivate::setPart(
 			m.captured("step4").isEmpty())
 		{
 			int range1 = wdayList.indexOf(QRegularExpression(
-					m.captured("rangeWDay1"), QRegularExpression::CaseInsensitiveOption));
+					m.captured("rangeWDay1"), QRegularExpression::CaseInsensitiveOption)) + 1;
 			result &= p.set(range1);
 		} else
 		if ((expressionType == Private::WDay) &&

@@ -99,10 +99,11 @@ class CronExpressionYear
 {
 public:
 	inline CronExpressionYear()
+		: currentYear(QDate::currentDate().year())
+		, centuryYear(currentYear - currentYear % 100)
+		, maxYear(currentYear + 100)
+		, initialized(false)
 	{
-		currentYear = QDate::currentDate().year();
-		centuryYear = currentYear - currentYear % 100;
-		maxYear = currentYear + 100;
 	}
 	inline bool set(int year)
 	{
@@ -132,12 +133,13 @@ public:
 		if (end < 100) {
 			end += centuryYear;
 		}
-		start = qMax(start, currentYear);
 		end = qMin(end, maxYear);
-		bool shouldSet = (start >= centuryYear) && (start <= maxYear) && (start <= end);
+		bool shouldSet = (start <= end) && (end >= currentYear) && (start <= currentYear);
 		if (shouldSet) {
 			for (int year = start; year <= end; year += step) {
-				years.insert(year);
+				if (year >= currentYear) {
+					years.insert(year);
+				}
 			}
 		}
 		return true;
@@ -145,13 +147,18 @@ public:
 
 	inline bool test(int year) const
 	{
-		return years.isEmpty() || years.contains(year);
+		return
+			(!initialized) ||
+			(!years.isEmpty() && years.contains(year));
 	}
+
+	inline void setInitialized() { initialized = true; }
 private:
 	QSet<int> years;
 	int currentYear;
 	int centuryYear;
 	int maxYear;
+	bool initialized;
 };
 
 } // namespace Private
