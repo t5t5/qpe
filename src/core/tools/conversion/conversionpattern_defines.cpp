@@ -7,7 +7,7 @@ namespace PrivateConversionPattern
 {
 
 const QLatin1String PATTERN_EXPRESSION(
-	"%(?:(-?)(\\d{1,3}))?(?:\\.(\\d{1,3}))?(%1)(?:\\{((?:\\\\\\}|\\\\\\{|[^{}])*)\\}|\\b)");
+	"%(?:(-?)(\\d{1,3}))?(?:\\.(\\d{1,3}))?(%1)(?:\\{((?:\\\\\\}|\\\\\\{|[^{}])*)\\})?");
 const QRegularExpression REGEXP_PROPERTY(QLatin1String(
 	"([a-zA-Z_]{1}[a-zA-Z0-9-_]*)(?:(=)((?:\\\\;|[^;])*))?;?"));
 const QRegularExpression REGEXP_REPLACE_1(QLatin1String("\\\\(\\{|\\})"));

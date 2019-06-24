@@ -38,7 +38,7 @@
                           то свойство используется как флаг и значение становится в \b true
   \endtable
   В значениях свойств также могут быть использованы символы "{", "}" и ";",
-  с предварительным экранированием символом: "\", например:
+  с предварительным экранированием символом: "\\", например:
   \code
   {delim=\;;open=\{;close=\}}
   \endcode
@@ -146,6 +146,29 @@
  */
 
 /*!
+ * \fn void Qpe::ConversionPattern::initialize(
+ *          const QString& pattern, ExpressionFactory&& factory)
+ * Инициализация. \a pattern - шаблон строки. \a factory - фабрика элементов.
+ * Элементы будут выбраны с помощью регулярного выражения:
+ * \code
+ * \w+
+ * \endcode
+ */
+
+/*!
+ * \fn void Qpe::ConversionPattern::initialize(
+ *          const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
+ * Инициализация. \a pattern - шаблон строки.
+ * \a names - список элементов в шаблоне строки. \a factory - фабрика элементов.
+ */
+
+/*!
+ * \fn bool Qpe::ConversionPattern::containsExpressions() const
+ * Возвращает \c true, если после инициализации в сроке шаблона нашлись управляющие
+ * выражения.
+ */
+
+/*!
  * \fn QString Qpe::ConversionPattern::createString(const TData& data) const
  * Возвращает преобразованную строку. \a data - значение которое будет передано в
  * ExpressionFunctor для элементов.
@@ -218,6 +241,23 @@
  * \fn Qpe::SimpleConversionPattern::SimpleConversionPattern(
  *     const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
  * Конструктор. \a pattern - шаблон строки.
+ * \a names - список элементов в шаблоне строки. \a factory - фабрика элементов.
+ */
+
+/*!
+ * \fn void Qpe::SimpleConversionPattern::initialize(
+ *          const QString& pattern, ExpressionFactory&& factory)
+ * Инициализация. \a pattern - шаблон строки. \a factory - фабрика элементов.
+ * Элементы будут выбраны с помощью регулярного выражения:
+ * \code
+ * \w+
+ * \endcode
+ */
+
+/*!
+ * \fn void Qpe::SimpleConversionPattern::initialize(
+ *          const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
+ * Инициализация. \a pattern - шаблон строки.
  * \a names - список элементов в шаблоне строки. \a factory - фабрика элементов.
  */
 

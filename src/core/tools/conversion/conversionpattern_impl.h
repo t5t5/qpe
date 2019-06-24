@@ -27,6 +27,8 @@ protected:
 	void initialize(
 		const QString& pattern, const QStringList& names, ExpressionFactory&& factory);
 
+	bool containsExpressions() const;
+
 	QString createString(const TData& data) const;
 private:
 	struct Expression
@@ -96,6 +98,12 @@ void ConversionPattern<TData, CacheSize>::initialize(
 		startPos = pos + len;
 	}
 	addExpressionText(pattern, textPos);
+}
+
+template<typename TData, int CacheSize>
+bool ConversionPattern<TData, CacheSize>::containsExpressions() const
+{
+	return !expressions.isEmpty();
 }
 
 template<typename TData, int CacheSize>
@@ -211,11 +219,10 @@ class SimpleConversionPatternPrivate
 public:
 	typedef std::function<QString(const QString&, const QVariantMap&)> ExpressionFactory;
 protected:
-
-	void initialize(
+	inline void initialize(
 		const QString& pattern,
 		ExpressionFactory&& factory);
-	void initialize(
+	inline void initialize(
 		const QString& pattern,
 		const QStringList& names,
 		ExpressionFactory&& factory);

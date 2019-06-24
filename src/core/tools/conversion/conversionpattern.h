@@ -26,6 +26,8 @@ public:
 #endif // Q_QDOC
 	typedef typename super::ExpressionFactory ExpressionFactory;
 
+	ConversionPattern() = default;
+
 	ConversionPattern(const QString& pattern, ExpressionFactory&& factory)
 	{
 		super::initialize(pattern, std::forward<ExpressionFactory>(factory));
@@ -36,6 +38,20 @@ public:
 	{
 		super::initialize(pattern, names, std::forward<ExpressionFactory>(factory));
 	}
+
+	inline void initialize(
+		const QString& pattern, ExpressionFactory&& factory)
+	{
+		super::initialize(pattern, std::forward<ExpressionFactory>(factory));
+	}
+
+	inline void initialize(
+		const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
+	{
+		super::initialize(pattern, names, std::forward<ExpressionFactory>(factory));
+	}
+
+	inline bool containsExpressions() const { return super::containsExpressions(); }
 
 	QString createString(const TData& data) const
 	{
@@ -53,12 +69,26 @@ public:
 #endif // Q_QDOC
 	typedef typename super::ExpressionFactory ExpressionFactory;
 
+	SimpleConversionPattern() = default;
+
 	SimpleConversionPattern(const QString& pattern, ExpressionFactory&& factory)
 	{
 		super::initialize(pattern, std::forward<ExpressionFactory>(factory));
 	}
 
 	SimpleConversionPattern(
+		const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
+	{
+		super::initialize(pattern, names, std::forward<ExpressionFactory>(factory));
+	}
+
+	inline void initialize(
+		const QString& pattern, ExpressionFactory&& factory)
+	{
+		super::initialize(pattern, std::forward<ExpressionFactory>(factory));
+	}
+
+	inline void initialize(
 		const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
 	{
 		super::initialize(pattern, names, std::forward<ExpressionFactory>(factory));
