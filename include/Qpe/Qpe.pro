@@ -26,6 +26,18 @@ HEADERS += \
     Core/Stringifier \
     Core/TypeTraits
 
+# logger private
+HEADERS += \
+    Logger/Private/abstractpatternloggerappender_p.h
+
+# logger
+HEADERS += \
+    Logger/AbstractPatternLoggerAppender \
+    Logger/EventType \
+    Logger/Logger \
+    Logger/LoggerAppender \
+    Logger/LoggerFilter
+
 # global
 HEADERS += \
     Global \

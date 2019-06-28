@@ -12,13 +12,22 @@ QPE_BUILD_TEST_DIR = $$QPE_BUILD_DIR/tests
 
 QPE_SRC_DIR = $$PWD
 
-# определения для статичной сборки qpe
+# defines for static build qpe core
 contains(DEFINES, QPE_CORE_LIB_STATIC) {
     QPE_CORE_BUILD_DIR = $$QPE_BUILD_DIR/lib
     QPE_CORE_CONFIG_STATICLIB = staticlib
 } else {
     QPE_CORE_BUILD_DIR = $$QPE_BUILD_DIR
     QPE_CORE_CONFIG_STATICLIB =
+}
+
+# defines for static build qpe logger
+contains(DEFINES, QPE_LOGGER_LIB_STATIC) {
+    QPE_LOGGER_BUILD_DIR = $$QPE_BUILD_DIR/lib
+    QPE_LOGGER_CONFIG_STATICLIB = staticlib
+} else {
+    QPE_LOGGER_BUILD_DIR = $$QPE_BUILD_DIR
+    QPE_LOGGER_CONFIG_STATICLIB =
 }
 
 # дополнильные пути для include

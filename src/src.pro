@@ -1,6 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += core
+SUBDIRS += logger
 SUBDIRS += tests
 
-tests.depends = core
+logger.depends = core
+tests.depends = core logger

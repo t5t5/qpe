@@ -7,6 +7,7 @@
 
 #include <QtGlobal>
 
+// ----- Qpe core export
 #if defined(QPE_CORE_LIB_STATIC)
 #  define QPE_CORE_EXPORT
 #else
@@ -14,6 +15,18 @@
 #    define QPE_CORE_EXPORT Q_DECL_EXPORT
 #  else
 #    define QPE_CORE_EXPORT Q_DECL_IMPORT
+#  endif
+#endif
+
+
+// ----- Qpe logger export
+#if defined(QPE_LOGGER_LIB_STATIC)
+#  define QPE_LOGGER_EXPORT
+#else
+#  if defined(QPE_LOGGER_LIB)
+#    define QPE_LOGGER_EXPORT Q_DECL_EXPORT
+#  else
+#    define QPE_LOGGER_EXPORT Q_DECL_IMPORT
 #  endif
 #endif
 

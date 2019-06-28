@@ -1,0 +1,9 @@
+#
+include($QPE_SRC_DIR/doc/common.qdocconf)
+
+sourcedirs += ../
+headerdirs += ../
+
+headers += $QPE_SRC_DIR/src/core/global/qpenamespace.h
+
+sources += $QPE_SRC_DIR/src/core/global/qpenamespace.cpp

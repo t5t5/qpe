@@ -10,3 +10,6 @@ contains(DEFINES, QPE_CORE_MAKE_TESTS) {
     SUBDIRS += test_numberstringifier2string
 	SUBDIRS += test_typetraits
 }
+contains(DEFINES, QPE_LOGGER_MAKE_TESTS) {
+    SUBDIRS += test_logger
+}
