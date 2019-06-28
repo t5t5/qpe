@@ -34,7 +34,7 @@ public:
 	}
 
 	ConversionPattern(
-		const QString& pattern, QStringList& names, ExpressionFactory&& factory)
+		const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
 	{
 		super::initialize(pattern, names, std::forward<ExpressionFactory>(factory));
 	}

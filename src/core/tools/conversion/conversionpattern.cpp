@@ -140,7 +140,7 @@
  */
 
 /*!
- * \fn Qpe::ConversionPattern::ConversionPattern(const QString& pattern, QStringList& names, ExpressionFactory&& factory)
+ * \fn Qpe::ConversionPattern::ConversionPattern(const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
  * Конструктор. \a pattern - шаблон строки.
  * \a names - список элементов в шаблоне строки. \a factory - фабрика элементов.
  */
