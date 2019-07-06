@@ -42,7 +42,6 @@ static const QLatin1String EN_percent		("%");
 
 static const QLatin1String PROP_FORMAT		("format");
 static const QLatin1String PROP_PATTERN		("pattern");
-static const QLatin1String PROP_PATTERN_2	("otherLinePattern");
 
 static const QLatin1String FORMAT_ADDRESS	("16pl");
 
@@ -228,29 +227,47 @@ AbstractPatternLoggerAppenderPrivate::~AbstractPatternLoggerAppenderPrivate()
 {
 }
 
-void AbstractPatternLoggerAppenderPrivate::initializePattern(
-	const QString& firstLinePattern, const QString& otherLinePattern)
+bool AbstractPatternLoggerAppenderPrivate::initializePatterns(
+	const QVariantMap& properties)
 {
 	typedef LoggerPrivate::Factory Factory;
-	pattern1.initialize(
-		firstLinePattern, Factory::expressionNames(), &Factory::createExpression);
-	if (otherLinePattern.isEmpty()) {
+	typedef LoggerPrivate::Pattern Pattern;
+	auto appendPattern = [this, properties] (QVariantMap::const_iterator it) -> bool
+	{
+		if (it == properties.end()) { return false; }
+		QString p = it->toString();
+		patterns.append(Pattern(p, Factory::expressionNames(), &Factory::createExpression));
+		return true;
+	};
+	// если есть свойство "pattern" - логи однострочные
+	if (appendPattern(properties.find(LoggerPrivate::PROP_PATTERN))) {
 		lineAdapter.reset(new LoggerPrivate::SingleLineAdapter());
-	} else {
-		pattern2.initialize(
-			otherLinePattern, Factory::expressionNames(), &Factory::createExpression);
-		lineAdapter.reset(new LoggerPrivate::MultiLineAdapter());
+		return true;
 	}
+	// иначе считаем, что логи многострочные
+	lineAdapter.reset(new LoggerPrivate::MultiLineAdapter());
+	// и пытаемся разобрать свойства "pattern.i"
+	for (int i = 0; i < 100; ++i) {
+		auto it = properties.find(QString("%1.%2").arg(
+				LoggerPrivate::PROP_PATTERN, QString::number(i)));
+		if (!appendPattern(it)) { break; }
+	}
+	return !patterns.isEmpty();
 }
 
 QString AbstractPatternLoggerAppenderPrivate::createMessage(
 	const LoggerEvent* loggerEvent)
 {
+	int patternsCount = patterns.size();
+	if (patternsCount == 0) { return QString(); }
+
 	lineAdapter->setText(loggerEvent->message());
 	LoggerPrivate::EventWrapper ew(loggerEvent, lineAdapter);
-	QString messageText = pattern1.createString(ew);
+	QString messageText;
+	int i = 0;
 	while (ew.hasMessage()) {
-		messageText.append(pattern2.createString(ew));
+		messageText.append(patterns[i++].createString(ew));
+		if (patternsCount == i) { --i; }
 	}
 	return messageText;
 }
@@ -278,11 +295,7 @@ AbstractPatternLoggerAppender::~AbstractPatternLoggerAppender()
 bool AbstractPatternLoggerAppender::initialize(const QVariantMap& properties)
 {
 	QA_D();
-	QString pattern = properties.value(LoggerPrivate::PROP_PATTERN).toString();
-	bool result = !pattern.isEmpty();
-	if (result)
-		d->initializePattern(pattern, properties.value(LoggerPrivate::PROP_PATTERN_2).toString());
-	return result;
+	return d->initializePatterns(properties);
 }
 
 void AbstractPatternLoggerAppender::append(const LoggerEvent* loggerEvent)

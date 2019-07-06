@@ -70,14 +70,11 @@ public:
 	AbstractPatternLoggerAppenderPrivate();
 	virtual ~AbstractPatternLoggerAppenderPrivate();
 
-	void initializePattern(
-		const QString& firstLinePattern,
-		const QString& otherLinePattern);
+	bool initializePatterns(const QVariantMap& properties);
 
 	QString createMessage(const LoggerEvent* loggerEvent);
 private:
-	LoggerPrivate::Pattern pattern1;
-	LoggerPrivate::Pattern pattern2;
+	QList<LoggerPrivate::Pattern> patterns;
 
 	LoggerPrivate::LineAdapterPointer lineAdapter;
 };
