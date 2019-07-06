@@ -1,5 +1,5 @@
-#ifndef QPE_FILTERS_FILTER_CLASSNAME_P_H
-#define QPE_FILTERS_FILTER_CLASSNAME_P_H
+#ifndef FILTERS_FILTER_CLASSNAME_P_H
+#define FILTERS_FILTER_CLASSNAME_P_H
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -7,13 +7,15 @@
 
 #include <QSet>
 
+#include <Qpe/Qpe>
+
 namespace Qpe
 {
 
 class ClassNameLoggerFilter;
 class ClassNameLoggerFilterPrivate
 {
-	Q_DECLARE_PUBLIC(ClassNameLoggerFilter)
+	QPE_DECLARE_PUBLIC(ClassNameLoggerFilter)
 protected:
 	ClassNameLoggerFilter* q_ptr;
 public:
@@ -26,4 +28,4 @@ public:
 
 } // namespace Qpe
 
-#endif // QPE_FILTERS_FILTER_CLASSNAME_P_H
+#endif // FILTERS_FILTER_CLASSNAME_P_H

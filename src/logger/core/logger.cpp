@@ -4,8 +4,6 @@
 #include <QThread>
 
 #include "loggercontroller.h"
-#include "loggerappender.h"
-#include "loggerfilter.h"
 #include "loggerevent.h"
 
 namespace Qpe
@@ -23,7 +21,7 @@ LoggerPrivate::~LoggerPrivate()
 
 void LoggerPrivate::initialize()
 {
-	Q_Q(Logger);
+	QA_Q();
 	QObject::connect(
 		&Private::LoggerController::instance(), &Private::LoggerController::configUpdated,
 		q, [this] () { updateConfig(); }, Qt::QueuedConnection);
@@ -59,11 +57,10 @@ uint LoggerPrivate::newLoggerId()
 void LoggerPrivate::updateConfig()
 {
 	QStringList configNames;
-	configNames.append(QString("%1.%2").arg(pluginName, className));
+	configNames.append(QString("%1#%2").arg(pluginName, className));
 	configNames.append(pluginName);
 	configNames.append("root");
-	Private::LoggerController::instance().config(
-		configNames, &appenders, &filters);
+	Private::LoggerController::instance().config(configNames, &appenders, &filters);
 }
 
 // ---------------------------------------------------------------------------
@@ -95,7 +92,7 @@ Logger::~Logger()
 void Logger::initialize(const QString& pluginName, QObject* o)
 {
 	Q_ASSERT(o);
-	Q_D(Logger);
+	QA_D();
 	if (d->q_ptr) { return; }
 
 	d->q_ptr = this;
@@ -114,75 +111,77 @@ void Logger::initialize(const QString& pluginName, QObject* o)
 
 void Logger::initialize(const QString& pluginName, const QString& className)
 {
-	Q_D(Logger);
+	QA_D();
 	if (d->q_ptr) { return; }
 
 	d->q_ptr = this;
 
 	d->pluginName = pluginName;
 
-	d->object = NULL;
+	d->object = nullptr;
 	d->className = className;
 
-	d->thread = NULL;
+	d->thread = nullptr;
 
 	d->initialize();
 }
 
 void Logger::write(EventType eventType, const QString& s) const
 {
-	Q_D(const Logger);
+	QA_D();
 	d->write(eventType, s);
 }
 
 void Logger::fatal(const QString& s) const
 {
-	Q_D(const Logger);
+	QA_D();
 	d->write(FATAL, s);
 }
 
 void Logger::error(const QString& s) const
 {
-	Q_D(const Logger);
+	QA_D();
 	d->write(ERROR, s);
 }
 
 void Logger::warn(const QString& s) const
 {
 
-	Q_D(const Logger);
+	QA_D();
 	d->write(WARN, s);
 }
 
 void Logger::info(const QString& s) const
 {
-	Q_D(const Logger);
+	QA_D();
 	d->write(INFO, s);
 }
 
 void Logger::debug(const QString& s) const
 {
-	Q_D(const Logger);
+	QA_D();
 	d->write(DEBUG, s);
 
 }
 
 void Logger::trace(const QString& s) const
 {
-	Q_D(const Logger);
+	QA_D();
 	d->write(TRACE, s);
 }
 
 void Logger::registerAppenderType(
-	const QString& appenderType, LoggerAppenderCreator creator)
+	const QString& appenderType, LoggerAppenderCreator&& creator)
 {
-	Private::LoggerController::instance().registerAppenderType(appenderType, creator);
+	Private::LoggerController::instance().registerAppenderType(
+		appenderType, std::forward<LoggerAppenderCreator>(creator));
 }
 
 void Logger::registerFilterType(
-	const QString& filterType, LoggerFilterCreator creator)
+	const QString& filterType, LoggerFilterCreator&& creator)
 {
-	Private::LoggerController::instance().registerFilterType(filterType, creator);
+	Private::LoggerController::instance().registerFilterType(
+		filterType, std::forward<LoggerFilterCreator>(creator));
 }
 
 void Logger::unregisterAppenderType(const QString& appenderType)
@@ -199,17 +198,14 @@ QString Logger::registerSettings(
 	const QString& fileName, const char* codecNames /* = nullptr */)
 {
 	return Private::LoggerController::instance()
-		.registerSettings(fileName, codecNames);
+			.registerSettings(fileName, codecNames);
 }
 
 QString Logger::registerSettings(
-	const QString& configName,
-	const QMap<QString, QVariantMap>& appenders,
-	const QMap<QString, QVariantMap>& filters /* = QMap<QString, QVariantMap>() */,
-	const QMap<QString, QVariantMap>& cleaners /* = QMap<QString, QVariantMap>() */)
+	const QString& settingsName, const QVariantMap& properties)
 {
 	return Private::LoggerController::instance()
-		.registerSettings(configName, appenders, filters, cleaners);
+			.registerSettings(settingsName, properties);
 }
 
 void Logger::unregisterSettings(const QString& settingsName)

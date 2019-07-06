@@ -1,5 +1,5 @@
-#ifndef QPE_FILTERS_FILTER_EVENTTYPE_P_H
-#define QPE_FILTERS_FILTER_EVENTTYPE_P_H
+#ifndef FILTERS_FILTER_EVENTTYPE_P_H
+#define FILTERS_FILTER_EVENTTYPE_P_H
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -15,7 +15,7 @@ namespace Qpe
 class EventTypeLoggerFilter;
 class EventTypeLoggerFilterPrivate
 {
-	Q_DECLARE_PUBLIC(EventTypeLoggerFilter)
+	QPE_DECLARE_PUBLIC(EventTypeLoggerFilter)
 protected:
 	EventTypeLoggerFilter* q_ptr;
 public:
@@ -28,4 +28,4 @@ public:
 
 } // namespace Qpe
 
-#endif // QPE_FILTERS_FILTER_EVENTTYPE_P_H
+#endif // FILTERS_FILTER_EVENTTYPE_P_H

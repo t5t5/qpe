@@ -1,11 +1,13 @@
-#ifndef QPE_FILTERS_FILTER_CLASSNAME_H
-#define QPE_FILTERS_FILTER_CLASSNAME_H
+#ifndef FILTERS_FILTER_CLASSNAME_H
+#define FILTERS_FILTER_CLASSNAME_H
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
 #endif
 
 #include <QScopedPointer>
+
+#include <Qpe/Qpe>
 #include <Qpe/Logger/LoggerFilter>
 
 namespace Qpe
@@ -14,7 +16,7 @@ namespace Qpe
 class ClassNameLoggerFilterPrivate;
 class ClassNameLoggerFilter : public LoggerFilter
 {
-	Q_DECLARE_PRIVATE(ClassNameLoggerFilter)
+	QPE_DECLARE_PRIVATE(ClassNameLoggerFilter)
 protected:
 	QScopedPointer<ClassNameLoggerFilterPrivate> d_ptr;
 	ClassNameLoggerFilter(ClassNameLoggerFilterPrivate* dd);
@@ -29,4 +31,4 @@ public:
 
 } // namespace Qpe
 
-#endif // QPE_FILTERS_FILTER_CLASSNAME_H
+#endif // FILTERS_FILTER_CLASSNAME_H

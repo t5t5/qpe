@@ -56,7 +56,8 @@ uint LoggerEventPrivate::newEventId()
 
 // ---------------------------------------------------------------------------
 
-LoggerEvent::LoggerEvent(int loggerId,
+LoggerEvent::LoggerEvent(
+	uint loggerId,
 	const QString& pluginName,
 	QObject* object,
 	const QString& objectName,
@@ -71,7 +72,7 @@ LoggerEvent::LoggerEvent(int loggerId,
 		loggerId, pluginName, object, objectName, className,
 		eventType, thread, threadName, message, appenders, filters))
 {
-	Q_D(LoggerEvent);
+	QA_D();
 	d->q_ptr = this;
 }
 
@@ -81,13 +82,13 @@ LoggerEvent::~LoggerEvent()
 
 uint LoggerEvent::loggerId() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->loggerId;
 }
 
 uint LoggerEvent::eventId() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	if (d->eventIdEmpty) {
 		d->eventId = d->newEventId();
 		d->eventIdEmpty = false;
@@ -97,73 +98,73 @@ uint LoggerEvent::eventId() const
 
 QString LoggerEvent::pluginName() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->pluginName;
 }
 
 QObject* LoggerEvent::object() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->object;
 }
 
 QString LoggerEvent::objectName() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->objectName;
 }
 
 QString LoggerEvent::className() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->className;
 }
 
 EventType LoggerEvent::eventType() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->eventType;
 }
 
 QString LoggerEvent::eventTypeName() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->eventTypeName;
 }
 
 QThread* LoggerEvent::thread() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->thread;
 }
 
 QString LoggerEvent::threadName() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->threadName;
 }
 
 QString LoggerEvent::message() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->message;
 }
 
 QDateTime LoggerEvent::dateTime() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->dateTime;
 }
 
 LoggerAppenderList LoggerEvent::appenders() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->appenders;
 }
 
 LoggerFilterList LoggerEvent::filters() const
 {
-	Q_D(const LoggerEvent);
+	QA_D();
 	return d->filters;
 }
 

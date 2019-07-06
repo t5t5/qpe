@@ -9,8 +9,8 @@
 #include <QString>
 
 #include "eventtype.h"
-#include "loggerappender.h"
-#include "loggerfilter.h"
+#include <Qpe/Logger/LoggerAppender>
+#include <Qpe/Logger/LoggerFilter>
 
 namespace Qpe
 {

@@ -9,10 +9,9 @@
 #include <QStringList>
 
 #include <Qpe/Qpe>
-//#include <QpeCore/Singleton> // TODO: remove
 
-#include "loggerappender.h"
-#include "loggerfilter.h"
+#include <Qpe/Logger/LoggerAppender>
+#include <Qpe/Logger/LoggerFilter>
 
 namespace Qpe
 {
@@ -26,7 +25,7 @@ class LoggerControllerPrivate;
 class LoggerController : public QObject
 {
 	Q_OBJECT
-	Q_DECLARE_PRIVATE(LoggerController)
+	QPE_DECLARE_PRIVATE(LoggerController)
 protected:
 	QScopedPointer<LoggerControllerPrivate> d_ptr;
 public:
@@ -39,19 +38,13 @@ public:
 	void setApplicationDataPath(const QString& path);
 	void setApplicationLocalPath(const QString& path);
 
-	void registerAppenderType(
-		const QString& appenderType, LoggerAppenderCreator creator);
-	void registerFilterType(
-		const QString& filterType, LoggerFilterCreator creator);
+	void registerAppenderType(const QString& appenderType, LoggerAppenderCreator&& creator);
+	void registerFilterType(const QString& filterType, LoggerFilterCreator&& creator);
 	void unregisterAppenderType(const QString& appenderType);
 	void unregisterFilterType(const QString& filterType);
 
 	QString registerSettings(const QString& fileName, const char* codecName = nullptr);
-	QString registerSettings(
-		const QString& configName,
-		const QMap<QString, QVariantMap>& appenders,
-		const QMap<QString, QVariantMap>& filters,
-		const QMap<QString, QVariantMap>& cleaners);
+	QString registerSettings(const QString& name, const QVariantMap& properties);
 	void unregisterSettings(const QString& settingsName);
 
 	void config(const QStringList& configNames,

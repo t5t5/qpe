@@ -255,7 +255,7 @@ FileLoggerAppender::~FileLoggerAppender()
 
 bool FileLoggerAppender::initialize(const QVariantMap& properties)
 {
-	Q_D(FileLoggerAppender);
+	QA_D();
 	return
 		d->initializeFile(properties) &&
 		AbstractPatternLoggerAppender::initialize(properties);
@@ -264,7 +264,7 @@ bool FileLoggerAppender::initialize(const QVariantMap& properties)
 void FileLoggerAppender::write(
 	const LoggerEvent* loggerEvent, const QString& message)
 {
-	Q_D(FileLoggerAppender);
+	QA_D();
 	d->write(loggerEvent, message);
 }
 

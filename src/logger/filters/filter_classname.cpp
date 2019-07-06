@@ -21,14 +21,14 @@ ClassNameLoggerFilterPrivate::~ClassNameLoggerFilterPrivate()
 ClassNameLoggerFilter::ClassNameLoggerFilter(ClassNameLoggerFilterPrivate* dd)
 	: d_ptr(dd)
 {
-	Q_D(ClassNameLoggerFilter);
+	QA_D();
 	d->q_ptr = this;
 }
 
 ClassNameLoggerFilter::ClassNameLoggerFilter()
 	: d_ptr(new ClassNameLoggerFilterPrivate())
 {
-	Q_D(ClassNameLoggerFilter);
+	QA_D();
 	d->q_ptr = this;
 }
 
@@ -38,7 +38,7 @@ ClassNameLoggerFilter::~ClassNameLoggerFilter()
 
 bool ClassNameLoggerFilter::initialize(const QVariantMap& properties)
 {
-	Q_D(ClassNameLoggerFilter);
+	QA_D();
 	QRegularExpression emptyFilter("^.+$");
 	QStringList included =
 		properties.value("included").toStringList().filter(emptyFilter);
@@ -52,7 +52,7 @@ bool ClassNameLoggerFilter::initialize(const QVariantMap& properties)
 
 bool ClassNameLoggerFilter::testEvent(const LoggerEvent* loggerEvent) const
 {
-	Q_D(const ClassNameLoggerFilter);
+	QA_D();
 	return
 		(d->includedClasses.isEmpty() ||
 		(d->includedClasses.contains(loggerEvent->className()))) &&

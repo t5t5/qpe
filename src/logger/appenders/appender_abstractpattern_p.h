@@ -1,5 +1,5 @@
-#ifndef QPE_APPENDERS_APPENDER_ABSTRACTPATTERN_P_H
-#define QPE_APPENDERS_APPENDER_ABSTRACTPATTERN_P_H
+#ifndef APPENDERS_APPENDER_ABSTRACTPATTERN_P_H
+#define APPENDERS_APPENDER_ABSTRACTPATTERN_P_H
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -63,7 +63,7 @@ struct Factory
 class AbstractPatternLoggerAppender;
 class AbstractPatternLoggerAppenderPrivate
 {
-	Q_DECLARE_PUBLIC(AbstractPatternLoggerAppender)
+	QPE_DECLARE_PUBLIC(AbstractPatternLoggerAppender)
 protected:
 	AbstractPatternLoggerAppender* q_ptr;
 public:
@@ -84,4 +84,4 @@ private:
 
 } // namespace Qpe
 
-#endif // QPE_APPENDERS_APPENDER_ABSTRACTPATTERN_P_H
+#endif // APPENDERS_APPENDER_ABSTRACTPATTERN_P_H

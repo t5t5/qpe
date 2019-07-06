@@ -1,5 +1,5 @@
-#ifndef CORE_LOGGERAPPENDER_H
-#define CORE_LOGGERAPPENDER_H
+#ifndef APPENDERS_LOGGERAPPENDER_H
+#define APPENDERS_LOGGERAPPENDER_H
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -34,4 +34,4 @@ typedef std::function<LoggerAppenderPointer (const QVariantMap&)> LoggerAppender
 
 } // namespace Qpe
 
-#endif // CORE_LOGGERAPPENDER_H
+#endif // APPENDERS_LOGGERAPPENDER_H

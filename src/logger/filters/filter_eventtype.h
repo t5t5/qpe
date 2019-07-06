@@ -1,11 +1,13 @@
-#ifndef QPE_FILTERS_FILTER_EVENTTYPE_H
-#define QPE_FILTERS_FILTER_EVENTTYPE_H
+#ifndef FILTERS_FILTER_EVENTTYPE_H
+#define FILTERS_FILTER_EVENTTYPE_H
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
 #endif
 
 #include <QScopedPointer>
+
+#include <Qpe/Qpe>
 #include <Qpe/Logger/LoggerFilter>
 
 namespace Qpe
@@ -14,7 +16,7 @@ namespace Qpe
 class EventTypeLoggerFilterPrivate;
 class EventTypeLoggerFilter : public LoggerFilter
 {
-	Q_DECLARE_PRIVATE(EventTypeLoggerFilter)
+	QPE_DECLARE_PRIVATE(EventTypeLoggerFilter)
 protected:
 	QScopedPointer<EventTypeLoggerFilterPrivate> d_ptr;
 	EventTypeLoggerFilter(EventTypeLoggerFilterPrivate* dd);
@@ -29,4 +31,4 @@ public:
 
 } // namespace Qpe
 
-#endif // QPE_FILTERS_FILTER_EVENTTYPE_H
+#endif // FILTERS_FILTER_EVENTTYPE_H

@@ -1,5 +1,5 @@
-#ifndef QPE_APPENDERS_APPENDER_ABSTRACTPATTERN_H
-#define QPE_APPENDERS_APPENDER_ABSTRACTPATTERN_H
+#ifndef APPENDERS_APPENDER_ABSTRACTPATTERN_H
+#define APPENDERS_APPENDER_ABSTRACTPATTERN_H
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -7,6 +7,7 @@
 
 #include <QScopedPointer>
 
+#include <Qpe/Qpe>
 #include <Qpe/Logger/LoggerAppender>
 
 namespace Qpe
@@ -15,7 +16,7 @@ namespace Qpe
 class AbstractPatternLoggerAppenderPrivate;
 class AbstractPatternLoggerAppender : public LoggerAppender
 {
-	Q_DECLARE_PRIVATE(AbstractPatternLoggerAppender)
+	QPE_DECLARE_PRIVATE(AbstractPatternLoggerAppender)
 protected:
 	QScopedPointer<AbstractPatternLoggerAppenderPrivate> d_ptr;
 	AbstractPatternLoggerAppender(AbstractPatternLoggerAppenderPrivate* dd);
@@ -32,4 +33,4 @@ protected:
 
 } // namespace Qpe
 
-#endif // QPE_APPENDERS_APPENDER_ABSTRACTPATTERN_H
+#endif // APPENDERS_APPENDER_ABSTRACTPATTERN_H

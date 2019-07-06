@@ -1,5 +1,5 @@
-#ifndef CORE_LOGGERFILTER_H
-#define CORE_LOGGERFILTER_H
+#ifndef FILTERS_LOGGERFILTER_H
+#define FILTERS_LOGGERFILTER_H
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -34,4 +34,4 @@ typedef std::function<LoggerFilterPointer (const QVariantMap&)> LoggerFilterCrea
 
 } // namespace Qpe
 
-#endif // CORE_LOGGERFILTER_H
+#endif // FILTERS_LOGGERFILTER_H

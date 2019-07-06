@@ -57,19 +57,16 @@ public:
 	static void setApplicationLocalPath(const QString& path);
 
 	static void registerAppenderType(
-		const QString& appenderType, LoggerAppenderCreator creator);
+		const QString& appenderType, LoggerAppenderCreator&& creator);
 	static void registerFilterType(
-		const QString& filterType, LoggerFilterCreator creator);
+		const QString& filterType, LoggerFilterCreator&& creator);
 	static void unregisterAppenderType(const QString& appenderType);
 	static void unregisterFilterType(const QString& filterType);
 
 	static QString registerSettings(
 		const QString& fileName, const char* codecNames = nullptr);
 	static QString registerSettings(
-		const QString& configName,
-		const QMap<QString, QVariantMap>& appenders,
-		const QMap<QString, QVariantMap>& filters = QMap<QString, QVariantMap>(),
-		const QMap<QString, QVariantMap>& cleaners = QMap<QString, QVariantMap>());
+		const QString& settingsName, const QVariantMap& properties);
 	static void unregisterSettings(const QString& settingsName);
 };
 

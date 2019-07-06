@@ -260,14 +260,14 @@ QString AbstractPatternLoggerAppenderPrivate::createMessage(
 AbstractPatternLoggerAppender::AbstractPatternLoggerAppender(AbstractPatternLoggerAppenderPrivate* dd)
 	: d_ptr(dd)
 {
-	Q_D(AbstractPatternLoggerAppender);
+	QA_D();
 	d->q_ptr = this;
 }
 
 AbstractPatternLoggerAppender::AbstractPatternLoggerAppender()
 	: d_ptr(new AbstractPatternLoggerAppenderPrivate())
 {
-	Q_D(AbstractPatternLoggerAppender);
+	QA_D();
 	d->q_ptr = this;
 }
 
@@ -277,7 +277,7 @@ AbstractPatternLoggerAppender::~AbstractPatternLoggerAppender()
 
 bool AbstractPatternLoggerAppender::initialize(const QVariantMap& properties)
 {
-	Q_D(AbstractPatternLoggerAppender);
+	QA_D();
 	QString pattern = properties.value(LoggerPrivate::PROP_PATTERN).toString();
 	bool result = !pattern.isEmpty();
 	if (result)
@@ -287,7 +287,7 @@ bool AbstractPatternLoggerAppender::initialize(const QVariantMap& properties)
 
 void AbstractPatternLoggerAppender::append(const LoggerEvent* loggerEvent)
 {
-	Q_D(AbstractPatternLoggerAppender);
+	QA_D();
 	write(loggerEvent, d->createMessage(loggerEvent));
 }
 

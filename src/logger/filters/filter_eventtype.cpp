@@ -24,14 +24,14 @@ EventTypeLoggerFilterPrivate::~EventTypeLoggerFilterPrivate()
 EventTypeLoggerFilter::EventTypeLoggerFilter(EventTypeLoggerFilterPrivate* dd)
 	: d_ptr(dd)
 {
-	Q_D(EventTypeLoggerFilter);
+	QA_D();
 	d->q_ptr = this;
 }
 
 EventTypeLoggerFilter::EventTypeLoggerFilter()
 	: d_ptr(new EventTypeLoggerFilterPrivate())
 {
-	Q_D(EventTypeLoggerFilter);
+	QA_D();
 	d->q_ptr = this;
 }
 
@@ -41,7 +41,7 @@ EventTypeLoggerFilter::~EventTypeLoggerFilter()
 
 bool EventTypeLoggerFilter::initialize(const QVariantMap& properties)
 {
-	Q_D(EventTypeLoggerFilter);
+	QA_D();
 	// TODO: debug
 	QVariant types = properties.value("eventTypes");
 	if (types.isNull()) { return true; }
@@ -79,7 +79,7 @@ bool EventTypeLoggerFilter::initialize(const QVariantMap& properties)
 
 bool EventTypeLoggerFilter::testEvent(const LoggerEvent* loggerEvent) const
 {
-	Q_D(const EventTypeLoggerFilter);
+	QA_D();
 	return d->permittedTypes.testFlag(loggerEvent->eventType());
 }
 

@@ -7,9 +7,10 @@
 
 #include <QDateTime>
 
+#include <Qpe/Logger/LoggerAppender>
+#include <Qpe/Logger/LoggerFilter>
+
 #include "eventtype.h"
-#include "loggerappender.h"
-#include "loggerfilter.h"
 
 namespace Qpe
 {
@@ -17,7 +18,7 @@ namespace Qpe
 class LoggerEvent;
 class LoggerEventPrivate
 {
-	Q_DECLARE_PUBLIC(LoggerEvent)
+	QPE_DECLARE_PUBLIC(LoggerEvent)
 protected:
 	LoggerEvent* q_ptr;
 public:

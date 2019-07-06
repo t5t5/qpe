@@ -18,7 +18,6 @@ DESTDIR = $$QPE_LOGGER_BUILD_DIR
 LIBS += -L$$QPE_CORE_BUILD_DIR -lqpecore
 
 include(appenders/appenders.pri)
-include(cleaners/cleaners.pri)
 include(core/core.pri)
 include(filters/filters.pri)
 include(utils/utils.pri)

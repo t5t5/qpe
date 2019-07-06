@@ -1,5 +1,5 @@
-#ifndef QPE_APPENDERS_APPENDER_FILE_H
-#define QPE_APPENDERS_APPENDER_FILE_H
+#ifndef APPENDERS_APPENDER_FILE_H
+#define APPENDERS_APPENDER_FILE_H
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -31,4 +31,4 @@ protected:
 
 } // namespace Qpe
 
-#endif // QPE_APPENDERS_APPENDER_FILE_H
+#endif // APPENDERS_APPENDER_FILE_H
