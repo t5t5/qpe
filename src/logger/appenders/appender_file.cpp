@@ -7,9 +7,11 @@
 #include <QCache>
 #include <QTextCodec>
 #include <QRegularExpression>
+#include <QStandardPaths>
 
 #include "../core/loggerevent.h"
-#include "../utils/apppathconversion.h"
+
+#include <Qpe/Core/Enum>
 
 namespace Qpe
 {
@@ -27,14 +29,58 @@ static const QLatin1String PROP_ENCODING		("encoding");
 static const QLatin1String PROP_FILE_CACHE_SIZE	("filecachesize");
 static const QLatin1String PROP_FILE_NAME		("fileName");
 
+static const QLatin1String PROP_TYPE			("type");
+static const QLatin1String PROP_INDEX			("index");
+static const QLatin1String INDEX_LAST			("last");
+
 static const QLatin1String FORMAT_TIME			("yyyy-MM-dd hh:mm:ss,zzz");
 static const QLatin1String FORMAT_HEADER		("%1 %2 - %3 %4\n");
 
 static const QLatin1String VALUE_UNDERSCORE		("_");
 
+static const QLatin1String EN_s					("s");
+static const QLatin1String EN_stdPath			("stdPath");
+
 #define FILES_CACHE_SIZE 32
 #define FILES_HEADERS_CACHE_SIZE 1024
+
 // --------------------------------------------------------------------
+
+struct FileNameFactory
+{
+	static QString createExpression(
+		const QString& expressionName, const QVariantMap& properties);
+	static QStringList expressionNames();
+};
+
+QString FileNameFactory::createExpression(const QString& en, const QVariantMap& p)
+{
+	if ((en == EN_s) || (en == EN_stdPath)) {
+		typedef Enum<QStandardPaths::StandardLocation> StdLocation;
+
+		StdLocation locationType(p.value(PROP_TYPE).toByteArray(),
+			QStandardPaths::HomeLocation, Qt::CaseInsensitive);
+
+		QString location;
+		QStringList locations = QStandardPaths::standardLocations(locationType.value());
+		if (!locations.isEmpty()) {
+			QVariant index = p.value(PROP_INDEX);
+			location = (index.toString() == INDEX_LAST)
+				? locations.last()
+				: locations.value(index.toInt());
+		}
+		return location;
+	}
+	return QString();
+}
+
+QStringList FileNameFactory::expressionNames()
+{
+	return QStringList() << EN_s << EN_stdPath;
+}
+
+// --------------------------------------------------------------------
+
 class FileHelper
 {
 public:
@@ -52,10 +98,8 @@ public:
 
 	virtual bool initialize(const QVariantMap& properties)
 	{
-		_headerEnabled = properties.contains(PROP_HEADER)
-			? properties.value(PROP_HEADER).toBool() : true;
-		_immediateFlush = properties.contains(PROP_FLUSH)
-			? properties.value(PROP_FLUSH).toBool() : true;
+		_headerEnabled = properties.value(PROP_HEADER, true).toBool();
+		_immediateFlush = properties.value(PROP_FLUSH, true).toBool();
 		if (_headerEnabled) {
 			_headerTime = properties
 				.value(PROP_CONTROLLER_TIME, QDateTime::currentDateTime())
@@ -166,10 +210,8 @@ public:
 	{
 		EventWrapper ew(loggerEvent);
 		QString fileName = correctFileName(fileNamePattern.createString(ew));
-		QFile* f;
-		if (files.contains(fileName)) {
-			f = files.object(fileName);
-		} else {
+		QFile* f = files.object(fileName);
+		if (f == nullptr) {
 			f = new QFile(fileName);
 			files.insert(fileName, f);
 		}
@@ -182,7 +224,7 @@ private:
 			files.setMaxCost(fileCacheSize);
 		return true;
 	}
-	LoggerPrivate::Pattern fileNamePattern;
+	Pattern fileNamePattern;
 	Files files;
 };
 
@@ -203,11 +245,11 @@ QString FileLoggerAppenderPrivate::parseFileName(const QVariantMap& p)
 {
 	QString fileName = p.value(LoggerPrivate::PROP_FILE_NAME).toString();
 	if (fileName.isEmpty()) { return fileName; }
-	LoggerPrivate::AppPathConversionPattern pattern;
-	typedef LoggerPrivate::AppPathConversionFactory Factory;
+	SimpleConversionPattern pattern;
+	typedef LoggerPrivate::FileNameFactory Factory;
 	pattern.initialize(
 		fileName, Factory::expressionNames(), &Factory::createExpression);
-	return pattern.createString(p);
+	return pattern.createString();
 }
 
 bool FileLoggerAppenderPrivate::initializeFile(const QVariantMap& properties)
@@ -229,7 +271,8 @@ bool FileLoggerAppenderPrivate::initializeFile(const QVariantMap& properties)
 	return result;
 }
 
-void FileLoggerAppenderPrivate::write(const LoggerEvent* loggerEvent, const QString& text)
+void FileLoggerAppenderPrivate::write(
+	const LoggerEvent* loggerEvent, const QString& text)
 {
 	fileHelper->changeFile(loggerEvent);
 	if (fileHelper->open()) {

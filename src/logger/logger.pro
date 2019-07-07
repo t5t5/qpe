@@ -20,7 +20,6 @@ LIBS += -L$$QPE_CORE_BUILD_DIR -lqpecore
 include(appenders/appenders.pri)
 include(core/core.pri)
 include(filters/filters.pri)
-include(utils/utils.pri)
 
 OTHER_FILES += \
     doc/logger.qdocconf

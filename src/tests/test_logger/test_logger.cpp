@@ -30,6 +30,7 @@ void TestLogger::initTestCase()
 	s["appender.root.type"]      = "FileAppender";
 	s["appender.root.fileName"]  = "log/%d{format=yyyy-MM-dd}/root_%N__%c.log.txt";
 	s["appender.root.pattern.0"] = "e:%e{format=10l} (l=%l{format=10l}) [T=%T] %d{format=yyyy-MM-dd HH:mm:ss,zzz} %-6p [%-25.25c] | %m\n";
+	s["appender.root.header"]    = "false";
 
 	s["appender.TEST_SINGLE.type"]     = "FileAppender";
 	s["appender.TEST_SINGLE.fileName"] = "log/%d{format=yyyy-MM-dd}/%N__%c.log.txt";
