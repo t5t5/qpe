@@ -1,16 +1,15 @@
 #include "loggerevent.h"
 #include "loggerevent_p.h"
 
-#include <QMetaEnum>
+#include <Qpe/Core/Enum>
 
 namespace Qpe
 {
 
-template <typename Enum>
-inline QString enumToString(Enum e)
+template <typename TEnum>
+inline QString enumToString(TEnum e)
 {
-	static QMetaEnum me = QMetaEnum::fromType<Enum>();
-	return me.valueToKey(static_cast<int>(e));
+	return Flag<TEnum, QString>::valueToKey(e);
 }
 
 LoggerEventPrivate::LoggerEventPrivate(
@@ -52,7 +51,6 @@ uint LoggerEventPrivate::newEventId()
 	static QAtomicInteger<uint> eventId(0);
 	return eventId.fetchAndAddOrdered(1);
 }
-
 
 // ---------------------------------------------------------------------------
 
