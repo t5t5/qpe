@@ -5,7 +5,7 @@
 #pragma once
 #endif
 
-//#include "../core/eventtypewrapper.h"	// TODO: remove
+#include <Qpe/Core/Enum>
 
 #include <Qpe/Logger/EventType>
 
@@ -19,11 +19,13 @@ class EventTypeLoggerFilterPrivate
 protected:
 	EventTypeLoggerFilter* q_ptr;
 public:
-	EventTypeLoggerFilterPrivate();
-	~EventTypeLoggerFilterPrivate();
+	EventTypeLoggerFilterPrivate() = default;
+	~EventTypeLoggerFilterPrivate() = default;
 
-	EventTypes permittedTypes;
-//	Private::EventTypeWrapper permittedTypes; // TODO: remove
+	bool initialize(const QVariantMap& properties);
+
+	typedef Flag<EventType, QString> FlagEventType;
+	FlagEventType permittedTypes;
 };
 
 } // namespace Qpe

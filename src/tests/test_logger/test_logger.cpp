@@ -15,8 +15,6 @@ private slots:
 
 void TestLogger::initTestCase()
 {
-
-//	QString res1 = Qpe::Logger::registerSettings("qpelogger.cfg");
 	QVariantMap s;
 	s["logger.root.appenders"]   = "root";
 	s["logger.root.filters"]     = "root";
@@ -25,7 +23,7 @@ void TestLogger::initTestCase()
 	s["logger.TEST_SINGLE.filters"]   = "root";
 
 	s["logger.TEST_MULTI.appenders"] = "TEST_MULTI";
-	s["logger.TEST_MULTI.filters"]   = "root";
+	s["logger.TEST_MULTI.filters"]   = "TEST_MULTI";
 
 	s["appender.root.type"]      = "FileAppender";
 	s["appender.root.fileName"]  = "log/%d{format=yyyy-MM-dd}/root_%N__%c.log.txt";
@@ -42,7 +40,11 @@ void TestLogger::initTestCase()
 	s["appender.TEST_MULTI.pattern.1"] = "e:%-108e{format=10l}| %m\n";
 
 	s["filter.root.type"]        = "EventTypeFilter";
-	s["filter.root.eventTypes"]  = "ALL";
+	s["filter.root.eventTypes"]  = "all";
+
+	s["filter.TEST_MULTI.type"]        = "EventTypeFilter";
+	s["filter.TEST_MULTI.eventTypes"]  = "info, warn";
+
 	QString res1 = Qpe::Logger::registerSettings("prop.cfg", s);
 }
 
