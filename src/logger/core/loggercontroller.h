@@ -34,10 +34,6 @@ public:
 
 	static LoggerController& instance();
 
-	void setApplicationDirPath(const QString& path);
-	void setApplicationDataPath(const QString& path);
-	void setApplicationLocalPath(const QString& path);
-
 	void registerAppenderType(const QString& appenderType, LoggerAppenderCreator&& creator);
 	void registerFilterType(const QString& filterType, LoggerFilterCreator&& creator);
 	void unregisterAppenderType(const QString& appenderType);

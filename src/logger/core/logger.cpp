@@ -213,19 +213,4 @@ void Logger::unregisterSettings(const QString& settingsName)
 	return Private::LoggerController::instance().unregisterSettings(settingsName);
 }
 
-void Logger::setApplicationDirPath(const QString& path)
-{
-	Private::LoggerController::instance().setApplicationDirPath(path);
-}
-
-void Logger::setApplicationDataPath(const QString& path)
-{
-	Private::LoggerController::instance().setApplicationDataPath(path);
-}
-
-void Logger::setApplicationLocalPath(const QString& path)
-{
-	Private::LoggerController::instance().setApplicationLocalPath(path);
-}
-
 } // namespace Qpe

@@ -63,13 +63,6 @@ private:
 	LoggerFilterPointer createFilter(
 		const QString& filterName, const QVariantMap& properties);
 
-	QReadWriteLock pathLock;
-	QString applicationDirPath;
-	QString applicationDataPath;
-	QString applicationLocalPath;
-	QString documentsPath;
-	QString homePath;
-
 	QThread workThread;
 	QMutex queueMutex;
 

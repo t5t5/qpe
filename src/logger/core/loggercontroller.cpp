@@ -19,16 +19,6 @@ LoggerControllerPrivate::LoggerControllerPrivate(QObject* parent /* = nullptr */
 	: QObject(parent)
 	, startTime(QDateTime::currentDateTime())
 {
-	applicationDirPath = QCoreApplication::applicationDirPath();
-	applicationDataPath =
-		QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).at(0);
-	applicationLocalPath =
-		QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation).at(0);
-	documentsPath =
-		QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation).at(0);
-	homePath =
-		QStandardPaths::standardLocations(QStandardPaths::HomeLocation).at(0);
-
 	workThread.setObjectName("LoggerControllerPrivate_Thread");
 	this->moveToThread(&workThread);
 	workThread.start(QThread::LowPriority);
@@ -95,12 +85,6 @@ QVariantMap LoggerControllerPrivate::insertStandardProperties(const QVariantMap&
 {
 	QVariantMap r(p);
 	r.insert("controllerCreationTime", startTime);
-	{
-		QWriteLocker locker(&pathLock);
-		r.insert("applicationDirPath", applicationDirPath);
-		r.insert("applicationDataPath", applicationDataPath);
-		r.insert("applicationLocalPath", applicationLocalPath);
-	}
 	return r;
 }
 
@@ -109,7 +93,7 @@ LoggerAppenderPointer LoggerControllerPrivate::createAppender(
 {
 	LoggerAppenderPointer appender = appendersCache.value(appenderName);
 	if (appender) { return appender; }
-	appender = appenderFactory.create(p);
+	appender = appenderFactory.create(insertStandardProperties(p));
 	if (!appender) { return appender; }
 	appendersCache.insert(appenderName, appender);
 	return appender;
@@ -289,27 +273,6 @@ LoggerController& LoggerController::instance()
 {
 	static LoggerController o;
 	return o;
-}
-
-void LoggerController::setApplicationDirPath(const QString& path)
-{
-	QA_D();
-	QWriteLocker locker(&d->pathLock);
-	d->applicationDirPath = path;
-}
-
-void LoggerController::setApplicationDataPath(const QString& path)
-{
-	QA_D();
-	QWriteLocker locker(&d->pathLock);
-	d->applicationDataPath = path;
-}
-
-void LoggerController::setApplicationLocalPath(const QString& path)
-{
-	QA_D();
-	QWriteLocker locker(&d->pathLock);
-	d->applicationLocalPath = path;
 }
 
 void LoggerController::registerAppenderType(

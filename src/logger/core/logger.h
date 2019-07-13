@@ -52,10 +52,6 @@ public slots:
 	void trace(const QString& s) const;
 
 public:
-	static void setApplicationDirPath(const QString& path);
-	static void setApplicationDataPath(const QString& path);
-	static void setApplicationLocalPath(const QString& path);
-
 	static void registerAppenderType(
 		const QString& appenderType, LoggerAppenderCreator&& creator);
 	static void registerFilterType(
