@@ -3,8 +3,9 @@
 
 #include <QThread>
 
+#include <Qpe/Logger/LoggerEvent>
+
 #include "loggercontroller.h"
-#include "loggerevent.h"
 
 namespace Qpe
 {

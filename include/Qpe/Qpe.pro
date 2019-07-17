@@ -36,6 +36,7 @@ HEADERS += \
     Logger/EventType \
     Logger/Logger \
     Logger/LoggerAppender \
+    Logger/LoggerEvent \
     Logger/LoggerFilter
 
 # global

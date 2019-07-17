@@ -5,7 +5,7 @@
 #include <QStringList>
 #include <QVariant>
 
-#include "../core/loggerevent.h"
+#include <Qpe/Logger/LoggerEvent>
 
 namespace Qpe
 {

@@ -12,7 +12,7 @@
 #include <Qpe/Core/DateStringifier>
 #include <Qpe/Core/Enum>
 
-#include "../core/loggerevent.h"
+#include <Qpe/Logger/LoggerEvent>
 
 namespace Qpe
 {

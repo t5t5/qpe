@@ -7,7 +7,7 @@
 #include <QRegularExpression>
 #include <QSet>
 
-#include "loggerevent.h"
+#include <Qpe/Logger/LoggerEvent>
 
 namespace Qpe
 {

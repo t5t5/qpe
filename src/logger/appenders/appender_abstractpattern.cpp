@@ -6,7 +6,7 @@
 #include <Qpe/Core/Stringifier>
 #include <Qpe/Core/DateStringifier>
 
-#include "../core/loggerevent.h"
+#include <Qpe/Logger/LoggerEvent>
 
 namespace Qpe
 {

@@ -3,7 +3,7 @@
 
 #include <QRegularExpression>
 
-#include "../core/loggerevent.h"
+#include <Qpe/Logger/LoggerEvent>
 
 namespace Qpe
 {
