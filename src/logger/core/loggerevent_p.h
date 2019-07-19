@@ -11,8 +11,7 @@
 
 #include <Qpe/Logger/LoggerAppender>
 #include <Qpe/Logger/LoggerFilter>
-
-#include "eventtype.h"
+#include <Qpe/Logger/EventType>
 
 namespace Qpe
 {

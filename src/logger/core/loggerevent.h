@@ -8,9 +8,9 @@
 #include <QScopedPointer>
 #include <QDateTime>
 
-#include "eventtype.h"
 #include <Qpe/Logger/LoggerAppender>
 #include <Qpe/Logger/LoggerFilter>
+#include <Qpe/Logger/EventType>
 
 class QThread;
 
@@ -18,7 +18,7 @@ namespace Qpe
 {
 
 class LoggerEventPrivate;
-class LoggerEvent
+class QPE_LOGGER_EXPORT LoggerEvent
 {
 	QPE_DECLARE_PRIVATE(LoggerEvent)
 protected:

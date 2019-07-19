@@ -5,10 +5,10 @@
 #pragma once
 #endif
 
+#include <functional>
+
 #include <QSharedPointer>
 #include <QList>
-
-#include <functional>
 
 namespace Qpe
 {
