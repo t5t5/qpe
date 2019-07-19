@@ -14,10 +14,98 @@
 
 #include <Qpe/Logger/LoggerEvent>
 
+/*!
+ * \class Qpe::FileLoggerAppender
+ * \inmodule logger
+ * \brief Файловый appender.
+ * \inheaderfile
+ * \ingroup logger
+ *
+ * \section1 Параметры инициализации.
+ *
+ * Необходимые параметры инициализации метода AbstractPatternLoggerAppender::initialize():
+ * \table
+ *   \header
+ *   \row \li Наименование      \li Значение по умолчанию  \li Описание
+ *   \row \li \b pattern        \li                        \li шаблон для преобразования сообщения
+ *   \row \li \b pattern.N      \li                        \li тоже что и pattern; N - последовательность 0..<=99
+ *   \row \li \b fileName       \li                        \li имя файла, может быть шаблоном
+ *   \row \li \b flush          \li true                   \li после каждого сообщения сбрасывать буфер в файл
+ *   \row \li \b header         \li true                   \li true или false - включен или выключен заголовок
+ *   \row \li \b header.pattern \li %40E{padding=-} %T %F %40E{padding=-}\\n \li шаблон строки заголовка
+ *   \row \li \b encoding       \li utf-8                  \li кодировка файла лога \l {https://doc.qt.io/qt-5/qtextcodec.html} {QTextCodec}
+ *   \row \li \b fileCacheSize  \li 32                     \li максимальное количество файлов логов открытых одновременно
+ * \endtable
+ *
+ * \note Описание \b pattern и \b pattern.N мотреть в AbstractPatternLoggerAppender.
+ *
+ * \section1 Шаблон имени файла.
+ *
+ * Шаблон имени файла (параметр \b fileName) может содержать следующие выражения:
+ * \table
+ *   \header
+ *   \row \li Имя элемента  \li Сокращение \li параметры   \li описание
+ *   \row \li {4, 1} все теже элементы, что и в шаблоне строки ( AbstractPatternLoggerAppender ).
+ *   \row \li stdPath       \li s          \li type, index \li подстановка стандартных путей \l {https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum} {QStandardPaths}
+ * \endtable
+ *
+ * \section3 Параметр type элемента stdPath.
+ * Параметр type принимает регистронезависимую строку соответствующую значению
+ * перечисления \l {https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum}
+ * {QStandardPaths::StandardLocation}:
+ * \list
+ *   \li DesktopLocation
+ *   \li DocumentsLocation
+ *   \li FontsLocation
+ *   \li ApplicationsLocation
+ *   \li MusicLocation
+ *   \li MoviesLocation
+ *   \li PicturesLocation
+ *   \li TempLocation
+ *   \li HomeLocation
+ *   \li DataLocation
+ *   \li CacheLocation
+ *   \li GenericDataLocation
+ *   \li RuntimeLocation
+ *   \li ConfigLocation
+ *   \li DownloadLocation
+ *   \li GenericCacheLocation
+ *   \li GenericConfigLocation
+ *   \li AppDataLocation
+ *   \li AppConfigLocation
+ *   \li AppLocalDataLocation
+ * \endlist
+ *
+ * \section3 Параметр index элемента stdPath.
+ * Параметр index принимает строку с целочисленным значение больше или  равно 0
+ * или строку "last". Индекс соответствует индексу массива возвращаемого методом:
+ * \l {https://doc.qt.io/qt-5/qstandardpaths.html#standardLocations}
+ * {QStandardPaths::standardLocations(QStandardPaths::StandardLocation type)}
+ *
+ * \section1 Шаблон строки заголовка файла логов.
+ *
+ * Шаблон строки заголовка файла (параметр \b header.pattern)
+ * может содержать следующие выражения:
+ * \table
+ *   \header
+ *   \row \li Имя элемента  \li Сокращение \li параметры \li описание
+ *   \row \li time          \li T          \li format    \li время инициализации logger'a
+ *   \row \li empty         \li E          \li padding   \li просто заполняется пустой строкой
+ *   \row \li fileName      \li F          \li           \li имя файла логов
+ * \endtable
+ *
+ * \section3 Параметр format элемента time.
+ * Формат описан в Qpe::DateStringifier::setFormatString(),
+ * значение по умолчанию "\b{yyyy-MM-dd hh:mm:ss,zzztt}".
+ *
+ * \section3 Параметр padding элемента empty.
+ * Параметр паддинг описан в Qpe::ConversionPattern.
+ */
+
 namespace Qpe
 {
 
-namespace LoggerPrivate
+namespace PrivateLogger
 {
 
 static const QRegularExpression REGEXP_FILENAME_MATCH	("^([A-Za-z]:[\\\\" "\\/])?(.*)");
@@ -338,7 +426,7 @@ bool FileHelperCached::initializeCache(int fileCacheSize)
 	return true;
 }
 
-} // namespace LoggerPrivate
+} // namespace PrivateLogger
 
 // ------------------------------------------------------------------------
 
@@ -353,10 +441,10 @@ FileLoggerAppenderPrivate::~FileLoggerAppenderPrivate()
 
 QString FileLoggerAppenderPrivate::parseFileName(const QVariantMap& p)
 {
-	QString fileName = p.value(LoggerPrivate::PROP_FILE_NAME).toString();
+	QString fileName = p.value(PrivateLogger::PROP_FILE_NAME).toString();
 	if (fileName.isEmpty()) { return fileName; }
 	SimpleConversionPattern pattern;
-	typedef LoggerPrivate::FileNameFactory Factory;
+	typedef PrivateLogger::FileNameFactory Factory;
 	pattern.initialize(
 		fileName, Factory::expressionNames(), &Factory::createExpression);
 	return pattern.createString();
@@ -367,14 +455,14 @@ bool FileLoggerAppenderPrivate::initializeFile(const QVariantMap& properties)
 	QString fileName = parseFileName(properties);
 	bool result = !fileName.isEmpty();
 	if (result) {
-		LoggerPrivate::Pattern pattern;
-		typedef LoggerPrivate::Factory Factory;
+		PrivateLogger::Pattern pattern;
+		typedef PrivateLogger::Factory Factory;
 		pattern.initialize(
 			fileName, Factory::expressionNames(), &Factory::createExpression);
 		if (pattern.containsExpressions()) {
-			fileHelper.reset(new LoggerPrivate::FileHelperCached(pattern));
+			fileHelper.reset(new PrivateLogger::FileHelperCached(pattern));
 		} else {
-			fileHelper.reset(new LoggerPrivate::FileHelperSingle(fileName));
+			fileHelper.reset(new PrivateLogger::FileHelperSingle(fileName));
 		}
 		result = fileHelper->initialize(properties);
 	}
@@ -406,6 +494,10 @@ FileLoggerAppender::~FileLoggerAppender()
 {
 }
 
+/*!
+ * \fn bool FileLoggerAppender::initialize(const QVariantMap& properties)
+ * \reimp
+ */
 bool FileLoggerAppender::initialize(const QVariantMap& properties)
 {
 	QA_D();
@@ -414,6 +506,11 @@ bool FileLoggerAppender::initialize(const QVariantMap& properties)
 		AbstractPatternLoggerAppender::initialize(properties);
 }
 
+/*!
+ * \fn void FileLoggerAppender::write(
+ *          const LoggerEvent* loggerEvent, const QString& message)
+ * \reimp
+ */
 void FileLoggerAppender::write(
 	const LoggerEvent* loggerEvent, const QString& message)
 {

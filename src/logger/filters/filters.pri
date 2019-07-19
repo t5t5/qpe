@@ -9,4 +9,5 @@ HEADERS += \
 SOURCES += \
     $$PWD/filter_eventtype.cpp \
     $$PWD/filter_classname.cpp \
-    $$PWD/filterfactory.cpp
+    $$PWD/filterfactory.cpp \
+    $$PWD/loggerfilter.cpp

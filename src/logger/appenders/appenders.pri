@@ -9,4 +9,5 @@ HEADERS += \
 SOURCES += \
     $$PWD/appender_abstractpattern.cpp \
     $$PWD/appender_file.cpp \
-    $$PWD/appenderfactory.cpp
+    $$PWD/appenderfactory.cpp \
+    $$PWD/loggerappender.cpp

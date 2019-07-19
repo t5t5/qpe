@@ -3,6 +3,15 @@
 
 #include <Qpe/Core/Enum>
 
+/*!
+ * \class Qpe::LoggerEvent
+ * \inmodule logger
+ * \brief Класс хранит подробную инфомацию о логгируемом сообщении.
+ * \inheaderfile Qpe/Logger/LoggerEvent
+ * \ingroup logger
+ */
+
+
 namespace Qpe
 {
 
@@ -78,12 +87,20 @@ LoggerEvent::~LoggerEvent()
 {
 }
 
+/*!
+ * \fn uint LoggerEvent::loggerId() const
+ * Вернуть идентификатор logger'а.
+ */
 uint LoggerEvent::loggerId() const
 {
 	QA_D();
 	return d->loggerId;
 }
 
+/*!
+ * \fn uint LoggerEvent::eventId() const
+ * Вернуть идентификатор события.
+ */
 uint LoggerEvent::eventId() const
 {
 	QA_D();
@@ -94,72 +111,126 @@ uint LoggerEvent::eventId() const
 	return d->eventId;
 }
 
+/*!
+ * \fn QString LoggerEvent::pluginName() const
+ * Вернуть имя компонента.
+ */
 QString LoggerEvent::pluginName() const
 {
 	QA_D();
 	return d->pluginName;
 }
 
+/*!
+ * \fn QObject* LoggerEvent::object() const
+ * Вернуть адрес объекта.
+ *
+ * \note Содержимое объекта использовать нельзя, т.к. на момент использования
+ * данного события, объект может уже не существовать.
+ */
 QObject* LoggerEvent::object() const
 {
 	QA_D();
 	return d->object;
 }
 
+/*!
+ * \fn QString LoggerEvent::objectName() const
+ * Вернуть имя объекта.
+ */
 QString LoggerEvent::objectName() const
 {
 	QA_D();
 	return d->objectName;
 }
 
+/*!
+ * \fn QString LoggerEvent::className() const
+ * Вернуть имя класса.
+ */
 QString LoggerEvent::className() const
 {
 	QA_D();
 	return d->className;
 }
 
+/*!
+ * \fn EventType LoggerEvent::eventType() const
+ * Вернуть тип события.
+ */
 EventType LoggerEvent::eventType() const
 {
 	QA_D();
 	return d->eventType;
 }
 
+/*!
+ * \fn QString LoggerEvent::eventTypeName() const
+ * Вернуть имя типа события.
+ */
 QString LoggerEvent::eventTypeName() const
 {
 	QA_D();
 	return d->eventTypeName;
 }
 
+/*!
+ * \fn QThread* LoggerEvent::thread() const
+ * Вернуть адрес объекта потока.
+ *
+ * \note Содержимое объекта использовать нельзя, т.к. на момент использования
+ * данного события, объект может уже не существовать.
+ */
 QThread* LoggerEvent::thread() const
 {
 	QA_D();
 	return d->thread;
 }
 
+/*!
+ * \fn QString LoggerEvent::threadName() const
+ * Вернуть имя потока.
+ */
 QString LoggerEvent::threadName() const
 {
 	QA_D();
 	return d->threadName;
 }
 
+/*!
+ * \fn QString LoggerEvent::message() const
+ * Вернуть сообщение.
+ */
 QString LoggerEvent::message() const
 {
 	QA_D();
 	return d->message;
 }
 
+/*!
+ * \fn QDateTime LoggerEvent::dateTime() const
+ * Вернуть время формирования события.
+ */
 QDateTime LoggerEvent::dateTime() const
 {
 	QA_D();
 	return d->dateTime;
 }
 
+/*!
+ * \fn LoggerAppenderList LoggerEvent::appenders() const
+ * Вернуть список appender'ов.
+ */
 LoggerAppenderList LoggerEvent::appenders() const
 {
 	QA_D();
 	return d->appenders;
 }
 
+/*!
+ * \fn LoggerFilterList LoggerEvent::filters() const
+ * Вернуть список фильтров.
+ */
 LoggerFilterList LoggerEvent::filters() const
 {
 	QA_D();

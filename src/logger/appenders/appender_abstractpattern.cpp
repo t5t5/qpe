@@ -8,10 +8,52 @@
 
 #include <Qpe/Logger/LoggerEvent>
 
+/*!
+ * \class Qpe::AbstractPatternLoggerAppender
+ * \inmodule logger
+ * \brief Абстрактный шаблонный appender.
+ * \inheaderfile Qpe/Logger/Private/abstractpatternloggerappender_p.h
+ * \ingroup logger
+ *
+ * Необходимые параметры инициализации метода AbstractPatternLoggerAppender::initialize():
+ * \table
+ *   \header
+ *   \row \li Наименование \li Описание
+ *   \row \li \b pattern      \li шаблон для преобразования сообщения
+ *   \row \li \b pattern.N    \li тоже что и pattern; N - последовательность 0..<=99
+ * \endtable
+ *
+ * Если найден параметр \b pattern будет использоваться однострочный шаблон.
+ *
+ * Иначе если найден параметр \b pattern.N будет использоваться многострочный шаблон.
+ *
+ * Шаблоны строк могут содержать следующие выражения:
+ * \table
+ *   \header
+ *   \row \li Имя элемента  \li Сокращение \li параметры \li описание
+ *   \row \li clasName      \li c          \li           \li имя класса
+ *   \row \li pluginName    \li N          \li           \li имя компонента
+ *   \row \li message       \li m          \li           \li сообщение
+ *   \row \li eventId       \li e          \li format    \li идентификатор события\sup 1; format - Qpe::Stringifier::setFormatString()
+ *   \row \li loggerId      \li l          \li format    \li идентификатор logger'a\sup 1; format - Qpe::Stringifier::setFormatString()
+ *   \row \li dateTime      \li d          \li format    \li время события; format - Qpe::DateStringifier::setFormatString()
+ *   \row \li eventType     \li p          \li           \li тип события
+ *   \row \li newLine       \li n          \li           \li перевод строки, лучше использовать \\n
+ *   \row \li objectAddress \li O          \li format    \li адрес объекта\sup 2; format - Qpe::Stringifier::setFormatString()
+ *   \row \li objectName    \li o          \li           \li
+ *   \row \li threadAddress \li T          \li format    \li адрес потока\sup 2; format - Qpe::Stringifier::setFormatString()
+ *   \row \li threadName    \li t          \li           \li
+ *   \row \li %             \li -          \li           \li
+ * \endtable
+ * \sup 1 - формат по умолчанию: десятичное число без ведущих нулей
+ *
+ * \sup 2 - формат адреса по умолчанию: шестнадцатеричное число с префиксом '0x' и ведущими нулями
+ */
+
 namespace Qpe
 {
 
-namespace LoggerPrivate
+namespace PrivateLogger
 {
 
 static const QLatin1String EN_className		("className");
@@ -215,7 +257,7 @@ QStringList Factory::expressionNames()
 		<< EN_t << EN_threadName;
 }
 
-} // namespace LoggerPrivate
+} // namespace PrivateLogger
 
 // ------------------------------------------------------------------------
 
@@ -230,8 +272,8 @@ AbstractPatternLoggerAppenderPrivate::~AbstractPatternLoggerAppenderPrivate()
 bool AbstractPatternLoggerAppenderPrivate::initializePatterns(
 	const QVariantMap& properties)
 {
-	typedef LoggerPrivate::Factory Factory;
-	typedef LoggerPrivate::Pattern Pattern;
+	typedef PrivateLogger::Factory Factory;
+	typedef PrivateLogger::Pattern Pattern;
 	auto appendPattern = [this, properties] (QVariantMap::const_iterator it) -> bool
 	{
 		if (it == properties.end()) { return false; }
@@ -240,16 +282,16 @@ bool AbstractPatternLoggerAppenderPrivate::initializePatterns(
 		return true;
 	};
 	// если есть свойство "pattern" - логи однострочные
-	if (appendPattern(properties.find(LoggerPrivate::PROP_PATTERN))) {
-		lineAdapter.reset(new LoggerPrivate::SingleLineAdapter());
+	if (appendPattern(properties.find(PrivateLogger::PROP_PATTERN))) {
+		lineAdapter.reset(new PrivateLogger::SingleLineAdapter());
 		return true;
 	}
 	// иначе считаем, что логи многострочные
-	lineAdapter.reset(new LoggerPrivate::MultiLineAdapter());
+	lineAdapter.reset(new PrivateLogger::MultiLineAdapter());
 	// и пытаемся разобрать свойства "pattern.i"
 	for (int i = 0; i < 100; ++i) {
 		auto it = properties.find(QString("%1.%2").arg(
-				LoggerPrivate::PROP_PATTERN, QString::number(i)));
+				PrivateLogger::PROP_PATTERN, QString::number(i)));
 		if (!appendPattern(it)) { break; }
 	}
 	return !patterns.isEmpty();
@@ -262,7 +304,7 @@ QString AbstractPatternLoggerAppenderPrivate::createMessage(
 	if (patternsCount == 0) { return QString(); }
 
 	lineAdapter->setText(loggerEvent->message());
-	LoggerPrivate::EventWrapper ew(loggerEvent, lineAdapter);
+	PrivateLogger::EventWrapper ew(loggerEvent, lineAdapter);
 	QString messageText;
 	int i = 0;
 	while (ew.hasMessage()) {
@@ -292,16 +334,31 @@ AbstractPatternLoggerAppender::~AbstractPatternLoggerAppender()
 {
 }
 
+/*!
+ * \fn bool AbstractPatternLoggerAppender::initialize(const QVariantMap& properties)
+ * \reimp
+ */
 bool AbstractPatternLoggerAppender::initialize(const QVariantMap& properties)
 {
 	QA_D();
 	return d->initializePatterns(properties);
 }
 
+/*!
+ * \fn void AbstractPatternLoggerAppender::append(const LoggerEvent* loggerEvent)
+ * \reimp
+ */
 void AbstractPatternLoggerAppender::append(const LoggerEvent* loggerEvent)
 {
 	QA_D();
 	write(loggerEvent, d->createMessage(loggerEvent));
 }
+
+/*!
+ * \fn void AbstractPatternLoggerAppender::write(const LoggerEvent* loggerEvent, const QString& message)
+ * Вывод подготовленного сообщения \a message в лог.
+ * Сообщение \a message строится из \a loggerEvent на основании логики
+ * класса AbstractPatternLoggerAppender.
+ */
 
 } // namespace Qpe

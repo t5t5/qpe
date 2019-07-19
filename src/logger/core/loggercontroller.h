@@ -5,6 +5,8 @@
 #pragma once
 #endif
 
+#ifndef Q_QDOC
+
 #include <QScopedPointer>
 #include <QStringList>
 
@@ -18,7 +20,7 @@ namespace Qpe
 
 class LoggerEvent;
 
-namespace Private
+namespace PrivateLogger
 {
 
 class LoggerControllerPrivate;
@@ -51,8 +53,10 @@ signals:
 	void configUpdated();
 };
 
-} // namespace Private
+} // namespace PrivateLogger
 
 } // namespace Qpe
+
+#endif // Q_QDOC
 
 #endif // CORE_LOGGERCONTROLLER_H

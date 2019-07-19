@@ -5,6 +5,8 @@
 #pragma once
 #endif
 
+#ifndef Q_QDOC
+
 #include <Qpe/Core/ConversionPattern>
 
 #include <Qpe/Logger/EventType>
@@ -14,7 +16,7 @@ namespace Qpe
 
 class LoggerEvent;
 
-namespace LoggerPrivate
+namespace PrivateLogger
 {
 
 class LineAdapter;
@@ -56,7 +58,7 @@ struct Factory
 	static QStringList expressionNames();
 };
 
-} // namespace LoggerPrivate
+} // namespace PrivateLogger
 
 // ------------------------------------------------------------------------
 
@@ -74,11 +76,13 @@ public:
 
 	QString createMessage(const LoggerEvent* loggerEvent);
 private:
-	QList<LoggerPrivate::Pattern> patterns;
+	QList<PrivateLogger::Pattern> patterns;
 
-	LoggerPrivate::LineAdapterPointer lineAdapter;
+	PrivateLogger::LineAdapterPointer lineAdapter;
 };
 
 } // namespace Qpe
+
+#endif // Q_QDOC
 
 #endif // APPENDERS_APPENDER_ABSTRACTPATTERN_P_H

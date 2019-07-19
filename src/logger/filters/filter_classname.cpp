@@ -5,6 +5,14 @@
 
 #include <Qpe/Logger/LoggerEvent>
 
+/*!
+ * \class Qpe::ClassNameLoggerFilter
+ * \inmodule logger
+ * \brief Фильтр по имени класса.
+ * \inheaderfile
+ * \ingroup logger
+ */
+
 namespace Qpe
 {
 
@@ -36,6 +44,10 @@ ClassNameLoggerFilter::~ClassNameLoggerFilter()
 {
 }
 
+/*!
+ * \fn bool ClassNameLoggerFilter::initialize(const QVariantMap& properties)
+ * \reimp
+ */
 bool ClassNameLoggerFilter::initialize(const QVariantMap& properties)
 {
 	QA_D();
@@ -50,6 +62,10 @@ bool ClassNameLoggerFilter::initialize(const QVariantMap& properties)
 	return true;
 }
 
+/*!
+ * \fn bool ClassNameLoggerFilter::testEvent(const LoggerEvent* loggerEvent) const
+ * \reimp
+ */
 bool ClassNameLoggerFilter::testEvent(const LoggerEvent* loggerEvent) const
 {
 	QA_D();

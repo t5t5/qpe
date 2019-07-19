@@ -12,7 +12,7 @@
 namespace Qpe
 {
 
-namespace Private
+namespace PrivateLogger
 {
 
 LoggerControllerPrivate::LoggerControllerPrivate(QObject* parent /* = nullptr */)
@@ -352,6 +352,6 @@ void LoggerController::appendEvent(const LoggerEvent* loggerEvent)
 	d->appendEvent(loggerEvent);
 }
 
-} // namespace Private
+} // namespace PrivateLogger
 
 } // namespace Qpe

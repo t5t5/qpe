@@ -5,6 +5,8 @@
 #pragma once
 #endif
 
+#ifndef Q_QDOC
+
 #include <QSet>
 
 #include <Qpe/Qpe>
@@ -27,5 +29,7 @@ public:
 };
 
 } // namespace Qpe
+
+#endif // Q_QDOC
 
 #endif // FILTERS_FILTER_CLASSNAME_P_H

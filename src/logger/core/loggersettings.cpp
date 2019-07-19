@@ -6,6 +6,9 @@
 namespace Qpe
 {
 
+namespace PrivateLogger
+{
+
 namespace Settings
 {
 
@@ -81,5 +84,7 @@ LoggerSettings LoggerSettings::fromProperties(
 	if (result) { s.name = name; }
 	return result ? s : LoggerSettings();
 }
+
+} // namespace PrivateLogger
 
 } // namespace Qpe

@@ -7,8 +7,18 @@
 
 #include "loggercontroller.h"
 
+/*!
+ * \class Qpe::Logger
+ * \inmodule logger
+ * \brief Класс журналирования.
+ * \inheaderfile Qpe/Logger/Logger
+ * \ingroup logger
+ */
+
 namespace Qpe
 {
+
+using namespace PrivateLogger;
 
 LoggerPrivate::LoggerPrivate()
 	: q_ptr(nullptr)
@@ -24,7 +34,7 @@ void LoggerPrivate::initialize()
 {
 	QA_Q();
 	QObject::connect(
-		&Private::LoggerController::instance(), &Private::LoggerController::configUpdated,
+		&LoggerController::instance(), &LoggerController::configUpdated,
 		q, [this] () { updateConfig(); }, Qt::QueuedConnection);
 	updateConfig();
 }
@@ -46,7 +56,7 @@ void LoggerPrivate::write(EventType eventType, const QString& message) const
 			message,
 			appenders,
 			filters);
-	Private::LoggerController::instance().appendEvent(loggerEvent);
+	LoggerController::instance().appendEvent(loggerEvent);
 }
 
 uint LoggerPrivate::newLoggerId()
@@ -61,17 +71,30 @@ void LoggerPrivate::updateConfig()
 	configNames.append(QString("%1#%2").arg(pluginName, className));
 	configNames.append(pluginName);
 	configNames.append("root");
-	Private::LoggerController::instance().config(configNames, &appenders, &filters);
+	LoggerController::instance().config(configNames, &appenders, &filters);
 }
 
 // ---------------------------------------------------------------------------
 
+/*!
+ * \fn Logger::Logger(QObject* parent = nullptr)
+ * Конструктор. Создать неинициализированный logger.
+ * \a parent - родительский QObject
+ *
+ * \note После создания обязательно необходимо вызвать Logger::initialize()
+ */
 Logger::Logger(QObject* parent /* = nullptr */)
 	: QObject(parent)
 	, d_ptr(new LoggerPrivate())
 {
 }
 
+/*!
+ * \fn Logger::Logger(const QString& pluginName, QObject* o, QObject* parent = nullptr)
+ * Конструктор. Создать и инициализировать logger.
+ * \a pluginName - имя компонента, \a o - объект действия которого будут логироваться;
+ * \a parent - родительский QObject
+ */
 Logger::Logger(const QString& pluginName, QObject* o, QObject* parent /* = nullptr */)
 	: QObject(parent)
 	, d_ptr(new LoggerPrivate())
@@ -79,6 +102,12 @@ Logger::Logger(const QString& pluginName, QObject* o, QObject* parent /* = nullp
 	initialize(pluginName, o);
 }
 
+/*!
+ * \fn Logger::Logger(const QString& pluginName, const QString& className, QObject* parent = nullptr)
+ * Конструктор. Создать и инициализировать logger.
+ * \a pluginName - имя компонента, \a className - имя класса действия которого будут логироваться;
+ * \a parent - родительский QObject
+ */
 Logger::Logger(const QString& pluginName, const QString& className, QObject* parent /* = nullptr */)
 	: QObject(parent)
 	, d_ptr(new LoggerPrivate())
@@ -90,6 +119,11 @@ Logger::~Logger()
 {
 }
 
+/*!
+ * \fn void Logger::initialize(const QString& pluginName, QObject* o)
+ * Настроить logger.
+ * \a pluginName - имя компонента, \a o - объект действия которого будут логироваться.
+ */
 void Logger::initialize(const QString& pluginName, QObject* o)
 {
 	Q_ASSERT(o);
@@ -110,6 +144,11 @@ void Logger::initialize(const QString& pluginName, QObject* o)
 	d->initialize();
 }
 
+/*!
+ * \fn void Logger::initialize(const QString& pluginName, const QString& className)
+ * Настроить logger.
+ * \a pluginName - имя компонента, \a className - имя класса действия которого будут логироваться.
+ */
 void Logger::initialize(const QString& pluginName, const QString& className)
 {
 	QA_D();
@@ -127,24 +166,40 @@ void Logger::initialize(const QString& pluginName, const QString& className)
 	d->initialize();
 }
 
+/*!
+ * \fn void Logger::write(EventType eventType, const QString& s) const
+ * Вывести сообщение \a s типа \a eventType в лог.
+ */
 void Logger::write(EventType eventType, const QString& s) const
 {
 	QA_D();
 	d->write(eventType, s);
 }
 
+/*!
+ * \fn void Logger::fatal(const QString& s) const
+ * Вывести сообщение \a s о фатальной ошибке в лог.
+ */
 void Logger::fatal(const QString& s) const
 {
 	QA_D();
 	d->write(FATAL, s);
 }
 
+/*!
+ * \fn void Logger::error(const QString& s) const
+ * Вывести сообщение \a s об ошибке в лог.
+ */
 void Logger::error(const QString& s) const
 {
 	QA_D();
 	d->write(ERROR, s);
 }
 
+/*!
+ * \fn void Logger::warn(const QString& s) const
+ * Вывести предупреждение \a s в лог.
+ */
 void Logger::warn(const QString& s) const
 {
 
@@ -152,12 +207,20 @@ void Logger::warn(const QString& s) const
 	d->write(WARN, s);
 }
 
+/*!
+ * \fn void Logger::info(const QString& s) const
+ * Вывести сообщение \a s в лог.
+ */
 void Logger::info(const QString& s) const
 {
 	QA_D();
 	d->write(INFO, s);
 }
 
+/*!
+ * \fn void Logger::debug(const QString& s) const
+ * Вывести отладочное сообщение \a s в лог.
+ */
 void Logger::debug(const QString& s) const
 {
 	QA_D();
@@ -165,53 +228,95 @@ void Logger::debug(const QString& s) const
 
 }
 
+/*!
+ * \fn void Logger::trace(const QString& s) const
+ * Вывести трассировочное сообщение \a s в лог.
+ */
 void Logger::trace(const QString& s) const
 {
 	QA_D();
 	d->write(TRACE, s);
 }
 
+/*!
+ * \fn void Logger::registerAppenderType(const QString& appenderType, LoggerAppenderCreator&& creator)
+ * Зарегистрировать функцию создания \a creator appender'а с типом \a appenderType.
+ */
 void Logger::registerAppenderType(
 	const QString& appenderType, LoggerAppenderCreator&& creator)
 {
-	Private::LoggerController::instance().registerAppenderType(
+	LoggerController::instance().registerAppenderType(
 		appenderType, std::forward<LoggerAppenderCreator>(creator));
 }
 
+/*!
+ * \fn void Logger::registerFilterType(const QString& filterType, LoggerFilterCreator&& creator)
+ * Зарегистрировать функцию создания \a creator фильтра сообщений с типом \a filterType.
+ */
 void Logger::registerFilterType(
 	const QString& filterType, LoggerFilterCreator&& creator)
 {
-	Private::LoggerController::instance().registerFilterType(
+	LoggerController::instance().registerFilterType(
 		filterType, std::forward<LoggerFilterCreator>(creator));
 }
 
+/*!
+ * \fn void Logger::unregisterAppenderType(const QString& appenderType)
+ * Убрать регистрацию appender'a с типом \a appenderType.
+ */
 void Logger::unregisterAppenderType(const QString& appenderType)
 {
-	Private::LoggerController::instance().unregisterAppenderType(appenderType);
+	LoggerController::instance().unregisterAppenderType(appenderType);
 }
 
+/*!
+ * \fn void Logger::unregisterFilterType(const QString& filterType)
+ * Убрать регистрацию фильтра собщений с типом \a filterType.
+ */
 void Logger::unregisterFilterType(const QString& filterType)
 {
-	Private::LoggerController::instance().unregisterFilterType(filterType);
+	LoggerController::instance().unregisterFilterType(filterType);
 }
 
+/*!
+ * \fn QString Logger::registerSettings(const QString& fileName, const char* codecNames = nullptr)
+ * Внести настройки logger'а из файла \a fileName, для файла использовать кодек \a codecNames.
+ * Вернуть идентификатор ресурса, по которому можно будет вызвать Logger::unregisterSettings.
+ * Если возвращенная строка пуста, настройки не внесены.
+ *
+ * \note Для чтения настроек испльзуется QSettings.
+ * \note Все существующие logger'ы получат уведомление об изменении конфигурации.
+ */
 QString Logger::registerSettings(
 	const QString& fileName, const char* codecNames /* = nullptr */)
 {
-	return Private::LoggerController::instance()
-			.registerSettings(fileName, codecNames);
+	return LoggerController::instance().registerSettings(fileName, codecNames);
 }
 
+/*!
+ * \fn QString Logger::registerSettings(const QString& settingsName, const QVariantMap& properties)
+ * Внести настройки logger'а из карты \a properties, \a settingsName - имя настроек.
+ *
+ * Вернуть идентификатор ресурса, по которому можно будет вызвать Logger::unregisterSettings.
+ * Если возвращенная строка пуста, настройки не внесены.
+ *
+ * \note Все существующие logger'ы получат уведомление об изменении конфигурации.
+ */
 QString Logger::registerSettings(
 	const QString& settingsName, const QVariantMap& properties)
 {
-	return Private::LoggerController::instance()
-			.registerSettings(settingsName, properties);
+	return LoggerController::instance().registerSettings(settingsName, properties);
 }
 
+/*!
+ * \fn void Logger::unregisterSettings(const QString& settingsName)
+ * Убрать регистрацию настроек logger'а по имени \a settingsName.
+ *
+ * \note Все существующие logger'ы получат уведомление об изменении конфигурации.
+ */
 void Logger::unregisterSettings(const QString& settingsName)
 {
-	return Private::LoggerController::instance().unregisterSettings(settingsName);
+	return LoggerController::instance().unregisterSettings(settingsName);
 }
 
 } // namespace Qpe

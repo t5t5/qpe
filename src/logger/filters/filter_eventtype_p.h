@@ -5,6 +5,8 @@
 #pragma once
 #endif
 
+#ifndef Q_QDOC
+
 #include <Qpe/Core/Enum>
 
 #include <Qpe/Logger/EventType>
@@ -29,5 +31,7 @@ public:
 };
 
 } // namespace Qpe
+
+#endif // Q_QDOC
 
 #endif // FILTERS_FILTER_EVENTTYPE_P_H

@@ -5,6 +5,8 @@
 #pragma once
 #endif
 
+#ifndef Q_QDOC
+
 #include <QThread>
 #include <QMutex>
 #include <QQueue>
@@ -28,7 +30,7 @@ namespace Qpe
 
 class LoggerEvent;
 
-namespace Private
+namespace PrivateLogger
 {
 
 class LoggerController;
@@ -84,8 +86,10 @@ private:
 	QHash<QString, LoggerFilterPointer> filtersCache;
 };
 
-} // namespace Private
+} // namespace PrivateLogger
 
 } // namespace Qpe
+
+#endif // Q_QDOC
 
 #endif // CORE_LOGGERCONTROLLER_P_H

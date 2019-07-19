@@ -7,6 +7,14 @@
 
 #include <Qpe/Logger/LoggerEvent>
 
+/*!
+ * \class Qpe::EventTypeLoggerFilter
+ * \inmodule logger
+ * \brief Фильтр по типу события.
+ * \inheaderfile
+ * \ingroup logger
+ */
+
 namespace Qpe
 {
 
@@ -50,12 +58,20 @@ EventTypeLoggerFilter::~EventTypeLoggerFilter()
 {
 }
 
+/*!
+ * \fn bool EventTypeLoggerFilter::initialize(const QVariantMap& properties)
+ * \reimp
+ */
 bool EventTypeLoggerFilter::initialize(const QVariantMap& properties)
 {
 	QA_D();
 	return d->initialize(properties);
 }
 
+/*!
+ * \fn bool EventTypeLoggerFilter::testEvent(const LoggerEvent* loggerEvent) const
+ * \reimp
+ */
 bool EventTypeLoggerFilter::testEvent(const LoggerEvent* loggerEvent) const
 {
 	QA_D();

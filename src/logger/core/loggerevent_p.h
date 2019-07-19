@@ -5,6 +5,8 @@
 #pragma once
 #endif
 
+#ifndef Q_QDOC
+
 #include <QDateTime>
 
 #include <Qpe/Logger/LoggerAppender>
@@ -57,5 +59,7 @@ public:
 };
 
 } // namespace Qpe
+
+#endif // Q_QDOC
 
 #endif // CORE_LOGGEREVENT_P_H

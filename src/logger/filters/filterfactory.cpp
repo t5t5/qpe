@@ -5,6 +5,14 @@
 #include "filter_classname.h"
 #include "filter_eventtype.h"
 
+/*!
+ * \class Qpe::LoggerFilterFactory
+ * \inmodule logger
+ * \brief Фабрика фильтров
+ * \inheaderfile
+ * \ingroup logger
+ */
+
 namespace Qpe
 {
 
@@ -13,6 +21,10 @@ static const QLatin1String PROPERTY__TYPE("type");
 static const QLatin1String FILTER__EVENT_TYPE("EventTypeFilter");
 static const QLatin1String FILTER__CLASS_NAME("ClassNameFilter");
 
+/*!
+ * \fn LoggerFilterPointer LoggerFilterFactory::create(const QVariantMap& properties) const
+ * Создать фильтр, настроить его свойствами \a properties.
+ */
 LoggerFilterPointer LoggerFilterFactory::create(const QVariantMap& properties) const
 {
 	auto it = properties.find(PROPERTY__TYPE);
@@ -40,6 +52,11 @@ LoggerFilterPointer LoggerFilterFactory::create(const QVariantMap& properties) c
 	return filter;
 }
 
+/*!
+ * \fn void LoggerFilterFactory::registerFilter(
+ *          const QString& filterType, LoggerFilterCreator&& creator)
+ * Зарегистрировать функцию создания \a creator фильтра сообщений с типом \a filterType.
+ */
 void LoggerFilterFactory::registerFilter(
 	const QString& filterType, LoggerFilterCreator&& creator)
 {
@@ -50,8 +67,11 @@ void LoggerFilterFactory::registerFilter(
 	filterCreators.insert(filterType, creator);
 }
 
-void LoggerFilterFactory::unregisterFilter(
-	const QString& filterType)
+/*!
+ * \fn void LoggerFilterFactory::unregisterFilter(const QString& filterType)
+ * Убрать регистрацию фильтра собщений с типом \a filterType.
+ */
+void LoggerFilterFactory::unregisterFilter(const QString& filterType)
 {
 	QWriteLocker locker(&lock);
 	filterCreators.remove(filterType);

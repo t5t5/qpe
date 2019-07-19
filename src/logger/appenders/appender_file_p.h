@@ -5,18 +5,20 @@
 #pragma once
 #endif
 
+#ifndef Q_QDOC
+
 #include <Qpe/Qpe>
 #include <Qpe/Logger/Private/abstractpatternloggerappender_p.h>
 
 namespace Qpe
 {
 
-namespace LoggerPrivate
+namespace PrivateLogger
 {
 
 class FileHelper;
 
-} // namespace LoggerPrivate
+} // namespace PrivateLogger
 
 class FileLoggerAppenderPrivate : public AbstractPatternLoggerAppenderPrivate
 {
@@ -30,10 +32,12 @@ public:
 	bool initializeFile(const QVariantMap& properties);
 	void write(const LoggerEvent* loggerEvent, const QString& text);
 private:
-	QScopedPointer<LoggerPrivate::FileHelper> fileHelper;
+	QScopedPointer<PrivateLogger::FileHelper> fileHelper;
 
 };
 
 } // namespace Qpe
+
+#endif // Q_QDOC
 
 #endif // APPENDERS_APPENDER_FILE_P_H

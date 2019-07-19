@@ -5,6 +5,8 @@
 #pragma once
 #endif
 
+#ifndef Q_QDOC
+
 #include <QObject>
 #include <QString>
 
@@ -47,5 +49,7 @@ private:
 };
 
 } // namespace Qpe
+
+#endif // Q_QDOC
 
 #endif // CORE_LOGGER_P_H

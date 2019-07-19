@@ -5,10 +5,15 @@
 #pragma once
 #endif
 
+#ifndef Q_QDOC
+
 #include <QVariant>
 #include <QStringList>
 
 namespace Qpe
+{
+
+namespace PrivateLogger
 {
 
 struct LoggerSettings
@@ -23,6 +28,10 @@ struct LoggerSettings
 	static LoggerSettings fromProperties(const QString& name, const QVariantMap& properties);
 };
 
+} // namespace PrivateLogger
+
 } // namespace Qpe
+
+#endif // Q_QDOC
 
 #endif // CORE_LOGGERSETTINGS_H
