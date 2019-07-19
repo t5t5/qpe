@@ -35,12 +35,12 @@ protected:
 	QScopedPointer<LoggerPrivate> d_ptr;
 public:
 	Logger(QObject* parent = nullptr);
-	Logger(const QString& pluginName, QObject* o, QObject* parent = nullptr);
-	Logger(const QString& pluginName, const QString& className, QObject* parent = nullptr);
+	Logger(const QString& componentName, QObject* o, QObject* parent = nullptr);
+	Logger(const QString& componentName, const QString& className, QObject* parent = nullptr);
 	~Logger();
 
-	void initialize(const QString& pluginName, QObject* o);
-	void initialize(const QString& pluginName, const QString& className);
+	void initialize(const QString& componentName, QObject* o);
+	void initialize(const QString& componentName, const QString& className);
 
 	void write(EventType eventType, const QString& s) const;
 public slots:

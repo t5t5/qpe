@@ -32,7 +32,7 @@
  *   \header
  *   \row \li Имя элемента  \li Сокращение \li параметры \li описание
  *   \row \li clasName      \li c          \li           \li имя класса
- *   \row \li pluginName    \li N          \li           \li имя компонента
+ *   \row \li componentName \li N          \li           \li имя компонента
  *   \row \li message       \li m          \li           \li сообщение
  *   \row \li eventId       \li e          \li format    \li идентификатор события\sup 1; format - Qpe::Stringifier::setFormatString()
  *   \row \li loggerId      \li l          \li format    \li идентификатор logger'a\sup 1; format - Qpe::Stringifier::setFormatString()
@@ -58,7 +58,7 @@ namespace PrivateLogger
 
 static const QLatin1String EN_className		("className");
 static const QLatin1String EN_c				("c");
-static const QLatin1String EN_pluginName	("pluginName");
+static const QLatin1String EN_componentName	("componentName");
 static const QLatin1String EN_N				("N");
 static const QLatin1String EN_message		("message");
 static const QLatin1String EN_m				("m");
@@ -158,7 +158,7 @@ EventWrapper::~EventWrapper() { }
 
 uint EventWrapper::loggerId() const { return loggerEvent->loggerId(); }
 uint EventWrapper::eventId() const { return loggerEvent->eventId(); }
-QString EventWrapper::pluginName() const { return loggerEvent->pluginName(); }
+QString EventWrapper::componentName() const { return loggerEvent->componentName(); }
 QObject* EventWrapper::object() const { return loggerEvent->object(); }
 QString EventWrapper::objectName() const { return loggerEvent->objectName(); }
 QString EventWrapper::className() const { return loggerEvent->className(); }
@@ -178,8 +178,8 @@ Pattern::ExpressionFunctor Factory::createExpression(
 	if ((en == EN_c) || (en == EN_className)) {
 		return [] (const EventWrapper& e) { return e.className(); };
 	} else
-	if ((en == EN_N) || (en == EN_pluginName)) {
-		return [] (const EventWrapper& e) { return e.pluginName(); };
+	if ((en == EN_N) || (en == EN_componentName)) {
+		return [] (const EventWrapper& e) { return e.componentName(); };
 	} else
 	if ((en == EN_m) || (en == EN_message)) {
 		return [] (const EventWrapper& e) { return e.message(); };
@@ -243,7 +243,7 @@ QStringList Factory::expressionNames()
 {
 	return QStringList()
 		<< EN_c << EN_className
-		<< EN_N << EN_pluginName
+		<< EN_N << EN_componentName
 		<< EN_m << EN_message
 		<< EN_e << EN_eventId
 		<< EN_l << EN_loggerId

@@ -26,7 +26,7 @@ protected:
 public:
 	LoggerEvent(
 		uint loggerId,
-		const QString& pluginName,
+		const QString& componentName,
 		QObject* object,
 		const QString& objectName,
 		const QString& className,
@@ -40,7 +40,7 @@ public:
 
 	uint loggerId() const;
 	uint eventId() const;
-	QString pluginName() const;
+	QString componentName() const;
 	QObject* object() const;
 	QString objectName() const;
 	QString className() const;

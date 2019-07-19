@@ -32,7 +32,7 @@ struct EventWrapper
 
 	inline uint loggerId() const;
 	inline uint eventId() const;
-	inline QString pluginName() const;
+	inline QString componentName() const;
 	inline QObject* object() const;
 	inline QString objectName() const;
 	inline QString className() const;

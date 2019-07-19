@@ -46,7 +46,7 @@ void LoggerPrivate::write(EventType eventType, const QString& message) const
 	LoggerEvent* loggerEvent =
 		new LoggerEvent(
 			loggerId,
-			pluginName,
+			componentName,
 			object,
 			objectName,
 			className,
@@ -68,8 +68,8 @@ uint LoggerPrivate::newLoggerId()
 void LoggerPrivate::updateConfig()
 {
 	QStringList configNames;
-	configNames.append(QString("%1#%2").arg(pluginName, className));
-	configNames.append(pluginName);
+	configNames.append(QString("%1#%2").arg(componentName, className));
+	configNames.append(componentName);
 	configNames.append("root");
 	LoggerController::instance().config(configNames, &appenders, &filters);
 }
@@ -90,29 +90,29 @@ Logger::Logger(QObject* parent /* = nullptr */)
 }
 
 /*!
- * \fn Logger::Logger(const QString& pluginName, QObject* o, QObject* parent = nullptr)
+ * \fn Logger::Logger(const QString& componentName, QObject* o, QObject* parent = nullptr)
  * Конструктор. Создать и инициализировать logger.
- * \a pluginName - имя компонента, \a o - объект действия которого будут логироваться;
+ * \a componentName - имя компонента, \a o - объект действия которого будут логироваться;
  * \a parent - родительский QObject
  */
-Logger::Logger(const QString& pluginName, QObject* o, QObject* parent /* = nullptr */)
+Logger::Logger(const QString& componentName, QObject* o, QObject* parent /* = nullptr */)
 	: QObject(parent)
 	, d_ptr(new LoggerPrivate())
 {
-	initialize(pluginName, o);
+	initialize(componentName, o);
 }
 
 /*!
- * \fn Logger::Logger(const QString& pluginName, const QString& className, QObject* parent = nullptr)
+ * \fn Logger::Logger(const QString& componentName, const QString& className, QObject* parent = nullptr)
  * Конструктор. Создать и инициализировать logger.
- * \a pluginName - имя компонента, \a className - имя класса действия которого будут логироваться;
+ * \a componentName - имя компонента, \a className - имя класса действия которого будут логироваться;
  * \a parent - родительский QObject
  */
-Logger::Logger(const QString& pluginName, const QString& className, QObject* parent /* = nullptr */)
+Logger::Logger(const QString& componentName, const QString& className, QObject* parent /* = nullptr */)
 	: QObject(parent)
 	, d_ptr(new LoggerPrivate())
 {
-	initialize(pluginName, className);
+	initialize(componentName, className);
 }
 
 Logger::~Logger()
@@ -120,11 +120,11 @@ Logger::~Logger()
 }
 
 /*!
- * \fn void Logger::initialize(const QString& pluginName, QObject* o)
+ * \fn void Logger::initialize(const QString& componentName, QObject* o)
  * Настроить logger.
- * \a pluginName - имя компонента, \a o - объект действия которого будут логироваться.
+ * \a componentName - имя компонента, \a o - объект действия которого будут логироваться.
  */
-void Logger::initialize(const QString& pluginName, QObject* o)
+void Logger::initialize(const QString& componentName, QObject* o)
 {
 	Q_ASSERT(o);
 	QA_D();
@@ -132,7 +132,7 @@ void Logger::initialize(const QString& pluginName, QObject* o)
 
 	d->q_ptr = this;
 
-	d->pluginName = pluginName;
+	d->componentName = componentName;
 
 	d->object = o;
 	d->className = o->metaObject()->className();
@@ -145,18 +145,18 @@ void Logger::initialize(const QString& pluginName, QObject* o)
 }
 
 /*!
- * \fn void Logger::initialize(const QString& pluginName, const QString& className)
+ * \fn void Logger::initialize(const QString& componentName, const QString& className)
  * Настроить logger.
- * \a pluginName - имя компонента, \a className - имя класса действия которого будут логироваться.
+ * \a componentName - имя компонента, \a className - имя класса действия которого будут логироваться.
  */
-void Logger::initialize(const QString& pluginName, const QString& className)
+void Logger::initialize(const QString& componentName, const QString& className)
 {
 	QA_D();
 	if (d->q_ptr) { return; }
 
 	d->q_ptr = this;
 
-	d->pluginName = pluginName;
+	d->componentName = componentName;
 
 	d->object = nullptr;
 	d->className = className;

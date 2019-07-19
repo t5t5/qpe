@@ -39,7 +39,7 @@ private:
 
 	QObject* object;
 	QString objectName;
-	QString pluginName;
+	QString componentName;
 	QString className;
 	QThread* thread;
 	QString threadName;

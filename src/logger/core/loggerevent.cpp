@@ -11,7 +11,6 @@
  * \ingroup logger
  */
 
-
 namespace Qpe
 {
 
@@ -36,7 +35,7 @@ LoggerEventPrivate::LoggerEventPrivate(
 	: eventIdEmpty(true)
 	, eventId(0)
 	, loggerId(lid)
-	, pluginName(pn)
+	, componentName(pn)
 	, object(o)
 	, objectName(on)
 	, className(cn)
@@ -65,7 +64,7 @@ uint LoggerEventPrivate::newEventId()
 
 LoggerEvent::LoggerEvent(
 	uint loggerId,
-	const QString& pluginName,
+	const QString& componentName,
 	QObject* object,
 	const QString& objectName,
 	const QString& className,
@@ -76,7 +75,7 @@ LoggerEvent::LoggerEvent(
 	const LoggerAppenderList& appenders,
 	const LoggerFilterList& filters)
 	: d_ptr(new LoggerEventPrivate(
-		loggerId, pluginName, object, objectName, className,
+		loggerId, componentName, object, objectName, className,
 		eventType, thread, threadName, message, appenders, filters))
 {
 	QA_D();
@@ -112,13 +111,13 @@ uint LoggerEvent::eventId() const
 }
 
 /*!
- * \fn QString LoggerEvent::pluginName() const
+ * \fn QString LoggerEvent::componentName() const
  * Вернуть имя компонента.
  */
-QString LoggerEvent::pluginName() const
+QString LoggerEvent::componentName() const
 {
 	QA_D();
-	return d->pluginName;
+	return d->componentName;
 }
 
 /*!
