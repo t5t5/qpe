@@ -61,22 +61,10 @@ struct LeadingZero<T, WithLeadingZero, TDigits>
 	inline int size(int digits) { return zeros = Digits - digits; }
 
 	template <typename value_type>
-	inline void write(
-		value_type*& buffer,
-		enable_if_t<sizeof(value_type) == 2>* = nullptr) const
+	inline void write(value_type*& buffer) const
 	{
 		if (zeros == 0) { return; }
-		wmemset(reinterpret_cast<wchar_t*>(buffer), '0', zeros);
-		buffer += zeros;
-	}
-
-	template <typename value_type>
-	inline void write(
-		value_type*& buffer,
-		enable_if_t<sizeof(value_type) == 1>* = nullptr) const
-	{
-		if (zeros == 0) { return; }
-		memset(buffer, '0', zeros);
+		std::fill_n(buffer, zeros, static_cast<value_type>('0'));
 		buffer += zeros;
 	}
 };
@@ -92,8 +80,8 @@ struct Algorithm;
 template <typename T, typename R, typename TSign, int TDigits>
 struct Algorithm<T, R, TSign, WithLeadingZero, TDigits>
 {
-	typedef Sign<TSign> Sign;
-	typedef LeadingZero<T, WithLeadingZero, TDigits> LeadingZero;
+	typedef PrivateDec::Sign<TSign> Sign;
+	typedef PrivateDec::LeadingZero<T, WithLeadingZero, TDigits> LeadingZero;
 	typedef typename std::make_unsigned<T>::type unsigned_T;
 
 	typedef typename R::value_type value_type;
@@ -119,7 +107,7 @@ struct Algorithm<T, R, TSign, WithLeadingZero, TDigits>
 template <typename T, typename R, typename TSign, int TDigits>
 struct Algorithm<T, R, TSign, WithoutLeadingZero, TDigits>
 {
-	typedef Sign<TSign> Sign;
+	typedef PrivateDec::Sign<TSign> Sign;
 	typedef typename std::make_unsigned<T>::type unsigned_T;
 
 	typedef typename R::value_type value_type;

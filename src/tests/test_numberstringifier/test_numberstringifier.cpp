@@ -5,10 +5,204 @@
 #include <Qpe/Core/StaticStringifierDec>
 #include <Qpe/Core/StaticStringifierHex>
 
+struct Signed { };
+struct Unsigned { };
+
+template <
+	typename T,
+	typename Signed =
+		typename std::conditional<
+			std::is_signed<T>::value,
+			Signed, Unsigned
+		>::type,
+	size_t size = sizeof(T)>
+struct TesterDec;
+
+template <typename T>
+struct TesterDec<T, Signed, 1>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterDec<T, Unsigned, 1>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterDec<T, Signed, 2>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterDec<T, Unsigned, 2>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterDec<T, Signed, 4>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterDec<T, Unsigned, 4>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterDec<T, Signed, 8>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterDec<T, Unsigned, 8>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+};
+
+template <
+	typename T,
+	typename Signed =
+		typename std::conditional<
+			std::is_signed<T>::value,
+			Signed, Unsigned
+		>::type,
+	size_t size = sizeof(T)>
+struct TesterHex;
+
+template <typename T>
+struct TesterHex<T, Signed, 1>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_up(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+	static void test_lz_up(const Qpe::Stringifier& s);
+
+	static void test_p(const Qpe::Stringifier& s);
+	static void test_p_up(const Qpe::Stringifier& s);
+	static void test_p_lz(const Qpe::Stringifier& s);
+	static void test_p_lz_up(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterHex<T, Unsigned, 1>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_up(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+	static void test_lz_up(const Qpe::Stringifier& s);
+
+	static void test_p(const Qpe::Stringifier& s);
+	static void test_p_up(const Qpe::Stringifier& s);
+	static void test_p_lz(const Qpe::Stringifier& s);
+	static void test_p_lz_up(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterHex<T, Signed, 2>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_up(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+	static void test_lz_up(const Qpe::Stringifier& s);
+
+	static void test_p(const Qpe::Stringifier& s);
+	static void test_p_up(const Qpe::Stringifier& s);
+	static void test_p_lz(const Qpe::Stringifier& s);
+	static void test_p_lz_up(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterHex<T, Unsigned, 2>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_up(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+	static void test_lz_up(const Qpe::Stringifier& s);
+
+	static void test_p(const Qpe::Stringifier& s);
+	static void test_p_up(const Qpe::Stringifier& s);
+	static void test_p_lz(const Qpe::Stringifier& s);
+	static void test_p_lz_up(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterHex<T, Signed, 4>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_up(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+	static void test_lz_up(const Qpe::Stringifier& s);
+
+	static void test_p(const Qpe::Stringifier& s);
+	static void test_p_up(const Qpe::Stringifier& s);
+	static void test_p_lz(const Qpe::Stringifier& s);
+	static void test_p_lz_up(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterHex<T, Unsigned, 4>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_up(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+	static void test_lz_up(const Qpe::Stringifier& s);
+
+	static void test_p(const Qpe::Stringifier& s);
+	static void test_p_up(const Qpe::Stringifier& s);
+	static void test_p_lz(const Qpe::Stringifier& s);
+	static void test_p_lz_up(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterHex<T, Signed, 8>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_up(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+	static void test_lz_up(const Qpe::Stringifier& s);
+
+	static void test_p(const Qpe::Stringifier& s);
+	static void test_p_up(const Qpe::Stringifier& s);
+	static void test_p_lz(const Qpe::Stringifier& s);
+	static void test_p_lz_up(const Qpe::Stringifier& s);
+};
+
+template <typename T>
+struct TesterHex<T, Unsigned, 8>
+{
+	static void test(const Qpe::Stringifier& s);
+	static void test_up(const Qpe::Stringifier& s);
+	static void test_lz(const Qpe::Stringifier& s);
+	static void test_lz_up(const Qpe::Stringifier& s);
+
+	static void test_p(const Qpe::Stringifier& s);
+	static void test_p_up(const Qpe::Stringifier& s);
+	static void test_p_lz(const Qpe::Stringifier& s);
+	static void test_p_lz_up(const Qpe::Stringifier& s);
+};
+
+
 class TestNumberStringifier : public QObject
 {
 	Q_OBJECT
 private slots:
+	void test();
+
 	void benchIntStringifierValue();
 	void benchIntStaticStringifierValue();
 	void benchIntStaticStringifierRef();
@@ -17,111 +211,33 @@ private slots:
 	void benchIntStdString();
 
 	void testFormatDecChar();
-	void testFormatDecCharLz();
 	void testFormatDecShort();
-	void testFormatDecShortLz();
 	void testFormatDecInt();
-	void testFormatDecIntLz();
 	void testFormatDecLong();
-	void testFormatDecLongLz();
 	void testFormatDecInt64();
-	void testFormatDecInt64Lz();
 
 	void testFormatHexChar();
-	void testFormatHexCharUpper();
-	void testFormatHexCharLz();
-	void testFormatHexCharLzUpper();
 	void testFormatHexShort();
-	void testFormatHexShortUpper();
-	void testFormatHexShortLz();
-	void testFormatHexShortLzUpper();
 	void testFormatHexInt();
-	void testFormatHexIntUpper();
-	void testFormatHexIntLz();
-	void testFormatHexIntLzUpper();
 	void testFormatHexLong();
-	void testFormatHexLongUpper();
-	void testFormatHexLongLz();
-	void testFormatHexLongLzUpper();
 	void testFormatHexInt64();
-	void testFormatHexInt64Upper();
-	void testFormatHexInt64Lz();
-	void testFormatHexInt64LzUpper();
-
-	void testFormatHexCharPrefix();
-	void testFormatHexCharUpperPrefix();
-	void testFormatHexCharLzPrefix();
-	void testFormatHexCharLzUpperPrefix();
-	void testFormatHexShortPrefix();
-	void testFormatHexShortUpperPrefix();
-	void testFormatHexShortLzPrefix();
-	void testFormatHexShortLzUpperPrefix();
-	void testFormatHexIntPrefix();
-	void testFormatHexIntUpperPrefix();
-	void testFormatHexIntLzPrefix();
-	void testFormatHexIntLzUpperPrefix();
-	void testFormatHexLongPrefix();
-	void testFormatHexLongUpperPrefix();
-	void testFormatHexLongLzPrefix();
-	void testFormatHexLongLzUpperPrefix();
-	void testFormatHexInt64Prefix();
-	void testFormatHexInt64UpperPrefix();
-	void testFormatHexInt64LzPrefix();
-	void testFormatHexInt64LzUpperPrefix();
 
 	void testFormatDecChar_str();
-	void testFormatDecCharLz_str();
 	void testFormatDecShort_str();
-	void testFormatDecShortLz_str();
 	void testFormatDecInt_str();
-	void testFormatDecIntLz_str();
 	void testFormatDecLong_str();
-	void testFormatDecLongLz_str();
 	void testFormatDecInt64_str();
-	void testFormatDecInt64Lz_str();
 
 	void testFormatHexChar_str();
-	void testFormatHexCharUpper_str();
-	void testFormatHexCharLz_str();
-	void testFormatHexCharLzUpper_str();
 	void testFormatHexShort_str();
-	void testFormatHexShortUpper_str();
-	void testFormatHexShortLz_str();
-	void testFormatHexShortLzUpper_str();
 	void testFormatHexInt_str();
-	void testFormatHexIntUpper_str();
-	void testFormatHexIntLz_str();
-	void testFormatHexIntLzUpper_str();
 	void testFormatHexLong_str();
-	void testFormatHexLongUpper_str();
-	void testFormatHexLongLz_str();
-	void testFormatHexLongLzUpper_str();
 	void testFormatHexInt64_str();
-	void testFormatHexInt64Upper_str();
-	void testFormatHexInt64Lz_str();
-	void testFormatHexInt64LzUpper_str();
-
-	void testFormatHexCharPrefix_str();
-	void testFormatHexCharUpperPrefix_str();
-	void testFormatHexCharLzPrefix_str();
-	void testFormatHexCharLzUpperPrefix_str();
-	void testFormatHexShortPrefix_str();
-	void testFormatHexShortUpperPrefix_str();
-	void testFormatHexShortLzPrefix_str();
-	void testFormatHexShortLzUpperPrefix_str();
-	void testFormatHexIntPrefix_str();
-	void testFormatHexIntUpperPrefix_str();
-	void testFormatHexIntLzPrefix_str();
-	void testFormatHexIntLzUpperPrefix_str();
-	void testFormatHexLongPrefix_str();
-	void testFormatHexLongUpperPrefix_str();
-	void testFormatHexLongLzPrefix_str();
-	void testFormatHexLongLzUpperPrefix_str();
-	void testFormatHexInt64Prefix_str();
-	void testFormatHexInt64UpperPrefix_str();
-	void testFormatHexInt64LzPrefix_str();
-	void testFormatHexInt64LzUpperPrefix_str();
 };
+
+void TestNumberStringifier::test()
+{
+}
 
 void TestNumberStringifier::benchIntStringifierValue()
 {
@@ -194,4195 +310,2421 @@ void TestNumberStringifier::benchIntStdString()
 	}
 	qDebug() << n;
 }
-
+typedef Qpe::Stringifier SS;
 void TestNumberStringifier::testFormatDecChar()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(10);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "10");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "99");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "100");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "255");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "255");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "247");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "246");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<char>(10), result) == "10");
-	QVERIFY(s.format(static_cast<char>(99), result) == "99");
-	QVERIFY(s.format(static_cast<char>(100), result) == "100");
-	QVERIFY(s.format(static_cast<char>(127), result) == "127");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "-100");
-//	QVERIFY(s.format(static_cast<char>(-128), result) == "-128");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "10");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "99");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "100");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "127");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "-100");
-//	QVERIFY(s.format(static_cast<signed char>(-128), result) == "-128");
-}
-
-void TestNumberStringifier::testFormatDecCharLz()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(10, true);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "000");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "009");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "010");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "099");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "100");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "255");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "255");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "247");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "246");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "000");
-	QVERIFY(s.format(static_cast<char>(9), result) == "009");
-	QVERIFY(s.format(static_cast<char>(10), result) == "010");
-	QVERIFY(s.format(static_cast<char>(99), result) == "099");
-	QVERIFY(s.format(static_cast<char>(100), result) == "100");
-	QVERIFY(s.format(static_cast<char>(127), result) == "127");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "-001");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "-009");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "-010");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "-099");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "-100");
-//	QVERIFY(s.format(static_cast<char>(-128), result) == "-128");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "000");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "009");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "010");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "099");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "100");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "127");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "-001");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "-009");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "-010");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "-099");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "-100");
-//	QVERIFY(s.format(static_cast<signed char>(-128), result) == "-128");
+	TesterDec<signed char>::test(SS(10));
+	TesterDec<signed char>::test_lz(SS(10, true));
+	TesterDec<char>::test(SS(10));
+	TesterDec<char>::test_lz(SS(10, true));
+	TesterDec<uchar>::test(SS(10));
+	TesterDec<uchar>::test_lz(SS(10, true));
 }
 
 void TestNumberStringifier::testFormatDecShort()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(10);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "10");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "99");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "100");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "255");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "256");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "65535");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "65535");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "65527");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "65526");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0");
-	QVERIFY(s.format(static_cast<short>(9), result) == "9");
-	QVERIFY(s.format(static_cast<short>(10), result) == "10");
-	QVERIFY(s.format(static_cast<short>(99), result) == "99");
-	QVERIFY(s.format(static_cast<short>(100), result) == "100");
-	QVERIFY(s.format(static_cast<short>(255), result) == "255");
-	QVERIFY(s.format(static_cast<short>(256), result) == "256");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "32767");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "-100");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "-255");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "-256");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "-1000");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "-32767");
-}
-
-void TestNumberStringifier::testFormatDecShortLz()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(10, true);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "00000");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "00009");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "00010");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "00099");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "00100");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "00255");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "00256");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "01000");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "65535");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "65535");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "65527");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "65526");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "00000");
-	QVERIFY(s.format(static_cast<short>(9), result) == "00009");
-	QVERIFY(s.format(static_cast<short>(10), result) == "00010");
-	QVERIFY(s.format(static_cast<short>(99), result) == "00099");
-	QVERIFY(s.format(static_cast<short>(100), result) == "00100");
-	QVERIFY(s.format(static_cast<short>(255), result) == "00255");
-	QVERIFY(s.format(static_cast<short>(256), result) == "00256");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "01000");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "32767");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "-00001");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "-00009");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "-00010");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "-00099");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "-00100");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "-00255");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "-00256");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "-01000");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "-32767");
+	TesterDec<short>::test(SS(10));
+	TesterDec<short>::test_lz(SS(10, true));
+	TesterDec<ushort>::test(SS(10));
+	TesterDec<ushort>::test_lz(SS(10, true));
 }
 
 void TestNumberStringifier::testFormatDecInt()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(10);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "10");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "99");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "100");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "255");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "256");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "4294967295");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "4294967295");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "4294967287");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "4294967286");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0");
-	QVERIFY(s.format(static_cast<int>(9), result) == "9");
-	QVERIFY(s.format(static_cast<int>(10), result) == "10");
-	QVERIFY(s.format(static_cast<int>(99), result) == "99");
-	QVERIFY(s.format(static_cast<int>(100), result) == "100");
-	QVERIFY(s.format(static_cast<int>(255), result) == "255");
-	QVERIFY(s.format(static_cast<int>(256), result) == "256");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "2147483647");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "-1");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "-100");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "-255");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "-256");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "-1000");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "-2147483647");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatDecIntLz()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(10, true);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0000000000");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "0000000009");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0000000010");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "0000000099");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "0000000100");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "0000000255");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "0000000256");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "0000001000");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "4294967295");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "4294967295");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "4294967287");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "4294967286");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0000000000");
-	QVERIFY(s.format(static_cast<int>(9), result) == "0000000009");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0000000010");
-	QVERIFY(s.format(static_cast<int>(99), result) == "0000000099");
-	QVERIFY(s.format(static_cast<int>(100), result) == "0000000100");
-	QVERIFY(s.format(static_cast<int>(255), result) == "0000000255");
-	QVERIFY(s.format(static_cast<int>(256), result) == "0000000256");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "0000001000");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "2147483647");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "-0000000001");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "-0000000001");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "-0000000009");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "-0000000010");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "-0000000099");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "-0000000100");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "-0000000255");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "-0000000256");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "-0000001000");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "-2147483647");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "0000000001");
+	TesterDec<int>::test(SS(10));
+	TesterDec<int>::test_lz(SS(10, true));
+	TesterDec<uint>::test(SS(10));
+	TesterDec<uint>::test_lz(SS(10, true));
 }
 
 void TestNumberStringifier::testFormatDecLong()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(10);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "10");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "99");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "100");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "255");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "256");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "4294967295");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "4294967295");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "4294967287");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "4294967286");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0");
-	QVERIFY(s.format(static_cast<long>(9), result) == "9");
-	QVERIFY(s.format(static_cast<long>(10), result) == "10");
-	QVERIFY(s.format(static_cast<long>(99), result) == "99");
-	QVERIFY(s.format(static_cast<long>(100), result) == "100");
-	QVERIFY(s.format(static_cast<long>(255), result) == "255");
-	QVERIFY(s.format(static_cast<long>(256), result) == "256");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "2147483647");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "-1");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "-100");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "-255");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "-256");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "-1000");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "-2147483647");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatDecLongLz()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(10, true);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0000000000");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "0000000009");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0000000010");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "0000000099");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "0000000100");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "0000000255");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "0000000256");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "0000001000");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "4294967295");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "4294967295");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "4294967287");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "4294967286");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0000000000");
-	QVERIFY(s.format(static_cast<long>(9), result) == "0000000009");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0000000010");
-	QVERIFY(s.format(static_cast<long>(99), result) == "0000000099");
-	QVERIFY(s.format(static_cast<long>(100), result) == "0000000100");
-	QVERIFY(s.format(static_cast<long>(255), result) == "0000000255");
-	QVERIFY(s.format(static_cast<long>(256), result) == "0000000256");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "0000001000");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "2147483647");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "-0000000001");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "-0000000001");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "-0000000009");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "-0000000010");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "-0000000099");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "-0000000100");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "-0000000255");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "-0000000256");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "-0000001000");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "-2147483647");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "0000000001");
+	TesterDec<long>::test(SS(10));
+	TesterDec<long>::test_lz(SS(10, true));
+	TesterDec<ulong>::test(SS(10));
+	TesterDec<ulong>::test_lz(SS(10, true));
 }
 
 void TestNumberStringifier::testFormatDecInt64()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(10);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "10");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "99");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "100");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "255");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "256");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "18446744073709551615");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "18446744073709551615");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "18446744073709551607");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "18446744073709551606");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "10");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "99");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "100");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "255");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "256");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "9223372036854775807");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "-1");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "-100");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "-255");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "-256");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "-1000");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "-9223372036854775807");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatDecInt64Lz()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(10, true);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "00000000000000000000");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "00000000000000000009");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "00000000000000000010");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "00000000000000000099");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "00000000000000000100");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "00000000000000000255");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "00000000000000000256");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "00000000000000001000");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "18446744073709551615");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "18446744073709551615");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "18446744073709551607");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "18446744073709551606");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0000000000000000000");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0000000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "0000000000000000010");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0000000000000000099");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0000000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "0000000000000000255");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0000000000000000256");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "0000000000000001000");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "9223372036854775807");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "-0000000000000000001");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "-0000000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "-0000000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "-0000000000000000010");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "-0000000000000000099");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "-0000000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "-0000000000000000255");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "-0000000000000000256");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "-0000000000000001000");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "-9223372036854775807");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0000000000000000001");
+	TesterDec<qint64>::test(SS(10));
+	TesterDec<qint64>::test_lz(SS(10, true));
+	TesterDec<quint64>::test(SS(10));
+	TesterDec<quint64>::test_lz(SS(10, true));
 }
 
 void TestNumberStringifier::testFormatHexChar()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(16);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "a");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "ff");
+	TesterHex<signed char>::test(SS(16));
+	TesterHex<signed char>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<signed char>::test_lz(SS(16, true));
+	TesterHex<signed char>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "f6");
+	TesterHex<char>::test(SS(16));
+	TesterHex<char>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<char>::test_lz(SS(16, true));
+	TesterHex<char>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<char>(10), result) == "a");
-	QVERIFY(s.format(static_cast<char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "7f");
+	TesterHex<uchar>::test(SS(16));
+	TesterHex<uchar>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<uchar>::test_lz(SS(16, true));
+	TesterHex<uchar>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<char>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "f6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "9d");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "9c");
+	TesterHex<signed char>::test_p(SS(16, false, true));
+	TesterHex<signed char>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<signed char>::test_p_lz(SS(16, true, true));
+	TesterHex<signed char>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "a");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "7f");
+	TesterHex<char>::test_p(SS(16, false, true));
+	TesterHex<char>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<char>::test_p_lz(SS(16, true, true));
+	TesterHex<char>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "f6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "9d");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "9c");
-}
-
-void TestNumberStringifier::testFormatHexCharUpper()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, false, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "A");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "FF");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "F6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<char>(10), result) == "A");
-	QVERIFY(s.format(static_cast<char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "7F");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "F6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "9D");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "9C");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "A");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "7F");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "F6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "9D");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "9C");
-}
-
-void TestNumberStringifier::testFormatHexCharLz()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "00");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "09");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0a");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "ff");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "f6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "00");
-	QVERIFY(s.format(static_cast<char>(9), result) == "09");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0a");
-	QVERIFY(s.format(static_cast<char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "7f");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "f6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "9d");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "9c");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "00");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "09");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0a");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "7f");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "f6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "9d");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "9c");
-}
-
-void TestNumberStringifier::testFormatHexCharLzUpper()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, false, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "00");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "09");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0A");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "FF");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "F6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "00");
-	QVERIFY(s.format(static_cast<char>(9), result) == "09");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0A");
-	QVERIFY(s.format(static_cast<char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "7F");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "F6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "9D");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "9C");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "00");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "09");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0A");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "7F");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "F6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "9D");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "9C");
+	TesterHex<uchar>::test_p(SS(16, false, true));
+	TesterHex<uchar>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<uchar>::test_p_lz(SS(16, true, true));
+	TesterHex<uchar>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
 }
 
 void TestNumberStringifier::testFormatHexShort()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(16);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "a");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "63");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "64");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "ffff");
+	TesterHex<short>::test(SS(16));
+	TesterHex<short>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<short>::test_lz(SS(16, true));
+	TesterHex<short>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "ffff");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "fff7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "fff6");
+	TesterHex<ushort>::test(SS(16));
+	TesterHex<ushort>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<ushort>::test_lz(SS(16, true));
+	TesterHex<ushort>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<short>(0), result) == "0");
-	QVERIFY(s.format(static_cast<short>(9), result) == "9");
-	QVERIFY(s.format(static_cast<short>(10), result) == "a");
-	QVERIFY(s.format(static_cast<short>(99), result) == "63");
-	QVERIFY(s.format(static_cast<short>(100), result) == "64");
-	QVERIFY(s.format(static_cast<short>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<short>(256), result) == "100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "7fff");
+	TesterHex<short>::test_p(SS(16, false, true));
+	TesterHex<short>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<short>::test_p_lz(SS(16, true, true));
+	TesterHex<short>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<short>(-1), result) == "ffff");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "fff7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "fff6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "ff9d");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "ff9c");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "ff01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "ff00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "fc18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "8001");
-}
-
-void TestNumberStringifier::testFormatHexShortUpper()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, false, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "A");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "63");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "64");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "FFFF");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "FFFF");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "FFF7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "FFF6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0");
-	QVERIFY(s.format(static_cast<short>(9), result) == "9");
-	QVERIFY(s.format(static_cast<short>(10), result) == "A");
-	QVERIFY(s.format(static_cast<short>(99), result) == "63");
-	QVERIFY(s.format(static_cast<short>(100), result) == "64");
-	QVERIFY(s.format(static_cast<short>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<short>(256), result) == "100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "7FFF");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "FFFF");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "FFF7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "FFF6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "FF9D");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "FF9C");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "FF01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "FF00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "FC18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "8001");
-}
-
-void TestNumberStringifier::testFormatHexShortLz()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0000");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0009");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "000a");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0063");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0064");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "00ff");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "03e8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "ffff");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "ffff");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "fff7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "fff6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0000");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0009");
-	QVERIFY(s.format(static_cast<short>(10), result) == "000a");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0063");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0064");
-	QVERIFY(s.format(static_cast<short>(255), result) == "00ff");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "03e8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "7fff");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "ffff");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "fff7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "fff6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "ff9d");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "ff9c");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "ff01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "ff00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "fc18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "8001");
-}
-
-void TestNumberStringifier::testFormatHexShortLzUpper()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, false, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0000");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0009");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "000A");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0063");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0064");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "00FF");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "03E8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "FFFF");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "FFFF");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "FFF7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "FFF6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0000");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0009");
-	QVERIFY(s.format(static_cast<short>(10), result) == "000A");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0063");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0064");
-	QVERIFY(s.format(static_cast<short>(255), result) == "00FF");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "03E8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "7FFF");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "FFFF");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "FFF7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "FFF6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "FF9D");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "FF9C");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "FF01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "FF00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "FC18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "8001");
+	TesterHex<ushort>::test_p(SS(16, false, true));
+	TesterHex<ushort>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<ushort>::test_p_lz(SS(16, true, true));
+	TesterHex<ushort>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
 }
 
 void TestNumberStringifier::testFormatHexInt()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(16);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "a");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "ffffffff");
+	TesterHex<int>::test(SS(16));
+	TesterHex<int>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<int>::test_lz(SS(16, true));
+	TesterHex<int>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "fffffff6");
+	TesterHex<uint>::test(SS(16));
+	TesterHex<uint>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<uint>::test_lz(SS(16, true));
+	TesterHex<uint>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<int>(0), result) == "0");
-	QVERIFY(s.format(static_cast<int>(9), result) == "9");
-	QVERIFY(s.format(static_cast<int>(10), result) == "a");
-	QVERIFY(s.format(static_cast<int>(99), result) == "63");
-	QVERIFY(s.format(static_cast<int>(100), result) == "64");
-	QVERIFY(s.format(static_cast<int>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<int>(256), result) == "100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "7fffffff");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "ffffffff");
+	TesterHex<int>::test_p(SS(16, false, true));
+	TesterHex<int>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<int>::test_p_lz(SS(16, true, true));
+	TesterHex<int>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<int>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "fffffff6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "ffffff9d");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "ffffff9c");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "ffffff01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "ffffff00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "fffffc18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatHexIntUpper()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, false, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "A");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "FFFFFFF6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0");
-	QVERIFY(s.format(static_cast<int>(9), result) == "9");
-	QVERIFY(s.format(static_cast<int>(10), result) == "A");
-	QVERIFY(s.format(static_cast<int>(99), result) == "63");
-	QVERIFY(s.format(static_cast<int>(100), result) == "64");
-	QVERIFY(s.format(static_cast<int>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<int>(256), result) == "100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "7FFFFFFF");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "FFFFFFF6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "FFFFFF9D");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "FFFFFF9C");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "FFFFFF01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "FFFFFF00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "FFFFFC18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatHexIntLz()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0000000a");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "000000ff");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "000003e8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "ffffffff");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "fffffff6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<int>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0000000a");
-	QVERIFY(s.format(static_cast<int>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<int>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<int>(255), result) == "000000ff");
-	QVERIFY(s.format(static_cast<int>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "000003e8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "7fffffff");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "ffffffff");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "fffffff6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "ffffff9d");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "ffffff9c");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "ffffff01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "ffffff00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "fffffc18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "00000001");
-}
-
-void TestNumberStringifier::testFormatHexIntLzUpper()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, false, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0000000A");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "000000FF");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "000003E8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "FFFFFFF6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<int>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0000000A");
-	QVERIFY(s.format(static_cast<int>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<int>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<int>(255), result) == "000000FF");
-	QVERIFY(s.format(static_cast<int>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "000003E8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "7FFFFFFF");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "FFFFFFF6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "FFFFFF9D");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "FFFFFF9C");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "FFFFFF01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "FFFFFF00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "FFFFFC18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "00000001");
+	TesterHex<uint>::test_p(SS(16, false, true));
+	TesterHex<uint>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<uint>::test_p_lz(SS(16, true, true));
+	TesterHex<uint>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
 }
 
 void TestNumberStringifier::testFormatHexLong()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(16);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "a");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "63");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "64");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "ffffffff");
+	TesterHex<long>::test(SS(16));
+	TesterHex<long>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<long>::test_lz(SS(16, true));
+	TesterHex<long>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "fffffff6");
+	TesterHex<ulong>::test(SS(16));
+	TesterHex<ulong>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<ulong>::test_lz(SS(16, true));
+	TesterHex<ulong>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<long>(0), result) == "0");
-	QVERIFY(s.format(static_cast<long>(9), result) == "9");
-	QVERIFY(s.format(static_cast<long>(10), result) == "a");
-	QVERIFY(s.format(static_cast<long>(99), result) == "63");
-	QVERIFY(s.format(static_cast<long>(100), result) == "64");
-	QVERIFY(s.format(static_cast<long>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<long>(256), result) == "100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "7fffffff");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "ffffffff");
+	TesterHex<long>::test_p(SS(16, false, true));
+	TesterHex<long>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<long>::test_p_lz(SS(16, true, true));
+	TesterHex<long>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
 
-	QVERIFY(s.format(static_cast<long>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "fffffff6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "ffffff9d");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "ffffff9c");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "ffffff01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "ffffff00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "fffffc18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatHexLongUpper()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, false, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "A");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "63");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "64");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "FFFFFFF6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0");
-	QVERIFY(s.format(static_cast<long>(9), result) == "9");
-	QVERIFY(s.format(static_cast<long>(10), result) == "A");
-	QVERIFY(s.format(static_cast<long>(99), result) == "63");
-	QVERIFY(s.format(static_cast<long>(100), result) == "64");
-	QVERIFY(s.format(static_cast<long>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<long>(256), result) == "100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "7FFFFFFF");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "FFFFFFF6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "FFFFFF9D");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "FFFFFF9C");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "FFFFFF01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "FFFFFF00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "FFFFFC18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatHexLongLz()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0000000a");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "000000ff");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "000003e8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "ffffffff");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "fffffff6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<long>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0000000a");
-	QVERIFY(s.format(static_cast<long>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<long>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<long>(255), result) == "000000ff");
-	QVERIFY(s.format(static_cast<long>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "000003e8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "7fffffff");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "ffffffff");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "fffffff6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "ffffff9d");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "ffffff9c");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "ffffff01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "ffffff00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "fffffc18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "00000001");
-}
-
-void TestNumberStringifier::testFormatHexLongLzUpper()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, false, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0000000A");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "000000FF");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "000003E8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "FFFFFFF6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<long>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0000000A");
-	QVERIFY(s.format(static_cast<long>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<long>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<long>(255), result) == "000000FF");
-	QVERIFY(s.format(static_cast<long>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "000003E8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "7FFFFFFF");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "FFFFFFF6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "FFFFFF9D");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "FFFFFF9C");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "FFFFFF01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "FFFFFF00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "FFFFFC18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "00000001");
+	TesterHex<ulong>::test_p(SS(16, false, true));
+	TesterHex<ulong>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<ulong>::test_p_lz(SS(16, true, true));
+	TesterHex<ulong>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
 }
 
 void TestNumberStringifier::testFormatHexInt64()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(16);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "a");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "63");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "64");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "ffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "ffffffffffffffff");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "fffffffffffffff7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "fffffffffffffff6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "a");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "63");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "64");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "7fffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "ffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "ffffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "fffffffffffffff7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "fffffffffffffff6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "ffffffffffffff9d");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "ffffffffffffff9c");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "ffffffffffffff01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "ffffffffffffff00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "fffffffffffffc18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatHexInt64Upper()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, false, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "A");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "63");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "64");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "FFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "FFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "FFFFFFFFFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "A");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "63");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "64");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "7FFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "FFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "FFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "FFFFFFFFFFFFFFF6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "FFFFFFFFFFFFFF9D");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "FFFFFFFFFFFFFF9C");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "FFFFFFFFFFFFFF01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "FFFFFFFFFFFFFF00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "FFFFFFFFFFFFFC18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatHexInt64Lz()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0000000000000000");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0000000000000009");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "000000000000000a");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0000000000000063");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0000000000000064");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "00000000000000ff");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0000000000000100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "00000000000003e8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "ffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "ffffffffffffffff");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "fffffffffffffff7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "fffffffffffffff6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0000000000000000");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "000000000000000a");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0000000000000063");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0000000000000064");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "00000000000000ff");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "00000000000003e8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "7fffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "ffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "ffffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "fffffffffffffff7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "fffffffffffffff6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "ffffffffffffff9d");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "ffffffffffffff9c");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "ffffffffffffff01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "ffffffffffffff00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "fffffffffffffc18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0000000000000001");
-}
-
-void TestNumberStringifier::testFormatHexInt64LzUpper()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(16, true, false, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0000000000000000");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0000000000000009");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "000000000000000A");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0000000000000063");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0000000000000064");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "00000000000000FF");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0000000000000100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "00000000000003E8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "FFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "FFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "FFFFFFFFFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0000000000000000");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "000000000000000A");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0000000000000063");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0000000000000064");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "00000000000000FF");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "00000000000003E8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "7FFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "FFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "FFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "FFFFFFFFFFFFFFF6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "FFFFFFFFFFFFFF9D");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "FFFFFFFFFFFFFF9C");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "FFFFFFFFFFFFFF01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "FFFFFFFFFFFFFF00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "FFFFFFFFFFFFFC18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0000000000000001");
-}
-
-void TestNumberStringifier::testFormatHexCharPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, true);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "0xff");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "0xf6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<char>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "0x7f");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "0xf6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "0x9d");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "0x9c");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "0x7f");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "0xf6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "0x9d");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "0x9c");
-}
-
-void TestNumberStringifier::testFormatHexCharUpperPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, true, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "0xFF");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "0xF6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<char>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "0x7F");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "0xF6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "0x9D");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "0x9C");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "0x7F");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "0xF6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "0x9D");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "0x9C");
-}
-
-void TestNumberStringifier::testFormatHexCharLzPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, true);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0x0a");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "0xff");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "0xf6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<char>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0x0a");
-	QVERIFY(s.format(static_cast<char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "0x7f");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "0xf6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "0x9d");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "0x9c");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0x0a");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "0x7f");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "0xf6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "0x9d");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "0x9c");
-}
-
-void TestNumberStringifier::testFormatHexCharLzUpperPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, true, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0x0A");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "0xFF");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "0xF6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<char>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0x0A");
-	QVERIFY(s.format(static_cast<char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "0x7F");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "0xF6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "0x9D");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "0x9C");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0x0A");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "0x7F");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "0xF6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "0x9D");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "0x9C");
-}
-
-void TestNumberStringifier::testFormatHexShortPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, true);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "0xffff");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "0xffff");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "0xfff7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "0xfff6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<short>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<short>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "0x7fff");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "0xffff");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "0xfff7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "0xfff6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "0xff9d");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "0xff9c");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "0xff01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "0xff00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "0xfc18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "0x8001");
-}
-
-void TestNumberStringifier::testFormatHexShortUpperPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, true, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "0xFFFF");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "0xFFFF");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "0xFFF7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "0xFFF6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<short>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<short>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "0x7FFF");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "0xFFFF");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "0xFFF7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "0xFFF6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "0xFF9D");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "0xFF9C");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "0xFF01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "0xFF00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "0xFC18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "0x8001");
-}
-
-void TestNumberStringifier::testFormatHexShortLzPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, true);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0x0000");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0x0009");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "0x000a");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0x0063");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0x0064");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "0x00ff");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0x0100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "0x03e8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "0xffff");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "0xffff");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "0xfff7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "0xfff6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0x0000");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0x0009");
-	QVERIFY(s.format(static_cast<short>(10), result) == "0x000a");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0x0063");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0x0064");
-	QVERIFY(s.format(static_cast<short>(255), result) == "0x00ff");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0x0100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "0x03e8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "0x7fff");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "0xffff");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "0xfff7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "0xfff6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "0xff9d");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "0xff9c");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "0xff01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "0xff00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "0xfc18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "0x8001");
-}
-
-void TestNumberStringifier::testFormatHexShortLzUpperPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, true, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0x0000");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0x0009");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "0x000A");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0x0063");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0x0064");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "0x00FF");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0x0100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "0x03E8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "0xFFFF");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "0xFFFF");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "0xFFF7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "0xFFF6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0x0000");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0x0009");
-	QVERIFY(s.format(static_cast<short>(10), result) == "0x000A");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0x0063");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0x0064");
-	QVERIFY(s.format(static_cast<short>(255), result) == "0x00FF");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0x0100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "0x03E8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "0x7FFF");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "0xFFFF");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "0xFFF7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "0xFFF6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "0xFF9D");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "0xFF9C");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "0xFF01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "0xFF00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "0xFC18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "0x8001");
-}
-
-void TestNumberStringifier::testFormatHexIntPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, true);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "0xfffffff6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<int>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<int>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<int>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<int>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<int>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "0x7fffffff");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "0xfffffff6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "0xffffff9d");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "0xffffff9c");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "0xffffff01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "0xffffff00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "0xfffffc18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "0x1");
-}
-
-void TestNumberStringifier::testFormatHexIntUpperPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, true, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "0xFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<int>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<int>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<int>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<int>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<int>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "0x7FFFFFFF");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "0xFFFFFFF6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "0xFFFFFF9D");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "0xFFFFFF9C");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "0xFFFFFF01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "0xFFFFFF00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "0xFFFFFC18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "0x1");
-}
-
-void TestNumberStringifier::testFormatHexIntLzPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, true);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0x0000000a");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "0x000000ff");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "0x000003e8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "0xfffffff6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<int>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0x0000000a");
-	QVERIFY(s.format(static_cast<int>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<int>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<int>(255), result) == "0x000000ff");
-	QVERIFY(s.format(static_cast<int>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "0x000003e8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "0x7fffffff");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "0xfffffff6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "0xffffff9d");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "0xffffff9c");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "0xffffff01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "0xffffff00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "0xfffffc18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "0x00000001");
-}
-
-void TestNumberStringifier::testFormatHexIntLzUpperPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, true, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0x0000000A");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "0x000000FF");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "0x000003E8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "0xFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<int>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0x0000000A");
-	QVERIFY(s.format(static_cast<int>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<int>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<int>(255), result) == "0x000000FF");
-	QVERIFY(s.format(static_cast<int>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "0x000003E8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "0x7FFFFFFF");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "0xFFFFFFF6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "0xFFFFFF9D");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "0xFFFFFF9C");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "0xFFFFFF01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "0xFFFFFF00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "0xFFFFFC18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "0x00000001");
-}
-
-void TestNumberStringifier::testFormatHexLongPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, true);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "0xfffffff6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<long>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<long>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<long>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<long>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<long>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "0x7fffffff");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "0xfffffff6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "0xffffff9d");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "0xffffff9c");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "0xffffff01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "0xffffff00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "0xfffffc18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "0x1");
-}
-
-void TestNumberStringifier::testFormatHexLongUpperPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, true, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "0xFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<long>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<long>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<long>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<long>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<long>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "0x7FFFFFFF");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "0xFFFFFFF6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "0xFFFFFF9D");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "0xFFFFFF9C");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "0xFFFFFF01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "0xFFFFFF00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "0xFFFFFC18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "0x1");
-}
-
-void TestNumberStringifier::testFormatHexLongLzPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, true);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0x0000000a");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "0x000000ff");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "0x000003e8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "0xfffffff6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<long>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0x0000000a");
-	QVERIFY(s.format(static_cast<long>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<long>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<long>(255), result) == "0x000000ff");
-	QVERIFY(s.format(static_cast<long>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "0x000003e8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "0x7fffffff");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "0xfffffff6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "0xffffff9d");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "0xffffff9c");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "0xffffff01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "0xffffff00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "0xfffffc18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "0x00000001");
-}
-
-void TestNumberStringifier::testFormatHexLongLzUpperPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, true, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0x0000000A");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "0x000000FF");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "0x000003E8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "0xFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<long>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0x0000000A");
-	QVERIFY(s.format(static_cast<long>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<long>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<long>(255), result) == "0x000000FF");
-	QVERIFY(s.format(static_cast<long>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "0x000003E8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "0x7FFFFFFF");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "0xFFFFFFF6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "0xFFFFFF9D");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "0xFFFFFF9C");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "0xFFFFFF01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "0xFFFFFF00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "0xFFFFFC18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "0x00000001");
-}
-
-void TestNumberStringifier::testFormatHexInt64Prefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, true);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "0xffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "0xffffffffffffffff");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "0xfffffffffffffff7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "0xfffffffffffffff6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "0x7fffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "0xffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "0xffffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "0xfffffffffffffff7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "0xfffffffffffffff6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "0xffffffffffffff9d");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "0xffffffffffffff9c");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "0xffffffffffffff01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "0xffffffffffffff00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "0xfffffffffffffc18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "0x8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0x1");
-}
-
-void TestNumberStringifier::testFormatHexInt64UpperPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, false, true, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "0xFFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "0xFFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "0xFFFFFFFFFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "0x7FFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "0xFFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "0xFFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "0xFFFFFFFFFFFFFFF6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "0xFFFFFFFFFFFFFF9D");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "0xFFFFFFFFFFFFFF9C");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "0xFFFFFFFFFFFFFF01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "0xFFFFFFFFFFFFFF00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "0xFFFFFFFFFFFFFC18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "0x8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0x1");
-}
-
-void TestNumberStringifier::testFormatHexInt64LzPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, true);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0x0000000000000000");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0x0000000000000009");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "0x000000000000000a");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0x0000000000000063");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0x0000000000000064");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "0x00000000000000ff");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0x0000000000000100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "0x00000000000003e8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "0xffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "0xffffffffffffffff");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "0xfffffffffffffff7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "0xfffffffffffffff6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0x0000000000000000");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0x0000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "0x000000000000000a");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0x0000000000000063");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0x0000000000000064");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "0x00000000000000ff");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0x0000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "0x00000000000003e8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "0x7fffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "0xffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "0xffffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "0xfffffffffffffff7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "0xfffffffffffffff6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "0xffffffffffffff9d");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "0xffffffffffffff9c");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "0xffffffffffffff01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "0xffffffffffffff00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "0xfffffffffffffc18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "0x8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0x0000000000000001");
-}
-
-void TestNumberStringifier::testFormatHexInt64LzUpperPrefix()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s(16, true, true, Qpe::Stringifier::UpperCase);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0x0000000000000000");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0x0000000000000009");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "0x000000000000000A");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0x0000000000000063");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0x0000000000000064");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "0x00000000000000FF");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0x0000000000000100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "0x00000000000003E8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "0xFFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "0xFFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "0xFFFFFFFFFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0x0000000000000000");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0x0000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "0x000000000000000A");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0x0000000000000063");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0x0000000000000064");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "0x00000000000000FF");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0x0000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "0x00000000000003E8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "0x7FFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "0xFFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "0xFFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "0xFFFFFFFFFFFFFFF6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "0xFFFFFFFFFFFFFF9D");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "0xFFFFFFFFFFFFFF9C");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "0xFFFFFFFFFFFFFF01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "0xFFFFFFFFFFFFFF00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "0xFFFFFFFFFFFFFC18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "0x8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0x0000000000000001");
+	TesterHex<qint64>::test(SS(16));
+	TesterHex<qint64>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<qint64>::test_lz(SS(16, true));
+	TesterHex<qint64>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
+
+	TesterHex<quint64>::test(SS(16));
+	TesterHex<quint64>::test_up(SS(16, false, false, Qpe::Stringifier::UpperCase));
+	TesterHex<quint64>::test_lz(SS(16, true));
+	TesterHex<quint64>::test_lz_up(SS(16, true, false, Qpe::Stringifier::UpperCase));
+
+	TesterHex<qint64>::test_p(SS(16, false, true));
+	TesterHex<qint64>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<qint64>::test_p_lz(SS(16, true, true));
+	TesterHex<qint64>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
+
+	TesterHex<quint64>::test_p(SS(16, false, true));
+	TesterHex<quint64>::test_p_up(SS(16, false, true, Qpe::Stringifier::UpperCase));
+	TesterHex<quint64>::test_p_lz(SS(16, true, true));
+	TesterHex<quint64>::test_p_lz_up(SS(16, true, true, Qpe::Stringifier::UpperCase));
 }
 
 void TestNumberStringifier::testFormatDecChar_str()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(10);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "10");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "99");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "100");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "255");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "255");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "247");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "246");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<char>(10), result) == "10");
-	QVERIFY(s.format(static_cast<char>(99), result) == "99");
-	QVERIFY(s.format(static_cast<char>(100), result) == "100");
-	QVERIFY(s.format(static_cast<char>(127), result) == "127");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "-100");
-//	QVERIFY(s.format(static_cast<char>(-128), result) == "-128");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "10");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "99");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "100");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "127");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "-100");
-//	QVERIFY(s.format(static_cast<signed char>(-128), result) == "-128");
-}
-
-void TestNumberStringifier::testFormatDecCharLz_str()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(10, true);
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "000");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "009");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "010");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "099");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "100");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "255");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "255");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "247");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "246");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "000");
-	QVERIFY(s.format(static_cast<char>(9), result) == "009");
-	QVERIFY(s.format(static_cast<char>(10), result) == "010");
-	QVERIFY(s.format(static_cast<char>(99), result) == "099");
-	QVERIFY(s.format(static_cast<char>(100), result) == "100");
-	QVERIFY(s.format(static_cast<char>(127), result) == "127");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "-001");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "-009");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "-010");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "-099");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "-100");
-//	QVERIFY(s.format(static_cast<char>(-128), result) == "-128");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "000");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "009");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "010");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "099");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "100");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "127");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "-001");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "-009");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "-010");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "-099");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "-100");
-//	QVERIFY(s.format(static_cast<signed char>(-128), result) == "-128");
+	TesterDec<signed char>::test(SS("10"));
+	TesterDec<signed char>::test_lz(SS("10l"));
+	TesterDec<char>::test(SS("10"));
+	TesterDec<char>::test_lz(SS("10l"));
+	TesterDec<uchar>::test(SS("10"));
+	TesterDec<uchar>::test_lz(SS("10l"));
 }
 
 void TestNumberStringifier::testFormatDecShort_str()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(10);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "10");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "99");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "100");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "255");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "256");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "65535");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "65535");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "65527");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "65526");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0");
-	QVERIFY(s.format(static_cast<short>(9), result) == "9");
-	QVERIFY(s.format(static_cast<short>(10), result) == "10");
-	QVERIFY(s.format(static_cast<short>(99), result) == "99");
-	QVERIFY(s.format(static_cast<short>(100), result) == "100");
-	QVERIFY(s.format(static_cast<short>(255), result) == "255");
-	QVERIFY(s.format(static_cast<short>(256), result) == "256");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "32767");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "-100");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "-255");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "-256");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "-1000");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "-32767");
-}
-
-void TestNumberStringifier::testFormatDecShortLz_str()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(10, true);
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "00000");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "00009");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "00010");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "00099");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "00100");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "00255");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "00256");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "01000");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "65535");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "65535");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "65527");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "65526");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "00000");
-	QVERIFY(s.format(static_cast<short>(9), result) == "00009");
-	QVERIFY(s.format(static_cast<short>(10), result) == "00010");
-	QVERIFY(s.format(static_cast<short>(99), result) == "00099");
-	QVERIFY(s.format(static_cast<short>(100), result) == "00100");
-	QVERIFY(s.format(static_cast<short>(255), result) == "00255");
-	QVERIFY(s.format(static_cast<short>(256), result) == "00256");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "01000");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "32767");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "-00001");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "-00009");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "-00010");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "-00099");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "-00100");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "-00255");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "-00256");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "-01000");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "-32767");
+	TesterDec<short>::test(SS("10"));
+	TesterDec<short>::test_lz(SS("10l"));
+	TesterDec<ushort>::test(SS("10"));
+	TesterDec<ushort>::test_lz(SS("10l"));
 }
 
 void TestNumberStringifier::testFormatDecInt_str()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(10);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "10");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "99");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "100");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "255");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "256");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "4294967295");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "4294967295");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "4294967287");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "4294967286");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0");
-	QVERIFY(s.format(static_cast<int>(9), result) == "9");
-	QVERIFY(s.format(static_cast<int>(10), result) == "10");
-	QVERIFY(s.format(static_cast<int>(99), result) == "99");
-	QVERIFY(s.format(static_cast<int>(100), result) == "100");
-	QVERIFY(s.format(static_cast<int>(255), result) == "255");
-	QVERIFY(s.format(static_cast<int>(256), result) == "256");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "2147483647");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "-1");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "-100");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "-255");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "-256");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "-1000");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "-2147483647");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatDecIntLz_str()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(10, true);
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0000000000");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "0000000009");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0000000010");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "0000000099");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "0000000100");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "0000000255");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "0000000256");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "0000001000");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "4294967295");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "4294967295");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "4294967287");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "4294967286");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0000000000");
-	QVERIFY(s.format(static_cast<int>(9), result) == "0000000009");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0000000010");
-	QVERIFY(s.format(static_cast<int>(99), result) == "0000000099");
-	QVERIFY(s.format(static_cast<int>(100), result) == "0000000100");
-	QVERIFY(s.format(static_cast<int>(255), result) == "0000000255");
-	QVERIFY(s.format(static_cast<int>(256), result) == "0000000256");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "0000001000");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "2147483647");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "-0000000001");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "-0000000001");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "-0000000009");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "-0000000010");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "-0000000099");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "-0000000100");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "-0000000255");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "-0000000256");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "-0000001000");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "-2147483647");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "0000000001");
+	TesterDec<int>::test(SS("10"));
+	TesterDec<int>::test_lz(SS("10l"));
+	TesterDec<uint>::test(SS("10"));
+	TesterDec<uint>::test_lz(SS("10l"));
 }
 
 void TestNumberStringifier::testFormatDecLong_str()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(10);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "10");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "99");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "100");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "255");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "256");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "4294967295");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "4294967295");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "4294967287");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "4294967286");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0");
-	QVERIFY(s.format(static_cast<long>(9), result) == "9");
-	QVERIFY(s.format(static_cast<long>(10), result) == "10");
-	QVERIFY(s.format(static_cast<long>(99), result) == "99");
-	QVERIFY(s.format(static_cast<long>(100), result) == "100");
-	QVERIFY(s.format(static_cast<long>(255), result) == "255");
-	QVERIFY(s.format(static_cast<long>(256), result) == "256");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "2147483647");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "-1");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "-100");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "-255");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "-256");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "-1000");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "-2147483647");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatDecLongLz_str()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(10, true);
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0000000000");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "0000000009");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0000000010");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "0000000099");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "0000000100");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "0000000255");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "0000000256");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "0000001000");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "4294967295");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "4294967295");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "4294967287");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "4294967286");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0000000000");
-	QVERIFY(s.format(static_cast<long>(9), result) == "0000000009");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0000000010");
-	QVERIFY(s.format(static_cast<long>(99), result) == "0000000099");
-	QVERIFY(s.format(static_cast<long>(100), result) == "0000000100");
-	QVERIFY(s.format(static_cast<long>(255), result) == "0000000255");
-	QVERIFY(s.format(static_cast<long>(256), result) == "0000000256");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "0000001000");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "2147483647");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "-0000000001");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "-0000000001");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "-0000000009");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "-0000000010");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "-0000000099");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "-0000000100");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "-0000000255");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "-0000000256");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "-0000001000");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "-2147483647");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "0000000001");
+	TesterDec<long>::test(SS("10"));
+	TesterDec<long>::test_lz(SS("10l"));
+	TesterDec<ulong>::test(SS("10"));
+	TesterDec<ulong>::test_lz(SS("10l"));
 }
 
 void TestNumberStringifier::testFormatDecInt64_str()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s(10);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "10");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "99");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "100");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "255");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "256");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "18446744073709551615");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "18446744073709551615");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "18446744073709551607");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "18446744073709551606");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "10");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "99");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "100");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "255");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "256");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "1000");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "9223372036854775807");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "-1");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "-1");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "-9");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "-10");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "-99");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "-100");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "-255");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "-256");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "-1000");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "-9223372036854775807");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatDecInt64Lz_str()
-{
-	// ---- with leading zero
-	Qpe::Stringifier s(10, true);
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "00000000000000000000");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "00000000000000000009");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "00000000000000000010");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "00000000000000000099");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "00000000000000000100");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "00000000000000000255");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "00000000000000000256");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "00000000000000001000");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "18446744073709551615");
-
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "18446744073709551615");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "18446744073709551607");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "18446744073709551606");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0000000000000000000");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0000000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "0000000000000000010");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0000000000000000099");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0000000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "0000000000000000255");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0000000000000000256");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "0000000000000001000");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "9223372036854775807");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "-0000000000000000001");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "-0000000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "-0000000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "-0000000000000000010");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "-0000000000000000099");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "-0000000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "-0000000000000000255");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "-0000000000000000256");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "-0000000000000001000");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "-9223372036854775807");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0000000000000000001");
+	TesterDec<qint64>::test(SS("10"));
+	TesterDec<qint64>::test_lz(SS("10l"));
+	TesterDec<quint64>::test(SS("10"));
+	TesterDec<quint64>::test_lz(SS("10l"));
 }
 
 void TestNumberStringifier::testFormatHexChar_str()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s("16");
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "a");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "ff");
+	TesterHex<signed char>::test(SS("16"));
+	TesterHex<signed char>::test_up(SS("16u"));
+	TesterHex<signed char>::test_lz(SS("16l"));
+	TesterHex<signed char>::test_lz_up(SS("16lu"));
 
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "f6");
+	TesterHex<char>::test(SS("16"));
+	TesterHex<char>::test_up(SS("16u"));
+	TesterHex<char>::test_lz(SS("16l"));
+	TesterHex<char>::test_lz_up(SS("16ul"));
 
-	QVERIFY(s.format(static_cast<char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<char>(10), result) == "a");
-	QVERIFY(s.format(static_cast<char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "7f");
+	TesterHex<uchar>::test(SS("16"));
+	TesterHex<uchar>::test_up(SS("16u"));
+	TesterHex<uchar>::test_lz(SS("16l"));
+	TesterHex<uchar>::test_lz_up(SS("16ul"));
 
-	QVERIFY(s.format(static_cast<char>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "f6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "9d");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "9c");
+	TesterHex<signed char>::test_p(SS("16p"));
+	TesterHex<signed char>::test_p_up(SS("16pu"));
+	TesterHex<signed char>::test_p_lz(SS("16lp"));
+	TesterHex<signed char>::test_p_lz_up(SS("16lup"));
 
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "a");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "7f");
+	TesterHex<char>::test_p(SS("16p"));
+	TesterHex<char>::test_p_up(SS("16up"));
+	TesterHex<char>::test_p_lz(SS("16pl"));
+	TesterHex<char>::test_p_lz_up(SS("16pul"));
 
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "f6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "9d");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "9c");
-}
-
-void TestNumberStringifier::testFormatHexCharUpper_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16u");
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "A");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "FF");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "F6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<char>(10), result) == "A");
-	QVERIFY(s.format(static_cast<char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "7F");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "F6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "9D");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "9C");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "9");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "A");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "7F");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "F6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "9D");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "9C");
-}
-
-void TestNumberStringifier::testFormatHexCharLz_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16l");
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "00");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "09");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0a");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "ff");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "f6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "00");
-	QVERIFY(s.format(static_cast<char>(9), result) == "09");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0a");
-	QVERIFY(s.format(static_cast<char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "7f");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "f6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "9d");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "9c");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "00");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "09");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0a");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "7f");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "ff");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "f7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "f6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "9d");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "9c");
-}
-
-void TestNumberStringifier::testFormatHexCharLzUpper_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16lu");
-	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "00");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "09");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0A");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "FF");
-
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "F6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "00");
-	QVERIFY(s.format(static_cast<char>(9), result) == "09");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0A");
-	QVERIFY(s.format(static_cast<char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "7F");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "F6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "9D");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "9C");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "00");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "09");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0A");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "7F");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "FF");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "F7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "F6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "9D");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "9C");
+	TesterHex<uchar>::test_p(SS("16p"));
+	TesterHex<uchar>::test_p_up(SS("16pu"));
+	TesterHex<uchar>::test_p_lz(SS("16lp"));
+	TesterHex<uchar>::test_p_lz_up(SS("16ulp"));
 }
 
 void TestNumberStringifier::testFormatHexShort_str()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s("16");
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "a");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "63");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "64");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "ffff");
+	TesterHex<short>::test(SS("16"));
+	TesterHex<short>::test_up(SS("16u"));
+	TesterHex<short>::test_lz(SS("16l"));
+	TesterHex<short>::test_lz_up(SS("16ul"));
 
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "ffff");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "fff7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "fff6");
+	TesterHex<ushort>::test(SS("16"));
+	TesterHex<ushort>::test_up(SS("16u"));
+	TesterHex<ushort>::test_lz(SS("16l"));
+	TesterHex<ushort>::test_lz_up(SS("16ul"));
 
-	QVERIFY(s.format(static_cast<short>(0), result) == "0");
-	QVERIFY(s.format(static_cast<short>(9), result) == "9");
-	QVERIFY(s.format(static_cast<short>(10), result) == "a");
-	QVERIFY(s.format(static_cast<short>(99), result) == "63");
-	QVERIFY(s.format(static_cast<short>(100), result) == "64");
-	QVERIFY(s.format(static_cast<short>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<short>(256), result) == "100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "7fff");
+	TesterHex<short>::test_p(SS("16p"));
+	TesterHex<short>::test_p_up(SS("16up"));
+	TesterHex<short>::test_p_lz(SS("16pl"));
+	TesterHex<short>::test_p_lz_up(SS("16pul"));
 
-	QVERIFY(s.format(static_cast<short>(-1), result) == "ffff");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "fff7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "fff6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "ff9d");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "ff9c");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "ff01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "ff00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "fc18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "8001");
-}
-
-void TestNumberStringifier::testFormatHexShortUpper_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16u");
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "A");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "63");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "64");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "FFFF");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "FFFF");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "FFF7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "FFF6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0");
-	QVERIFY(s.format(static_cast<short>(9), result) == "9");
-	QVERIFY(s.format(static_cast<short>(10), result) == "A");
-	QVERIFY(s.format(static_cast<short>(99), result) == "63");
-	QVERIFY(s.format(static_cast<short>(100), result) == "64");
-	QVERIFY(s.format(static_cast<short>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<short>(256), result) == "100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "7FFF");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "FFFF");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "FFF7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "FFF6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "FF9D");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "FF9C");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "FF01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "FF00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "FC18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "8001");
-}
-
-void TestNumberStringifier::testFormatHexShortLz_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16l");
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0000");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0009");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "000a");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0063");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0064");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "00ff");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "03e8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "ffff");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "ffff");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "fff7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "fff6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0000");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0009");
-	QVERIFY(s.format(static_cast<short>(10), result) == "000a");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0063");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0064");
-	QVERIFY(s.format(static_cast<short>(255), result) == "00ff");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "03e8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "7fff");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "ffff");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "fff7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "fff6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "ff9d");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "ff9c");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "ff01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "ff00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "fc18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "8001");
-}
-
-void TestNumberStringifier::testFormatHexShortLzUpper_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16lu");
-	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0000");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0009");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "000A");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0063");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0064");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "00FF");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "03E8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "FFFF");
-
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "FFFF");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "FFF7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "FFF6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0000");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0009");
-	QVERIFY(s.format(static_cast<short>(10), result) == "000A");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0063");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0064");
-	QVERIFY(s.format(static_cast<short>(255), result) == "00FF");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "03E8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "7FFF");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "FFFF");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "FFF7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "FFF6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "FF9D");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "FF9C");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "FF01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "FF00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "FC18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "8001");
+	TesterHex<ushort>::test_p(SS("16p"));
+	TesterHex<ushort>::test_p_up(SS("16pu"));
+	TesterHex<ushort>::test_p_lz(SS("16lp"));
+	TesterHex<ushort>::test_p_lz_up(SS("16ulp"));
 }
 
 void TestNumberStringifier::testFormatHexInt_str()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s("16");
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "a");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "ffffffff");
+	TesterHex<int>::test(SS("16"));
+	TesterHex<int>::test_up(SS("16u"));
+	TesterHex<int>::test_lz(SS("16l"));
+	TesterHex<int>::test_lz_up(SS("16ul"));
 
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "fffffff6");
+	TesterHex<uint>::test(SS("16"));
+	TesterHex<uint>::test_up(SS("16u"));
+	TesterHex<uint>::test_lz(SS("16l"));
+	TesterHex<uint>::test_lz_up(SS("16ul"));
 
-	QVERIFY(s.format(static_cast<int>(0), result) == "0");
-	QVERIFY(s.format(static_cast<int>(9), result) == "9");
-	QVERIFY(s.format(static_cast<int>(10), result) == "a");
-	QVERIFY(s.format(static_cast<int>(99), result) == "63");
-	QVERIFY(s.format(static_cast<int>(100), result) == "64");
-	QVERIFY(s.format(static_cast<int>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<int>(256), result) == "100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "7fffffff");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "ffffffff");
+	TesterHex<int>::test_p(SS("16p"));
+	TesterHex<int>::test_p_up(SS("16up"));
+	TesterHex<int>::test_p_lz(SS("16pl"));
+	TesterHex<int>::test_p_lz_up(SS("16pul"));
 
-	QVERIFY(s.format(static_cast<int>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "fffffff6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "ffffff9d");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "ffffff9c");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "ffffff01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "ffffff00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "fffffc18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatHexIntUpper_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16u");
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "9");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "A");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "63");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "64");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "FFFFFFF6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0");
-	QVERIFY(s.format(static_cast<int>(9), result) == "9");
-	QVERIFY(s.format(static_cast<int>(10), result) == "A");
-	QVERIFY(s.format(static_cast<int>(99), result) == "63");
-	QVERIFY(s.format(static_cast<int>(100), result) == "64");
-	QVERIFY(s.format(static_cast<int>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<int>(256), result) == "100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "7FFFFFFF");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "FFFFFFF6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "FFFFFF9D");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "FFFFFF9C");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "FFFFFF01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "FFFFFF00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "FFFFFC18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatHexIntLz_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16l");
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0000000a");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "000000ff");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "000003e8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "ffffffff");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "fffffff6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<int>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0000000a");
-	QVERIFY(s.format(static_cast<int>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<int>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<int>(255), result) == "000000ff");
-	QVERIFY(s.format(static_cast<int>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "000003e8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "7fffffff");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "ffffffff");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "fffffff6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "ffffff9d");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "ffffff9c");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "ffffff01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "ffffff00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "fffffc18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "00000001");
-}
-
-void TestNumberStringifier::testFormatHexIntLzUpper_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16lu");
-	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0000000A");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "000000FF");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "000003E8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "FFFFFFF6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<int>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0000000A");
-	QVERIFY(s.format(static_cast<int>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<int>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<int>(255), result) == "000000FF");
-	QVERIFY(s.format(static_cast<int>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "000003E8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "7FFFFFFF");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "FFFFFFF6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "FFFFFF9D");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "FFFFFF9C");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "FFFFFF01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "FFFFFF00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "FFFFFC18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "00000001");
+	TesterHex<uint>::test_p(SS("16p"));
+	TesterHex<uint>::test_p_up(SS("16pu"));
+	TesterHex<uint>::test_p_lz(SS("16lp"));
+	TesterHex<uint>::test_p_lz_up(SS("16ulp"));
 }
 
 void TestNumberStringifier::testFormatHexLong_str()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s("16");
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "a");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "63");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "64");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "ffffffff");
+	TesterHex<long>::test(SS("16"));
+	TesterHex<long>::test_up(SS("16u"));
+	TesterHex<long>::test_lz(SS("16l"));
+	TesterHex<long>::test_lz_up(SS("16ul"));
 
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "fffffff6");
+	TesterHex<ulong>::test(SS("16"));
+	TesterHex<ulong>::test_up(SS("16u"));
+	TesterHex<ulong>::test_lz(SS("16l"));
+	TesterHex<ulong>::test_lz_up(SS("16ul"));
 
-	QVERIFY(s.format(static_cast<long>(0), result) == "0");
-	QVERIFY(s.format(static_cast<long>(9), result) == "9");
-	QVERIFY(s.format(static_cast<long>(10), result) == "a");
-	QVERIFY(s.format(static_cast<long>(99), result) == "63");
-	QVERIFY(s.format(static_cast<long>(100), result) == "64");
-	QVERIFY(s.format(static_cast<long>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<long>(256), result) == "100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "7fffffff");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "ffffffff");
+	TesterHex<long>::test_p(SS("16p"));
+	TesterHex<long>::test_p_up(SS("16up"));
+	TesterHex<long>::test_p_lz(SS("16pl"));
+	TesterHex<long>::test_p_lz_up(SS("16pul"));
 
-	QVERIFY(s.format(static_cast<long>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "fffffff6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "ffffff9d");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "ffffff9c");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "ffffff01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "ffffff00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "fffffc18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatHexLongUpper_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16u");
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "9");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "A");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "63");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "64");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "FFFFFFF6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0");
-	QVERIFY(s.format(static_cast<long>(9), result) == "9");
-	QVERIFY(s.format(static_cast<long>(10), result) == "A");
-	QVERIFY(s.format(static_cast<long>(99), result) == "63");
-	QVERIFY(s.format(static_cast<long>(100), result) == "64");
-	QVERIFY(s.format(static_cast<long>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<long>(256), result) == "100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "7FFFFFFF");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "FFFFFFF6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "FFFFFF9D");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "FFFFFF9C");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "FFFFFF01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "FFFFFF00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "FFFFFC18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "1");
-}
-
-void TestNumberStringifier::testFormatHexLongLz_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16l");
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0000000a");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "000000ff");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "000003e8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "ffffffff");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "fffffff6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<long>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0000000a");
-	QVERIFY(s.format(static_cast<long>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<long>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<long>(255), result) == "000000ff");
-	QVERIFY(s.format(static_cast<long>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "000003e8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "7fffffff");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "ffffffff");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "ffffffff");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "fffffff7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "fffffff6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "ffffff9d");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "ffffff9c");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "ffffff01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "ffffff00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "fffffc18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "00000001");
-}
-
-void TestNumberStringifier::testFormatHexLongLzUpper_str()
-{
-	// ---- without leading zero
-	Qpe::Stringifier s("16lu");
-	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0000000A");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "000000FF");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "000003E8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "FFFFFFF6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "00000000");
-	QVERIFY(s.format(static_cast<long>(9), result) == "00000009");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0000000A");
-	QVERIFY(s.format(static_cast<long>(99), result) == "00000063");
-	QVERIFY(s.format(static_cast<long>(100), result) == "00000064");
-	QVERIFY(s.format(static_cast<long>(255), result) == "000000FF");
-	QVERIFY(s.format(static_cast<long>(256), result) == "00000100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "000003E8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "7FFFFFFF");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "FFFFFFFF");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "FFFFFFFF");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "FFFFFFF7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "FFFFFFF6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "FFFFFF9D");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "FFFFFF9C");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "FFFFFF01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "FFFFFF00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "FFFFFC18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "00000001");
+	TesterHex<ulong>::test_p(SS("16p"));
+	TesterHex<ulong>::test_p_up(SS("16pu"));
+	TesterHex<ulong>::test_p_lz(SS("16lp"));
+	TesterHex<ulong>::test_p_lz_up(SS("16ulp"));
 }
 
 void TestNumberStringifier::testFormatHexInt64_str()
 {
-	// ---- without leading zero
-	Qpe::Stringifier s("16");
-	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "a");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "63");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "64");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "ffffffffffffffff");
+	TesterHex<qint64>::test(SS("16"));
+	TesterHex<qint64>::test_up(SS("16u"));
+	TesterHex<qint64>::test_lz(SS("16l"));
+	TesterHex<qint64>::test_lz_up(SS("16ul"));
 
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "ffffffffffffffff");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "fffffffffffffff7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "fffffffffffffff6");
+	TesterHex<quint64>::test(SS("16"));
+	TesterHex<quint64>::test_up(SS("16u"));
+	TesterHex<quint64>::test_lz(SS("16l"));
+	TesterHex<quint64>::test_lz_up(SS("16ul"));
 
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "a");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "63");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "64");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "ff");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "3e8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "7fffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "ffffffffffffffff");
+	TesterHex<qint64>::test_p(SS("16p"));
+	TesterHex<qint64>::test_p_up(SS("16up"));
+	TesterHex<qint64>::test_p_lz(SS("16pl"));
+	TesterHex<qint64>::test_p_lz_up(SS("16pul"));
 
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "ffffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "fffffffffffffff7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "fffffffffffffff6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "ffffffffffffff9d");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "ffffffffffffff9c");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "ffffffffffffff01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "ffffffffffffff00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "fffffffffffffc18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "1");
+	TesterHex<quint64>::test_p(SS("16p"));
+	TesterHex<quint64>::test_p_up(SS("16pu"));
+	TesterHex<quint64>::test_p_lz(SS("16lp"));
+	TesterHex<quint64>::test_p_lz_up(SS("16ulp"));
 }
 
-void TestNumberStringifier::testFormatHexInt64Upper_str()
+namespace _____dec_____ { }
+
+template<typename T>
+void TesterDec<T, Signed, 1>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16u");
+	QVERIFY(s.base() == 10);
+	QVERIFY(!s.isLeadingZero());
 	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "A");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "63");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "64");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "10");
+	QVERIFY(s.format(static_cast<T>(99), result) == "99");
+	QVERIFY(s.format(static_cast<T>(100), result) == "100");
+	QVERIFY(s.format(static_cast<T>(127), result) == "127");
 
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "FFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "FFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "FFFFFFFFFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "9");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "A");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "63");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "64");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "FF");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "3E8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "7FFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "FFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "FFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "FFFFFFFFFFFFFFF6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "FFFFFFFFFFFFFF9D");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "FFFFFFFFFFFFFF9C");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "FFFFFFFFFFFFFF01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "FFFFFFFFFFFFFF00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "FFFFFFFFFFFFFC18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "1");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "-1");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "-9");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "-10");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "-99");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "-100");
+//	QVERIFY(s.format(static_cast<T>(-128), result) == "-128");
 }
 
-void TestNumberStringifier::testFormatHexInt64Lz_str()
+template<typename T>
+void TesterDec<T, Unsigned, 1>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16l");
+	QVERIFY(s.base() == 10);
+	QVERIFY(!s.isLeadingZero());
 	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0000000000000000");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0000000000000009");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "000000000000000a");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0000000000000063");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0000000000000064");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "00000000000000ff");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0000000000000100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "00000000000003e8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "ffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "10");
+	QVERIFY(s.format(static_cast<T>(99), result) == "99");
+	QVERIFY(s.format(static_cast<T>(100), result) == "100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "255");
 
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "ffffffffffffffff");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "fffffffffffffff7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "fffffffffffffff6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0000000000000000");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "000000000000000a");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0000000000000063");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0000000000000064");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "00000000000000ff");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "00000000000003e8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "7fffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "ffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "ffffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "fffffffffffffff7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "fffffffffffffff6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "ffffffffffffff9d");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "ffffffffffffff9c");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "ffffffffffffff01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "ffffffffffffff00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "fffffffffffffc18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0000000000000001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "255");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "247");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "246");
 }
 
-void TestNumberStringifier::testFormatHexInt64LzUpper_str()
+template<typename T>
+void TesterDec<T, Signed, 1>::test_lz(const Qpe::Stringifier& s)
 {
 	// ---- with leading zero
-	Qpe::Stringifier s("16lu");
+	QVERIFY(s.base() == 10);
+	QVERIFY(s.isLeadingZero());
 	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0000000000000000");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0000000000000009");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "000000000000000A");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0000000000000063");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0000000000000064");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "00000000000000FF");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0000000000000100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "00000000000003E8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "010");
+	QVERIFY(s.format(static_cast<T>(99), result) == "099");
+	QVERIFY(s.format(static_cast<T>(100), result) == "100");
+	QVERIFY(s.format(static_cast<T>(127), result) == "127");
 
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "FFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "FFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "FFFFFFFFFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0000000000000000");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "000000000000000A");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0000000000000063");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0000000000000064");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "00000000000000FF");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "00000000000003E8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "7FFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "FFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "FFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "FFFFFFFFFFFFFFF6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "FFFFFFFFFFFFFF9D");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "FFFFFFFFFFFFFF9C");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "FFFFFFFFFFFFFF01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "FFFFFFFFFFFFFF00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "FFFFFFFFFFFFFC18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0000000000000001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "-001");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "-009");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "-010");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "-099");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "-100");
+//	QVERIFY(s.format(static_cast<T>(-128), result) == "-128");
 }
 
-void TestNumberStringifier::testFormatHexCharPrefix_str()
+template<typename T>
+void TesterDec<T, Unsigned, 1>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 10);
+	QVERIFY(s.isLeadingZero());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "010");
+	QVERIFY(s.format(static_cast<T>(99), result) == "099");
+	QVERIFY(s.format(static_cast<T>(100), result) == "100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "255");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "255");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "247");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "246");
+}
+
+template<typename T>
+void TesterDec<T, Signed, 2>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16p");
+	QVERIFY(s.base() == 10);
+	QVERIFY(!s.isLeadingZero());
 	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "10");
+	QVERIFY(s.format(static_cast<T>(99), result) == "99");
+	QVERIFY(s.format(static_cast<T>(100), result) == "100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "1000");
+	QVERIFY(s.format(static_cast<T>(32767), result) == "32767");
 
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "0xf6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<char>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "0x7f");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "0xf6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "0x9d");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "0x9c");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "0x7f");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "0xf6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "0x9d");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "0x9c");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "-1");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "-9");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "-10");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "-99");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "-100");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "-255");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "-256");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "-1000");
+	QVERIFY(s.format(static_cast<T>(-32767), result) == "-32767");
 }
 
-void TestNumberStringifier::testFormatHexCharUpperPrefix_str()
+template<typename T>
+void TesterDec<T, Unsigned, 2>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16pu");
+	QVERIFY(s.base() == 10);
+	QVERIFY(!s.isLeadingZero());
 	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "10");
+	QVERIFY(s.format(static_cast<T>(99), result) == "99");
+	QVERIFY(s.format(static_cast<T>(100), result) == "100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "1000");
+	QVERIFY(s.format(static_cast<T>(65535), result) == "65535");
 
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "0xF6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<char>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "0x7F");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "0xF6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "0x9D");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "0x9C");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "0x7F");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "0xF6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "0x9D");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "0x9C");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "65535");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "65527");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "65526");
 }
 
-void TestNumberStringifier::testFormatHexCharLzPrefix_str()
+template<typename T>
+void TesterDec<T, Signed, 2>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 10);
+	QVERIFY(s.isLeadingZero());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "00009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "00010");
+	QVERIFY(s.format(static_cast<T>(99), result) == "00099");
+	QVERIFY(s.format(static_cast<T>(100), result) == "00100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "00256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "01000");
+	QVERIFY(s.format(static_cast<T>(32767), result) == "32767");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "-00001");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "-00009");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "-00010");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "-00099");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "-00100");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "-00255");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "-00256");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "-01000");
+	QVERIFY(s.format(static_cast<T>(-32767), result) == "-32767");
+}
+
+template<typename T>
+void TesterDec<T, Unsigned, 2>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 10);
+	QVERIFY(s.isLeadingZero());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "00009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "00010");
+	QVERIFY(s.format(static_cast<T>(99), result) == "00099");
+	QVERIFY(s.format(static_cast<T>(100), result) == "00100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "00256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "01000");
+	QVERIFY(s.format(static_cast<T>(65535), result) == "65535");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "65535");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "65527");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "65526");
+}
+
+template<typename T>
+void TesterDec<T, Signed, 4>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16lp");
+	QVERIFY(s.base() == 10);
+	QVERIFY(!s.isLeadingZero());
 	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0x0a");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "10");
+	QVERIFY(s.format(static_cast<T>(99), result) == "99");
+	QVERIFY(s.format(static_cast<T>(100), result) == "100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "1000");
+	QVERIFY(s.format(static_cast<T>(2147483647), result) == "2147483647");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "-1");
 
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "0xf6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<char>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0x0a");
-	QVERIFY(s.format(static_cast<char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "0x7f");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "0xf6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "0x9d");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "0x9c");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0x0a");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "0x7f");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "0xff");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "0xf7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "0xf6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "0x9d");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "0x9c");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "-1");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "-9");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "-10");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "-99");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "-100");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "-255");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "-256");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "-1000");
+	QVERIFY(s.format(static_cast<T>(-2147483647), result) == "-2147483647");
+	QVERIFY(s.format(static_cast<T>(0-4294967295UL), result) == "1");
 }
 
-void TestNumberStringifier::testFormatHexCharLzUpperPrefix_str()
+template<typename T>
+void TesterDec<T, Unsigned, 4>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16plu");
+	QVERIFY(s.base() == 10);
+	QVERIFY(!s.isLeadingZero());
 	QString result;
-	QVERIFY(s.format(static_cast<uchar>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<uchar>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<uchar>(10), result) == "0x0A");
-	QVERIFY(s.format(static_cast<uchar>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uchar>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uchar>(255), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "10");
+	QVERIFY(s.format(static_cast<T>(99), result) == "99");
+	QVERIFY(s.format(static_cast<T>(100), result) == "100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "1000");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "4294967295");
 
-	QVERIFY(s.format(static_cast<uchar>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<uchar>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<uchar>(-10), result) == "0xF6");
-
-	QVERIFY(s.format(static_cast<char>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<char>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<char>(10), result) == "0x0A");
-	QVERIFY(s.format(static_cast<char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<char>(127), result) == "0x7F");
-
-	QVERIFY(s.format(static_cast<char>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<char>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<char>(-10), result) == "0xF6");
-	QVERIFY(s.format(static_cast<char>(-99), result) == "0x9D");
-	QVERIFY(s.format(static_cast<char>(-100), result) == "0x9C");
-
-	QVERIFY(s.format(static_cast<signed char>(0), result) == "0x00");
-	QVERIFY(s.format(static_cast<signed char>(9), result) == "0x09");
-	QVERIFY(s.format(static_cast<signed char>(10), result) == "0x0A");
-	QVERIFY(s.format(static_cast<signed char>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<signed char>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<signed char>(127), result) == "0x7F");
-
-	QVERIFY(s.format(static_cast<signed char>(-1), result) == "0xFF");
-	QVERIFY(s.format(static_cast<signed char>(-9), result) == "0xF7");
-	QVERIFY(s.format(static_cast<signed char>(-10), result) == "0xF6");
-	QVERIFY(s.format(static_cast<signed char>(-99), result) == "0x9D");
-	QVERIFY(s.format(static_cast<signed char>(-100), result) == "0x9C");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "4294967295");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "4294967287");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "4294967286");
 }
 
-void TestNumberStringifier::testFormatHexShortPrefix_str()
+template<typename T>
+void TesterDec<T, Signed, 4>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 10);
+	QVERIFY(s.isLeadingZero());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0000000010");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0000000099");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0000000100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0000000255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0000000256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0000001000");
+	QVERIFY(s.format(static_cast<T>(2147483647), result) == "2147483647");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "-0000000001");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "-0000000001");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "-0000000009");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "-0000000010");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "-0000000099");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "-0000000100");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "-0000000255");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "-0000000256");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "-0000001000");
+	QVERIFY(s.format(static_cast<T>(-2147483647), result) == "-2147483647");
+	QVERIFY(s.format(static_cast<T>(0-4294967295UL), result) == "0000000001");
+}
+
+template<typename T>
+void TesterDec<T, Unsigned, 4>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 10);
+	QVERIFY(s.isLeadingZero());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0000000010");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0000000099");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0000000100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0000000255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0000000256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0000001000");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "4294967295");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "4294967295");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "4294967287");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "4294967286");
+}
+
+template<typename T>
+void TesterDec<T, Signed, 8>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16p");
+	QVERIFY(s.base() == 10);
+	QVERIFY(!s.isLeadingZero());
 	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "0xffff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "10");
+	QVERIFY(s.format(static_cast<T>(99), result) == "99");
+	QVERIFY(s.format(static_cast<T>(100), result) == "100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "1000");
+	QVERIFY(s.format(static_cast<T>(9223372036854775807), result) == "9223372036854775807");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "-1");
 
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "0xffff");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "0xfff7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "0xfff6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<short>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<short>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "0x7fff");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "0xffff");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "0xfff7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "0xfff6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "0xff9d");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "0xff9c");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "0xff01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "0xff00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "0xfc18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "0x8001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "-1");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "-9");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "-10");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "-99");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "-100");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "-255");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "-256");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "-1000");
+	QVERIFY(s.format(static_cast<T>(-9223372036854775807), result) == "-9223372036854775807");
+	QVERIFY(s.format(static_cast<T>(0-18446744073709551615ULL), result) == "1");
 }
 
-void TestNumberStringifier::testFormatHexShortUpperPrefix_str()
+template<typename T>
+void TesterDec<T, Unsigned, 8>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16up");
+	QVERIFY(s.base() == 10);
+	QVERIFY(!s.isLeadingZero());
 	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "0xFFFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "10");
+	QVERIFY(s.format(static_cast<T>(99), result) == "99");
+	QVERIFY(s.format(static_cast<T>(100), result) == "100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "1000");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "18446744073709551615");
 
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "0xFFFF");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "0xFFF7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "0xFFF6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<short>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<short>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "0x7FFF");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "0xFFFF");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "0xFFF7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "0xFFF6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "0xFF9D");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "0xFF9C");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "0xFF01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "0xFF00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "0xFC18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "0x8001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "18446744073709551615");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "18446744073709551607");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "18446744073709551606");
 }
 
-void TestNumberStringifier::testFormatHexShortLzPrefix_str()
+template<typename T>
+void TesterDec<T, Signed, 8>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 10);
+	QVERIFY(s.isLeadingZero());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000000000000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0000000000000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0000000000000000010");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0000000000000000099");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0000000000000000100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0000000000000000255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0000000000000000256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0000000000000001000");
+	QVERIFY(s.format(static_cast<T>(9223372036854775807), result) == "9223372036854775807");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "-0000000000000000001");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "-0000000000000000001");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "-0000000000000000009");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "-0000000000000000010");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "-0000000000000000099");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "-0000000000000000100");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "-0000000000000000255");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "-0000000000000000256");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "-0000000000000001000");
+	QVERIFY(s.format(static_cast<T>(-9223372036854775807), result) == "-9223372036854775807");
+	QVERIFY(s.format(static_cast<T>(0-18446744073709551615ULL), result) == "0000000000000000001");
+}
+
+template<typename T>
+void TesterDec<T, Unsigned, 8>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 10);
+	QVERIFY(s.isLeadingZero());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00000000000000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "00000000000000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "00000000000000000010");
+	QVERIFY(s.format(static_cast<T>(99), result) == "00000000000000000099");
+	QVERIFY(s.format(static_cast<T>(100), result) == "00000000000000000100");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00000000000000000255");
+	QVERIFY(s.format(static_cast<T>(256), result) == "00000000000000000256");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "00000000000000001000");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "18446744073709551615");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "18446744073709551615");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "18446744073709551607");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "18446744073709551606");
+}
+
+namespace _____hex_1_____ { }
+
+template<typename T>
+void TesterHex<T, Signed, 1>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16pl");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0x0000");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0x0009");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "0x000a");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0x0063");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0x0064");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "0x00ff");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0x0100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "0x03e8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "0xffff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(127), result) == "7f");
 
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "0xffff");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "0xfff7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "0xfff6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0x0000");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0x0009");
-	QVERIFY(s.format(static_cast<short>(10), result) == "0x000a");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0x0063");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0x0064");
-	QVERIFY(s.format(static_cast<short>(255), result) == "0x00ff");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0x0100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "0x03e8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "0x7fff");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "0xffff");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "0xfff7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "0xfff6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "0xff9d");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "0xff9c");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "0xff01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "0xff00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "0xfc18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "0x8001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "f7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "f6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "9c");
 }
 
-void TestNumberStringifier::testFormatHexShortLzUpperPrefix_str()
+template<typename T>
+void TesterHex<T, Unsigned, 1>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16upl");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<ushort>(0), result) == "0x0000");
-	QVERIFY(s.format(static_cast<ushort>(9), result) == "0x0009");
-	QVERIFY(s.format(static_cast<ushort>(10), result) == "0x000A");
-	QVERIFY(s.format(static_cast<ushort>(99), result) == "0x0063");
-	QVERIFY(s.format(static_cast<ushort>(100), result) == "0x0064");
-	QVERIFY(s.format(static_cast<ushort>(255), result) == "0x00FF");
-	QVERIFY(s.format(static_cast<ushort>(256), result) == "0x0100");
-	QVERIFY(s.format(static_cast<ushort>(1000), result) == "0x03E8");
-	QVERIFY(s.format(static_cast<ushort>(65535), result) == "0xFFFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "ff");
 
-	QVERIFY(s.format(static_cast<ushort>(-1), result) == "0xFFFF");
-	QVERIFY(s.format(static_cast<ushort>(-9), result) == "0xFFF7");
-	QVERIFY(s.format(static_cast<ushort>(-10), result) == "0xFFF6");
-
-	QVERIFY(s.format(static_cast<short>(0), result) == "0x0000");
-	QVERIFY(s.format(static_cast<short>(9), result) == "0x0009");
-	QVERIFY(s.format(static_cast<short>(10), result) == "0x000A");
-	QVERIFY(s.format(static_cast<short>(99), result) == "0x0063");
-	QVERIFY(s.format(static_cast<short>(100), result) == "0x0064");
-	QVERIFY(s.format(static_cast<short>(255), result) == "0x00FF");
-	QVERIFY(s.format(static_cast<short>(256), result) == "0x0100");
-	QVERIFY(s.format(static_cast<short>(1000), result) == "0x03E8");
-	QVERIFY(s.format(static_cast<short>(32767), result) == "0x7FFF");
-
-	QVERIFY(s.format(static_cast<short>(-1), result) == "0xFFFF");
-	QVERIFY(s.format(static_cast<short>(-9), result) == "0xFFF7");
-	QVERIFY(s.format(static_cast<short>(-10), result) == "0xFFF6");
-	QVERIFY(s.format(static_cast<short>(-99), result) == "0xFF9D");
-	QVERIFY(s.format(static_cast<short>(-100), result) == "0xFF9C");
-	QVERIFY(s.format(static_cast<short>(-255), result) == "0xFF01");
-	QVERIFY(s.format(static_cast<short>(-256), result) == "0xFF00");
-	QVERIFY(s.format(static_cast<short>(-1000), result) == "0xFC18");
-	QVERIFY(s.format(static_cast<short>(-32767), result) == "0x8001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "f7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "f6");
 }
 
-void TestNumberStringifier::testFormatHexIntPrefix_str()
+template<typename T>
+void TesterHex<T, Signed, 1>::test_up(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16p");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "0xffffffff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(127), result) == "7F");
 
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "0xfffffff6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<int>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<int>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<int>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<int>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<int>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "0x7fffffff");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "0xfffffff6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "0xffffff9d");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "0xffffff9c");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "0xffffff01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "0xffffff00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "0xfffffc18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "0x1");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "F7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "F6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "9C");
 }
 
-void TestNumberStringifier::testFormatHexIntUpperPrefix_str()
+template<typename T>
+void TesterHex<T, Unsigned, 1>::test_up(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16pu");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "0xFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "FF");
 
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "0xFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<int>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<int>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<int>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<int>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<int>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "0x7FFFFFFF");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "0xFFFFFFF6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "0xFFFFFF9D");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "0xFFFFFF9C");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "0xFFFFFF01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "0xFFFFFF00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "0xFFFFFC18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "0x1");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "F7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "F6");
 }
 
-void TestNumberStringifier::testFormatHexIntLzPrefix_str()
+template<typename T>
+void TesterHex<T, Signed, 1>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00");
+	QVERIFY(s.format(static_cast<T>(9), result) == "09");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(127), result) == "7f");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "f7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "f6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "9c");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 1>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00");
+	QVERIFY(s.format(static_cast<T>(9), result) == "09");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "ff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "f7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "f6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 1>::test_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00");
+	QVERIFY(s.format(static_cast<T>(9), result) == "09");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(127), result) == "7F");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "F7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "F6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "9C");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 1>::test_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00");
+	QVERIFY(s.format(static_cast<T>(9), result) == "09");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "FF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "F7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "F6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 1>::test_p(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16lp");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0x0000000a");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "0x000000ff");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "0x000003e8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "0xffffffff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xa");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(127), result) == "0x7f");
 
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "0xfffffff6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<int>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0x0000000a");
-	QVERIFY(s.format(static_cast<int>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<int>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<int>(255), result) == "0x000000ff");
-	QVERIFY(s.format(static_cast<int>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "0x000003e8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "0x7fffffff");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "0xfffffff6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "0xffffff9d");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "0xffffff9c");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "0xffffff01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "0xffffff00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "0xfffffc18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "0x00000001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xf7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xf6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0x9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0x9c");
 }
 
-void TestNumberStringifier::testFormatHexIntLzUpperPrefix_str()
+template<typename T>
+void TesterHex<T, Unsigned, 1>::test_p(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16ulp");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<uint>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<uint>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<uint>(10), result) == "0x0000000A");
-	QVERIFY(s.format(static_cast<uint>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<uint>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<uint>(255), result) == "0x000000FF");
-	QVERIFY(s.format(static_cast<uint>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<uint>(1000), result) == "0x000003E8");
-	QVERIFY(s.format(static_cast<uint>(4294967295), result) == "0xFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xa");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xff");
 
-	QVERIFY(s.format(static_cast<uint>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<uint>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<uint>(-10), result) == "0xFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<int>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<int>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<int>(10), result) == "0x0000000A");
-	QVERIFY(s.format(static_cast<int>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<int>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<int>(255), result) == "0x000000FF");
-	QVERIFY(s.format(static_cast<int>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<int>(1000), result) == "0x000003E8");
-	QVERIFY(s.format(static_cast<int>(2147483647), result) == "0x7FFFFFFF");
-	QVERIFY(s.format(static_cast<int>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<int>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<int>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<int>(-10), result) == "0xFFFFFFF6");
-	QVERIFY(s.format(static_cast<int>(-99), result) == "0xFFFFFF9D");
-	QVERIFY(s.format(static_cast<int>(-100), result) == "0xFFFFFF9C");
-	QVERIFY(s.format(static_cast<int>(-255), result) == "0xFFFFFF01");
-	QVERIFY(s.format(static_cast<int>(-256), result) == "0xFFFFFF00");
-	QVERIFY(s.format(static_cast<int>(-1000), result) == "0xFFFFFC18");
-	QVERIFY(s.format(static_cast<int>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<int>(0-4294967295UL), result) == "0x00000001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xf7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xf6");
 }
 
-void TestNumberStringifier::testFormatHexLongPrefix_str()
+template<typename T>
+void TesterHex<T, Signed, 1>::test_p_up(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16p");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "0xffffffff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xA");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(127), result) == "0x7F");
 
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "0xfffffff6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<long>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<long>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<long>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<long>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<long>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "0x7fffffff");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "0xfffffff6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "0xffffff9d");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "0xffffff9c");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "0xffffff01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "0xffffff00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "0xfffffc18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "0x1");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0x9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0x9C");
 }
 
-void TestNumberStringifier::testFormatHexLongUpperPrefix_str()
+template<typename T>
+void TesterHex<T, Unsigned, 1>::test_p_up(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16pu");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "0xFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xA");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xFF");
 
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "0xFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<long>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<long>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<long>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<long>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<long>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "0x7FFFFFFF");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "0xFFFFFFF6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "0xFFFFFF9D");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "0xFFFFFF9C");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "0xFFFFFF01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "0xFFFFFF00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "0xFFFFFC18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "0x1");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xF6");
 }
 
-void TestNumberStringifier::testFormatHexLongLzPrefix_str()
+template<typename T>
+void TesterHex<T, Signed, 1>::test_p_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x00");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x09");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x0a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(127), result) == "0x7f");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xf7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xf6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0x9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0x9c");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 1>::test_p_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x00");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x09");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x0a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xf7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xf6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 1>::test_p_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x00");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x09");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x0A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(127), result) == "0x7F");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0x9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0x9C");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 1>::test_p_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x00");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x09");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x0A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xF6");
+}
+
+namespace _____hex_2_____ { }
+
+template<typename T>
+void TesterHex<T, Signed, 2>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16lp");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0x0000000a");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "0x000000ff");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "0x000003e8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "0xffffffff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3e8");
+	QVERIFY(s.format(static_cast<T>(32767), result) == "7fff");
 
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "0xfffffff6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<long>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0x0000000a");
-	QVERIFY(s.format(static_cast<long>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<long>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<long>(255), result) == "0x000000ff");
-	QVERIFY(s.format(static_cast<long>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "0x000003e8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "0x7fffffff");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "0xffffffff");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "0xffffffff");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "0xfffffff7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "0xfffffff6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "0xffffff9d");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "0xffffff9c");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "0xffffff01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "0xffffff00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "0xfffffc18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "0x00000001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "ff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "ff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "ff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "ff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "fc18");
+	QVERIFY(s.format(static_cast<T>(-32767), result) == "8001");
 }
 
-void TestNumberStringifier::testFormatHexLongLzUpperPrefix_str()
+template<typename T>
+void TesterHex<T, Unsigned, 2>::test(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16upl");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<ulong>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<ulong>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<ulong>(10), result) == "0x0000000A");
-	QVERIFY(s.format(static_cast<ulong>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<ulong>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<ulong>(255), result) == "0x000000FF");
-	QVERIFY(s.format(static_cast<ulong>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<ulong>(1000), result) == "0x000003E8");
-	QVERIFY(s.format(static_cast<ulong>(4294967295), result) == "0xFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3e8");
+	QVERIFY(s.format(static_cast<T>(65535), result) == "ffff");
 
-	QVERIFY(s.format(static_cast<ulong>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<ulong>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<ulong>(-10), result) == "0xFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<long>(0), result) == "0x00000000");
-	QVERIFY(s.format(static_cast<long>(9), result) == "0x00000009");
-	QVERIFY(s.format(static_cast<long>(10), result) == "0x0000000A");
-	QVERIFY(s.format(static_cast<long>(99), result) == "0x00000063");
-	QVERIFY(s.format(static_cast<long>(100), result) == "0x00000064");
-	QVERIFY(s.format(static_cast<long>(255), result) == "0x000000FF");
-	QVERIFY(s.format(static_cast<long>(256), result) == "0x00000100");
-	QVERIFY(s.format(static_cast<long>(1000), result) == "0x000003E8");
-	QVERIFY(s.format(static_cast<long>(2147483647), result) == "0x7FFFFFFF");
-	QVERIFY(s.format(static_cast<long>(4294967295), result) == "0xFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<long>(-1), result) == "0xFFFFFFFF");
-	QVERIFY(s.format(static_cast<long>(-9), result) == "0xFFFFFFF7");
-	QVERIFY(s.format(static_cast<long>(-10), result) == "0xFFFFFFF6");
-	QVERIFY(s.format(static_cast<long>(-99), result) == "0xFFFFFF9D");
-	QVERIFY(s.format(static_cast<long>(-100), result) == "0xFFFFFF9C");
-	QVERIFY(s.format(static_cast<long>(-255), result) == "0xFFFFFF01");
-	QVERIFY(s.format(static_cast<long>(-256), result) == "0xFFFFFF00");
-	QVERIFY(s.format(static_cast<long>(-1000), result) == "0xFFFFFC18");
-	QVERIFY(s.format(static_cast<long>(-2147483647), result) == "0x80000001");
-	QVERIFY(s.format(static_cast<long>(0-4294967295UL), result) == "0x00000001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fff6");
 }
 
-void TestNumberStringifier::testFormatHexInt64Prefix_str()
+template<typename T>
+void TesterHex<T, Signed, 2>::test_up(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16p");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "0xffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3E8");
+	QVERIFY(s.format(static_cast<T>(32767), result) == "7FFF");
 
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "0xffffffffffffffff");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "0xfffffffffffffff7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "0xfffffffffffffff6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "0xa");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "0xff");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "0x3e8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "0x7fffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "0xffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "0xffffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "0xfffffffffffffff7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "0xfffffffffffffff6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "0xffffffffffffff9d");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "0xffffffffffffff9c");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "0xffffffffffffff01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "0xffffffffffffff00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "0xfffffffffffffc18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "0x8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0x1");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "FF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "FF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "FF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "FF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "FC18");
+	QVERIFY(s.format(static_cast<T>(-32767), result) == "8001");
 }
 
-void TestNumberStringifier::testFormatHexInt64UpperPrefix_str()
+template<typename T>
+void TesterHex<T, Unsigned, 2>::test_up(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16pu");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3E8");
+	QVERIFY(s.format(static_cast<T>(65535), result) == "FFFF");
 
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "0xFFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "0xFFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "0xFFFFFFFFFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0x0");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0x9");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "0xA");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0x63");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0x64");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "0xFF");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0x100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "0x3E8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "0x7FFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "0xFFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "0xFFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "0xFFFFFFFFFFFFFFF6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "0xFFFFFFFFFFFFFF9D");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "0xFFFFFFFFFFFFFF9C");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "0xFFFFFFFFFFFFFF01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "0xFFFFFFFFFFFFFF00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "0xFFFFFFFFFFFFFC18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "0x8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0x1");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFF6");
 }
 
-void TestNumberStringifier::testFormatHexInt64LzPrefix_str()
+template<typename T>
+void TesterHex<T, Signed, 2>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "03e8");
+	QVERIFY(s.format(static_cast<T>(32767), result) == "7fff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "ff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "ff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "ff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "ff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "fc18");
+	QVERIFY(s.format(static_cast<T>(-32767), result) == "8001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 2>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "03e8");
+	QVERIFY(s.format(static_cast<T>(65535), result) == "ffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fff6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 2>::test_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "03E8");
+	QVERIFY(s.format(static_cast<T>(32767), result) == "7FFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "FF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "FF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "FF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "FF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "FC18");
+	QVERIFY(s.format(static_cast<T>(-32767), result) == "8001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 2>::test_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "03E8");
+	QVERIFY(s.format(static_cast<T>(65535), result) == "FFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFF6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 2>::test_p(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16lp");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0x0000000000000000");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0x0000000000000009");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "0x000000000000000a");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0x0000000000000063");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0x0000000000000064");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "0x00000000000000ff");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0x0000000000000100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "0x00000000000003e8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "0xffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xa");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3e8");
+	QVERIFY(s.format(static_cast<T>(32767), result) == "0x7fff");
 
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "0xffffffffffffffff");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "0xfffffffffffffff7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "0xfffffffffffffff6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0x0000000000000000");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0x0000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "0x000000000000000a");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0x0000000000000063");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0x0000000000000064");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "0x00000000000000ff");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0x0000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "0x00000000000003e8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "0x7fffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "0xffffffffffffffff");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "0xffffffffffffffff");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "0xfffffffffffffff7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "0xfffffffffffffff6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "0xffffffffffffff9d");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "0xffffffffffffff9c");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "0xffffffffffffff01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "0xffffffffffffff00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "0xfffffffffffffc18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "0x8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0x0000000000000001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xfc18");
+	QVERIFY(s.format(static_cast<T>(-32767), result) == "0x8001");
 }
 
-void TestNumberStringifier::testFormatHexInt64LzUpperPrefix_str()
+template<typename T>
+void TesterHex<T, Unsigned, 2>::test_p(const Qpe::Stringifier& s)
 {
 	// ---- without leading zero
-	Qpe::Stringifier s("16lup");
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
 	QString result;
-	QVERIFY(s.format(static_cast<quint64>(0), result) == "0x0000000000000000");
-	QVERIFY(s.format(static_cast<quint64>(9), result) == "0x0000000000000009");
-	QVERIFY(s.format(static_cast<quint64>(10), result) == "0x000000000000000A");
-	QVERIFY(s.format(static_cast<quint64>(99), result) == "0x0000000000000063");
-	QVERIFY(s.format(static_cast<quint64>(100), result) == "0x0000000000000064");
-	QVERIFY(s.format(static_cast<quint64>(255), result) == "0x00000000000000FF");
-	QVERIFY(s.format(static_cast<quint64>(256), result) == "0x0000000000000100");
-	QVERIFY(s.format(static_cast<quint64>(1000), result) == "0x00000000000003E8");
-	QVERIFY(s.format(static_cast<quint64>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xa");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3e8");
+	QVERIFY(s.format(static_cast<T>(65535), result) == "0xffff");
 
-	QVERIFY(s.format(static_cast<quint64>(-1), result) == "0xFFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<quint64>(-9), result) == "0xFFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<quint64>(-10), result) == "0xFFFFFFFFFFFFFFF6");
-
-	QVERIFY(s.format(static_cast<qint64>(0), result) == "0x0000000000000000");
-	QVERIFY(s.format(static_cast<qint64>(9), result) == "0x0000000000000009");
-	QVERIFY(s.format(static_cast<qint64>(10), result) == "0x000000000000000A");
-	QVERIFY(s.format(static_cast<qint64>(99), result) == "0x0000000000000063");
-	QVERIFY(s.format(static_cast<qint64>(100), result) == "0x0000000000000064");
-	QVERIFY(s.format(static_cast<qint64>(255), result) == "0x00000000000000FF");
-	QVERIFY(s.format(static_cast<qint64>(256), result) == "0x0000000000000100");
-	QVERIFY(s.format(static_cast<qint64>(1000), result) == "0x00000000000003E8");
-	QVERIFY(s.format(static_cast<qint64>(9223372036854775807), result) == "0x7FFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
-
-	QVERIFY(s.format(static_cast<qint64>(-1), result) == "0xFFFFFFFFFFFFFFFF");
-	QVERIFY(s.format(static_cast<qint64>(-9), result) == "0xFFFFFFFFFFFFFFF7");
-	QVERIFY(s.format(static_cast<qint64>(-10), result) == "0xFFFFFFFFFFFFFFF6");
-	QVERIFY(s.format(static_cast<qint64>(-99), result) == "0xFFFFFFFFFFFFFF9D");
-	QVERIFY(s.format(static_cast<qint64>(-100), result) == "0xFFFFFFFFFFFFFF9C");
-	QVERIFY(s.format(static_cast<qint64>(-255), result) == "0xFFFFFFFFFFFFFF01");
-	QVERIFY(s.format(static_cast<qint64>(-256), result) == "0xFFFFFFFFFFFFFF00");
-	QVERIFY(s.format(static_cast<qint64>(-1000), result) == "0xFFFFFFFFFFFFFC18");
-	QVERIFY(s.format(static_cast<qint64>(-9223372036854775807), result) == "0x8000000000000001");
-	QVERIFY(s.format(static_cast<qint64>(0-18446744073709551615ULL), result) == "0x0000000000000001");
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfff6");
 }
 
+template<typename T>
+void TesterHex<T, Signed, 2>::test_p_up(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xA");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3E8");
+	QVERIFY(s.format(static_cast<T>(32767), result) == "0x7FFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xFF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xFF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xFF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xFF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xFC18");
+	QVERIFY(s.format(static_cast<T>(-32767), result) == "0x8001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 2>::test_p_up(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xA");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3E8");
+	QVERIFY(s.format(static_cast<T>(65535), result) == "0xFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFF6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 2>::test_p_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x0009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x0063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x0064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x00ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x0100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x03e8");
+	QVERIFY(s.format(static_cast<T>(32767), result) == "0x7fff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xfc18");
+	QVERIFY(s.format(static_cast<T>(-32767), result) == "0x8001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 2>::test_p_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x0009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x0063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x0064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x00ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x0100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x03e8");
+	QVERIFY(s.format(static_cast<T>(65535), result) == "0xffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfff6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 2>::test_p_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x0009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x0063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x0064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x00FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x0100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x03E8");
+	QVERIFY(s.format(static_cast<T>(32767), result) == "0x7FFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xFF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xFF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xFF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xFF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xFC18");
+	QVERIFY(s.format(static_cast<T>(-32767), result) == "0x8001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 2>::test_p_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x0009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x0063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x0064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x00FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x0100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x03E8");
+	QVERIFY(s.format(static_cast<T>(65535), result) == "0xFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFF6");
+}
+
+
+namespace _____hex_4_____ { }
+
+template<typename T>
+void TesterHex<T, Signed, 4>::test(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3e8");
+	QVERIFY(s.format(static_cast<T>(2147483647), result) == "7fffffff");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "ffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fffffff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "ffffff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "ffffff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "ffffff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "ffffff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "fffffc18");
+	QVERIFY(s.format(static_cast<T>(-2147483647), result) == "80000001");
+	QVERIFY(s.format(static_cast<T>(0-4294967295UL), result) == "1");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 4>::test(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3e8");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "ffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fffffff6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 4>::test_up(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3E8");
+	QVERIFY(s.format(static_cast<T>(2147483647), result) == "7FFFFFFF");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "FFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFFFFFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "FFFFFF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "FFFFFF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "FFFFFF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "FFFFFF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "FFFFFC18");
+	QVERIFY(s.format(static_cast<T>(-2147483647), result) == "80000001");
+	QVERIFY(s.format(static_cast<T>(0-4294967295UL), result) == "1");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 4>::test_up(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3E8");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "FFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFFFFFF6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 4>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "00000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0000000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "00000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "00000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "000000ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "00000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "000003e8");
+	QVERIFY(s.format(static_cast<T>(2147483647), result) == "7fffffff");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "ffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fffffff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "ffffff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "ffffff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "ffffff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "ffffff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "fffffc18");
+	QVERIFY(s.format(static_cast<T>(-2147483647), result) == "80000001");
+	QVERIFY(s.format(static_cast<T>(0-4294967295UL), result) == "00000001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 4>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "00000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0000000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "00000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "00000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "000000ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "00000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "000003e8");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "ffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fffffff6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 4>::test_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "00000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0000000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "00000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "00000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "000000FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "00000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "000003E8");
+	QVERIFY(s.format(static_cast<T>(2147483647), result) == "7FFFFFFF");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "FFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFFFFFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "FFFFFF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "FFFFFF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "FFFFFF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "FFFFFF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "FFFFFC18");
+	QVERIFY(s.format(static_cast<T>(-2147483647), result) == "80000001");
+	QVERIFY(s.format(static_cast<T>(0-4294967295UL), result) == "00000001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 4>::test_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "00000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "00000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0000000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "00000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "00000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "000000FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "00000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "000003E8");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "FFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFFFFFF6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 4>::test_p(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xa");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3e8");
+	QVERIFY(s.format(static_cast<T>(2147483647), result) == "0x7fffffff");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "0xffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfffffff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xffffff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xffffff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xffffff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xffffff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xfffffc18");
+	QVERIFY(s.format(static_cast<T>(-2147483647), result) == "0x80000001");
+	QVERIFY(s.format(static_cast<T>(0-4294967295UL), result) == "0x1");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 4>::test_p(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xa");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3e8");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "0xffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfffffff6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 4>::test_p_up(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xA");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3E8");
+	QVERIFY(s.format(static_cast<T>(2147483647), result) == "0x7FFFFFFF");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "0xFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFFFFFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xFFFFFF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xFFFFFF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xFFFFFF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xFFFFFF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xFFFFFC18");
+	QVERIFY(s.format(static_cast<T>(-2147483647), result) == "0x80000001");
+	QVERIFY(s.format(static_cast<T>(0-4294967295UL), result) == "0x1");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 4>::test_p_up(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xA");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3E8");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "0xFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFFFFFF6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 4>::test_p_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x00000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x00000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x0000000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x00000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x00000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x000000ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x00000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x000003e8");
+	QVERIFY(s.format(static_cast<T>(2147483647), result) == "0x7fffffff");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "0xffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfffffff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xffffff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xffffff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xffffff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xffffff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xfffffc18");
+	QVERIFY(s.format(static_cast<T>(-2147483647), result) == "0x80000001");
+	QVERIFY(s.format(static_cast<T>(0-4294967295UL), result) == "0x00000001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 4>::test_p_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x00000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x00000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x0000000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x00000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x00000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x000000ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x00000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x000003e8");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "0xffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfffffff6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 4>::test_p_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x00000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x00000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x0000000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x00000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x00000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x000000FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x00000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x000003E8");
+	QVERIFY(s.format(static_cast<T>(2147483647), result) == "0x7FFFFFFF");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "0xFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFFFFFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xFFFFFF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xFFFFFF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xFFFFFF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xFFFFFF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xFFFFFC18");
+	QVERIFY(s.format(static_cast<T>(-2147483647), result) == "0x80000001");
+	QVERIFY(s.format(static_cast<T>(0-4294967295UL), result) == "0x00000001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 4>::test_p_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x00000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x00000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x0000000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x00000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x00000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x000000FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x00000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x000003E8");
+	QVERIFY(s.format(static_cast<T>(4294967295), result) == "0xFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFFFFFF6");
+}
+
+namespace _____hex_8_____ { }
+
+template<typename T>
+void TesterHex<T, Signed, 8>::test(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3e8");
+	QVERIFY(s.format(static_cast<T>(9223372036854775807), result) == "7fffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "ffffffffffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fffffffffffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fffffffffffffff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "ffffffffffffff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "ffffffffffffff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "ffffffffffffff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "ffffffffffffff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "fffffffffffffc18");
+	QVERIFY(s.format(static_cast<T>(-9223372036854775807), result) == "8000000000000001");
+	QVERIFY(s.format(static_cast<T>(0-18446744073709551615ULL), result) == "1");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 8>::test(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3e8");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "ffffffffffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fffffffffffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fffffffffffffff6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 8>::test_up(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3E8");
+	QVERIFY(s.format(static_cast<T>(9223372036854775807), result) == "7FFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFFFFFFFFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFFFFFFFFFFFFFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "FFFFFFFFFFFFFF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "FFFFFFFFFFFFFF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "FFFFFFFFFFFFFF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "FFFFFFFFFFFFFF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "FFFFFFFFFFFFFC18");
+	QVERIFY(s.format(static_cast<T>(-9223372036854775807), result) == "8000000000000001");
+	QVERIFY(s.format(static_cast<T>(0-18446744073709551615ULL), result) == "1");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 8>::test_up(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "3E8");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFFFFFFFFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFFFFFFFFFFFFFF6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 8>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000000000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0000000000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "000000000000000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0000000000000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0000000000000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00000000000000ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0000000000000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "00000000000003e8");
+	QVERIFY(s.format(static_cast<T>(9223372036854775807), result) == "7fffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "ffffffffffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fffffffffffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fffffffffffffff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "ffffffffffffff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "ffffffffffffff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "ffffffffffffff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "ffffffffffffff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "fffffffffffffc18");
+	QVERIFY(s.format(static_cast<T>(-9223372036854775807), result) == "8000000000000001");
+	QVERIFY(s.format(static_cast<T>(0-18446744073709551615ULL), result) == "0000000000000001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 8>::test_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000000000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0000000000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "000000000000000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0000000000000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0000000000000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00000000000000ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0000000000000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "00000000000003e8");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "ffffffffffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "ffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "fffffffffffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "fffffffffffffff6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 8>::test_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000000000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0000000000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "000000000000000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0000000000000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0000000000000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00000000000000FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0000000000000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "00000000000003E8");
+	QVERIFY(s.format(static_cast<T>(9223372036854775807), result) == "7FFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFFFFFFFFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFFFFFFFFFFFFFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "FFFFFFFFFFFFFF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "FFFFFFFFFFFFFF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "FFFFFFFFFFFFFF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "FFFFFFFFFFFFFF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "FFFFFFFFFFFFFC18");
+	QVERIFY(s.format(static_cast<T>(-9223372036854775807), result) == "8000000000000001");
+	QVERIFY(s.format(static_cast<T>(0-18446744073709551615ULL), result) == "0000000000000001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 8>::test_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(!s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0000000000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0000000000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "000000000000000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0000000000000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0000000000000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "00000000000000FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0000000000000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "00000000000003E8");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "FFFFFFFFFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "FFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "FFFFFFFFFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "FFFFFFFFFFFFFFF6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 8>::test_p(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xa");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3e8");
+	QVERIFY(s.format(static_cast<T>(9223372036854775807), result) == "0x7fffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "0xffffffffffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfffffffffffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfffffffffffffff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xffffffffffffff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xffffffffffffff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xffffffffffffff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xffffffffffffff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xfffffffffffffc18");
+	QVERIFY(s.format(static_cast<T>(-9223372036854775807), result) == "0x8000000000000001");
+	QVERIFY(s.format(static_cast<T>(0-18446744073709551615ULL), result) == "0x1");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 8>::test_p(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xa");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3e8");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "0xffffffffffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfffffffffffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfffffffffffffff6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 8>::test_p_up(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xA");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3E8");
+	QVERIFY(s.format(static_cast<T>(9223372036854775807), result) == "0x7FFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFFFFFFFFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFFFFFFFFFFFFFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xFFFFFFFFFFFFFF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xFFFFFFFFFFFFFF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xFFFFFFFFFFFFFF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xFFFFFFFFFFFFFF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xFFFFFFFFFFFFFC18");
+	QVERIFY(s.format(static_cast<T>(-9223372036854775807), result) == "0x8000000000000001");
+	QVERIFY(s.format(static_cast<T>(0-18446744073709551615ULL), result) == "0x1");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 8>::test_p_up(const Qpe::Stringifier& s)
+{
+	// ---- without leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(!s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x9");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0xA");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x63");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x64");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0xFF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x3E8");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFFFFFFFFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFFFFFFFFFFFFFF6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 8>::test_p_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0000000000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x0000000000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x000000000000000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x0000000000000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x0000000000000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x00000000000000ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x0000000000000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x00000000000003e8");
+	QVERIFY(s.format(static_cast<T>(9223372036854775807), result) == "0x7fffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "0xffffffffffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfffffffffffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfffffffffffffff6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xffffffffffffff9d");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xffffffffffffff9c");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xffffffffffffff01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xffffffffffffff00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xfffffffffffffc18");
+	QVERIFY(s.format(static_cast<T>(-9223372036854775807), result) == "0x8000000000000001");
+	QVERIFY(s.format(static_cast<T>(0-18446744073709551615ULL), result) == "0x0000000000000001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 8>::test_p_lz(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(!s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0000000000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x0000000000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x000000000000000a");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x0000000000000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x0000000000000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x00000000000000ff");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x0000000000000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x00000000000003e8");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "0xffffffffffffffff");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xffffffffffffffff");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xfffffffffffffff7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xfffffffffffffff6");
+}
+
+template<typename T>
+void TesterHex<T, Signed, 8>::test_p_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0000000000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x0000000000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x000000000000000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x0000000000000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x0000000000000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x00000000000000FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x0000000000000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x00000000000003E8");
+	QVERIFY(s.format(static_cast<T>(9223372036854775807), result) == "0x7FFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFFFFFFFFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFFFFFFFFFFFFFF6");
+	QVERIFY(s.format(static_cast<T>(-99), result) == "0xFFFFFFFFFFFFFF9D");
+	QVERIFY(s.format(static_cast<T>(-100), result) == "0xFFFFFFFFFFFFFF9C");
+	QVERIFY(s.format(static_cast<T>(-255), result) == "0xFFFFFFFFFFFFFF01");
+	QVERIFY(s.format(static_cast<T>(-256), result) == "0xFFFFFFFFFFFFFF00");
+	QVERIFY(s.format(static_cast<T>(-1000), result) == "0xFFFFFFFFFFFFFC18");
+	QVERIFY(s.format(static_cast<T>(-9223372036854775807), result) == "0x8000000000000001");
+	QVERIFY(s.format(static_cast<T>(0-18446744073709551615ULL), result) == "0x0000000000000001");
+}
+
+template<typename T>
+void TesterHex<T, Unsigned, 8>::test_p_lz_up(const Qpe::Stringifier& s)
+{
+	// ---- with leading zero
+	QVERIFY(s.base() == 16);
+	QVERIFY(s.isLeadingZero());
+	QVERIFY(s.isPrefixRequired());
+	QVERIFY(s.isUpperCase());
+	QString result;
+	QVERIFY(s.format(static_cast<T>(0), result) == "0x0000000000000000");
+	QVERIFY(s.format(static_cast<T>(9), result) == "0x0000000000000009");
+	QVERIFY(s.format(static_cast<T>(10), result) == "0x000000000000000A");
+	QVERIFY(s.format(static_cast<T>(99), result) == "0x0000000000000063");
+	QVERIFY(s.format(static_cast<T>(100), result) == "0x0000000000000064");
+	QVERIFY(s.format(static_cast<T>(255), result) == "0x00000000000000FF");
+	QVERIFY(s.format(static_cast<T>(256), result) == "0x0000000000000100");
+	QVERIFY(s.format(static_cast<T>(1000), result) == "0x00000000000003E8");
+	QVERIFY(s.format(static_cast<T>(18446744073709551615ULL), result) == "0xFFFFFFFFFFFFFFFF");
+
+	QVERIFY(s.format(static_cast<T>(-1), result) == "0xFFFFFFFFFFFFFFFF");
+	QVERIFY(s.format(static_cast<T>(-9), result) == "0xFFFFFFFFFFFFFFF7");
+	QVERIFY(s.format(static_cast<T>(-10), result) == "0xFFFFFFFFFFFFFFF6");
+}
 
 QTEST_MAIN(TestNumberStringifier)
 #include "test_numberstringifier.moc"

@@ -213,14 +213,12 @@ Stringifier::Stringifier(
  * смотрите Stringifier::setFormatString
  */
 Stringifier::Stringifier(const QString& formatString)
-	: d_ptr(new StringifierPrivate(10, false, false, false))
+	: d_ptr(new StringifierPrivate(0, false, false, false))
 {
 	QA_D();
 	d->q_ptr = this;
 	d->initialize();
-	if (!d->setFormatString(formatString)) {
-		d->update();
-	}
+	d->setFormatString(formatString);
 }
 
 Stringifier::Stringifier(const Stringifier& other)

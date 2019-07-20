@@ -57,22 +57,10 @@ struct LeadingZero<T, WithLeadingZero>
 	}
 
 	template <typename value_type>
-	inline void write(
-		value_type*& buffer,
-		enable_if_t<sizeof(value_type) == 2>* = nullptr) const
+	inline void write(value_type*& buffer) const
 	{
 		if (zeros == 0) { return; }
-		wmemset(reinterpret_cast<wchar_t*>(buffer), '0', zeros);
-		buffer += zeros;
-	}
-
-	template <typename value_type>
-	inline void write(
-		value_type*& buffer,
-		enable_if_t<sizeof(value_type) == 1>* = nullptr) const
-	{
-		if (zeros == 0) { return; }
-		memset(buffer, '0', zeros);
+		std::fill_n(buffer, zeros, static_cast<value_type>('0'));
 		buffer += zeros;
 	}
 };
@@ -94,8 +82,8 @@ struct StringifierImpl;
 template <typename unsigned_T, typename R, typename TPrefix, char C>
 struct StringifierImpl<unsigned_T, R, TPrefix, WithLeadingZero, C>
 {
-	typedef LeadingZero<unsigned_T, WithLeadingZero> LeadingZero;
-	typedef Prefix<TPrefix> Prefix;
+	typedef PrivateHex::LeadingZero<unsigned_T, WithLeadingZero> LeadingZero;
+	typedef PrivateHex::Prefix<TPrefix> Prefix;
 
 	typedef typename R::value_type value_type;
 	static inline void format(unsigned_T n, R& result)
@@ -120,7 +108,7 @@ struct StringifierImpl<unsigned_T, R, TPrefix, WithLeadingZero, C>
 template <typename unsigned_T, typename R, typename TPrefix, char C>
 struct StringifierImpl<unsigned_T, R, TPrefix, WithoutLeadingZero, C>
 {
-	typedef Prefix<TPrefix> Prefix;
+	typedef PrivateHex::Prefix<TPrefix> Prefix;
 
 	typedef typename R::value_type value_type;
 	static inline void format(unsigned_T n, R& result)
@@ -147,7 +135,7 @@ template <
 	typename TCase>
 struct Stringifier
 {
-	typedef Case<TCase> Case;
+	typedef PrivateHex::Case<TCase> Case;
 
 	template <typename T>
 	static inline R format(T n)
