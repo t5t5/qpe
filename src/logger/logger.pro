@@ -3,6 +3,8 @@ include(../../qpe-include.pri)
 QT += core
 QT -= gui
 
+CONFIG += c++11
+
 TARGET = qpelogger
 TEMPLATE = lib
 CONFIG += $$QPE_LOGGER_CONFIG_STATICLIB

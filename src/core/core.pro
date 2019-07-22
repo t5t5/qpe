@@ -3,6 +3,8 @@ include(../../qpe-include.pri)
 QT += core
 QT -= gui
 
+CONFIG += c++11
+
 TARGET = qpecore
 TEMPLATE = lib
 CONFIG += $$QPE_CORE_CONFIG_STATICLIB

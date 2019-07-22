@@ -17,8 +17,8 @@ RCC_DIR = ./tmp/rcc
 UI_DIR = ./tmp/ui
 DESTDIR = $$QPE_BUILD_TEST_DIR
 
-LIBS += -L$$QPE_CORE_BUILD_DIR -lqpecore
 LIBS += -L$$QPE_LOGGER_BUILD_DIR -lqpelogger
+LIBS += -L$$QPE_CORE_BUILD_DIR -lqpecore
 
 SOURCES += \
     test_logger.cpp
