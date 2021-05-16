@@ -1,11 +1,16 @@
 #
 defines = Q_QDOC
 
-include($QPE_SRC_DIR/doc/qt-cpp-ignore.qdocconf)
+#include($QPE_SRC_DIR/doc/qt-cpp-ignore.qdocconf)
 include($QPE_SRC_DIR/doc/qpe-cpp-ignore.qdocconf)
 
 includepaths += \
-    -I $QPE_SRC_DIR/include
+    $QPE_SRC_DIR/include \
+    $QT_INSTALL_HEADERS \
+    $QT_INSTALL_HEADERS/QtCore \
+    $QT_INSTALL_HEADERS/QtGui \
+    $QT_INSTALL_DOCS
+
 
 headers.fileextensions = "*.h"
 sources.fileextensions = "*.cpp"

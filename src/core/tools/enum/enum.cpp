@@ -24,18 +24,18 @@
  */
 
 /*!
- * \fn Qpe::Enum::Enum(TValue e)
+ * \fn template <typename TValue, typename TKey> Qpe::Enum<TValue, TKey>::Enum(TValue e)
  * Конструктор. \a e - значения перечисления для инициализации.
  */
 
 /*!
- * \fn Qpe::Enum::Enum(int e)
+ * \fn template <typename TValue, typename TKey> Qpe::Enum<TValue, TKey>::Enum(int e)
  * Конструктор. \a e - значение для инициализации, будет сконвертировано в
  * TValue и проверено на принадлежность перечислению.
  */
 
 /*!
- * \fn Qpe::Enum::Enum(const TKey& key, Qt::CaseSensitivity cs = Qt::CaseSensitive)
+ * \fn template <typename TValue, typename TKey> Qpe::Enum<TValue, TKey>::Enum(const TKey& key, Qt::CaseSensitivity cs = Qt::CaseSensitive)
  * Конструктор. \a key - строковое значение для инициализации,
  * будет сконвертировано в TValue и проверено на принадлежность перечислению.
  * Если \a cs - Qt::CaseSensitive, будет использоваться регистрозависимое сравнение,
@@ -43,7 +43,7 @@
  */
 
 /*!
- * \fn Qpe::Enum::Enum(const TKey& key, TValue defaultValue, Qt::CaseSensitivity cs = Qt::CaseSensitive)
+ * \fn template <typename TValue, typename TKey> Qpe::Enum<TValue, TKey>::Enum(const TKey& key, TValue defaultValue, Qt::CaseSensitivity cs = Qt::CaseSensitive)
  * Конструктор. \a key - строковое значение для инициализации,
  * будет сконвертировано в TValue и проверено на принадлежность перечислению.
  * Если \a cs - Qt::CaseSensitive, будет использоваться регистрозависимое сравнение,
@@ -53,17 +53,17 @@
  */
 
 /*!
- * \fn TKey Qpe::Enum::key() const
+ * \fn template <typename TValue, typename TKey> TKey Qpe::Enum<TValue, TKey>::key() const
  * Получить строковое представления значения хранящегося в Enum.
  */
 
 /*!
- * \fn TKey Qpe::Enum::value() const
+ * \fn template <typename TValue, typename TKey> TKey Qpe::Enum<TValue, TKey>::value() const
  * Получить значение хранящееся в Enum.
  */
 
 /*!
-  \fn void Qpe::Enum::setValue()
+  \fn template <typename TValue, typename TKey> void Qpe::Enum<TValue, TKey>::setValue()
   Шаблонная функция установки значения.
 
   Обзор:
@@ -74,37 +74,37 @@
  */
 
 /*!
- * \fn void Qpe::Enum::setValue(TValue e)
+ * \fn template <typename TValue, typename TKey> void Qpe::Enum<TValue, TKey>::setValue(TValue e)
  * Установить значение в \a e.
  */
 
 /*!
- * \fn bool Qpe::Enum::isValid() const
+ * \fn template <typename TValue, typename TKey> bool Qpe::Enum<TValue, TKey>::isValid() const
  * Вернуть \c true, если значение пренадлежит перечислению.
  */
 
 /*!
- * \fn bool Qpe::Enum::isEmpty() const
+ * \fn template <typename TValue, typename TKey> bool Qpe::Enum<TValue, TKey>::isEmpty() const
  * Вернуть \c true, если значение не пренадлежит перечислению.
  */
 
 /*!
- * \fn TKey Qpe::Enum::valueToKey(TValue e)
+ * \fn template <typename TValue, typename TKey> TKey Qpe::Enum<TValue, TKey>::valueToKey(TValue e)
  * Вернуть строковое предсталение для значения \a e.
  */
 
 /*!
- * \fn QVector<TValue> Qpe::Enum::values()
+ * \fn template <typename TValue, typename TKey> QVector<TValue> Qpe::Enum<TValue, TKey>::values()
  * Вернуть все возможные значения перечисления.
  */
 
 /*!
- * \fn QVector<TKey> Qpe::Enum::keys()
+ * \fn template <typename TValue, typename TKey> QVector<TKey> Qpe::Enum<TValue, TKey>::keys()
  * Вернуть все возможные строковые значения перечисления.
  */
 
 /*!
-  \fn bool Qpe::Enum::in(T e) const
+  \fn template <typename TValue, typename TKey> template <typename T> bool Qpe::Enum<TValue, TKey>::in(T e) const
   Проверить принадлежит ли значение перечисления значению \a e.
   Тип T должен соответствовать TValue.
 
@@ -116,7 +116,7 @@
  */
 
 /*!
-  \fn bool Qpe::Enum::in(T e, TN... en) const
+  \fn template <typename TValue, typename TKey> template <typename T, typename... TN> bool Qpe::Enum<TValue, TKey>::in(T e, TN... en) const
   Проверить принадлежит ли значение перечисления значениям \a e и остальным \a en.
   Типы T и TN... должны соответствовать TValue.
 
@@ -128,31 +128,31 @@
  */
 
 /*!
- * \fn Enum& Qpe::Enum::operator=(TValue e)
+ * \fn template <typename TValue, typename TKey> Enum& Qpe::Enum<TValue, TKey>::operator=(TValue e)
  * Присвоить текущему перечислению значениче \a e, и вернуть ссылку на
  * текущее перечисление.
  */
 
 /*!
- * \fn bool Qpe::Enum::operator==(const Enum& e) const
+ * \fn template <typename TValue, typename TKey> bool Qpe::Enum<TValue, TKey>::operator==(const Enum& e) const
  * Сравнить значение текущего перечисления с другим \a e.
  * Вернуть \c true если равны.
  */
 
 /*!
- * \fn bool Qpe::Enum::operator==(TValue e) const
+ * \fn template <typename TValue, typename TKey> bool Qpe::Enum<TValue, TKey>::operator==(TValue e) const
  * Сравнить значение текущего перечисления со значением \a e.
  * Вернуть \c true если равны.
  */
 
 /*!
- * \fn bool Qpe::Enum::operator!=(const Enum& e) const
+ * \fn template <typename TValue, typename TKey> bool Qpe::Enum<TValue, TKey>::operator!=(const Enum& e) const
  * Сравнить значение текущего перечисления с другим \a e.
  * Вернуть \c true если не равны.
  */
 
 /*!
- * \fn bool Qpe::Enum::operator!=(TValue e) const
+ * \fn template <typename TValue, typename TKey>bool Qpe::Enum<TValue, TKey>::operator!=(TValue e) const
  * Сравнить значение текущего перечисления со значением \a e.
  * Вернуть \c true если не равны.
  */
