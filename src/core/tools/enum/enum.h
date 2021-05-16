@@ -360,7 +360,11 @@ protected:
 	}
 #endif // Q_QDOC
 public:
+#ifndef Q_QDOC
 	typedef typename FlagStatic::mask_type mask_type;
+#else
+	typedef int mask_type;
+#endif
 protected:
 	mask_type m_value;
 public:

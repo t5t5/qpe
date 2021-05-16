@@ -1,6 +1,8 @@
 #ignore tokens
 Cpp.ignoretokens += \
-    QPE_CORE_EXPORT \
-    constexpr
+    QPE_CORE_EXPORT
 
-#Cpp.ignoredirectives
+
+#    constexpr
+
+#Cpp.ignoredirectives += 
