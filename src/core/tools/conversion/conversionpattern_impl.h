@@ -265,7 +265,7 @@ void SimpleConversionPatternPrivate::initialize(
 
 		QString f = factory(expressionName, properties);
 		if (!f.isEmpty()) {
-			expression.append(pattern.mid(startPos, pos - startPos));
+			expression.append(pattern.midRef(startPos, pos - startPos));
 
 			bool leftJustified = m.captured(1) == CHAR_MINUS;
 			int min = m.captured(2).toInt();
@@ -277,7 +277,7 @@ void SimpleConversionPatternPrivate::initialize(
 		}
 		startPos = pos + len;
 	}
-	expression.append(pattern.mid(textPos));
+	expression.append(pattern.midRef(textPos));
 }
 
 QString SimpleConversionPatternPrivate::createString() const

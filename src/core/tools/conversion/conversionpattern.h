@@ -61,6 +61,31 @@ public:
 
 // ------------------------------------------------------------------------
 
+class SimpleConversionPatternFactory
+{
+public:
+	using ElementFunctor = std::function<QString(const QVariantMap&)>;
+	SimpleConversionPatternFactory() = default;
+
+	void registerElement(const QString& elementName, ElementFunctor&& elementFunctor)
+	{
+		elements.insert(elementName, elementFunctor);
+	}
+
+	QStringList elementNames() const
+	{
+		return elements.keys();
+	}
+
+	QString operator()(const QString& elementName, const QVariantMap& properties) const
+	{
+		auto it = elements.find(elementName);
+		return (it == elements.end()) ? QString() : (*it)(properties);
+	}
+private:
+	QMap<QString, ElementFunctor> elements;
+};
+
 class SimpleConversionPattern : public Private::SimpleConversionPatternPrivate
 {
 public:
