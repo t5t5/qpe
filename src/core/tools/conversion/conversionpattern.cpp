@@ -131,7 +131,8 @@
  */
 
 /*!
- * \fn Qpe::ConversionPattern::ConversionPattern(const QString& pattern, ExpressionFactory&& factory)
+ * \fn template <typename TData, int CacheSize = 1024> Qpe::ConversionPattern<TData, CacheSize>::ConversionPattern(
+ *         const QString& pattern, ExpressionFactory&& factory)
  * Конструктор. \a pattern - шаблон строки. \a factory - фабрика элементов.
  * Элементы будут выбраны с помощью регулярного выражения:
  * \code
@@ -140,14 +141,15 @@
  */
 
 /*!
- * \fn Qpe::ConversionPattern::ConversionPattern(const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
+ * \fn template <typename TData, int CacheSize = 1024> Qpe::ConversionPattern<TData, CacheSize>::ConversionPattern(
+ *         const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
  * Конструктор. \a pattern - шаблон строки.
  * \a names - список элементов в шаблоне строки. \a factory - фабрика элементов.
  */
 
 /*!
- * \fn void Qpe::ConversionPattern::initialize(
- *          const QString& pattern, ExpressionFactory&& factory)
+ * \fn template <typename TData, int CacheSize = 1024> void Qpe::ConversionPattern<TData, CacheSize>::initialize(
+ *         const QString& pattern, ExpressionFactory&& factory)
  * Инициализация. \a pattern - шаблон строки. \a factory - фабрика элементов.
  * Элементы будут выбраны с помощью регулярного выражения:
  * \code
@@ -156,20 +158,21 @@
  */
 
 /*!
- * \fn void Qpe::ConversionPattern::initialize(
- *          const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
+ * \fn template <typename TData, int CacheSize = 1024> void Qpe::ConversionPattern<TData, CacheSize>::initialize(
+ *         const QString& pattern, const QStringList& names, ExpressionFactory&& factory)
  * Инициализация. \a pattern - шаблон строки.
  * \a names - список элементов в шаблоне строки. \a factory - фабрика элементов.
  */
 
 /*!
- * \fn bool Qpe::ConversionPattern::containsExpressions() const
+ * \fn template <typename TData, int CacheSize = 1024> bool Qpe::ConversionPattern<TData, CacheSize>::containsExpressions() const
  * Возвращает \c true, если после инициализации в сроке шаблона нашлись управляющие
  * выражения.
  */
 
 /*!
- * \fn QString Qpe::ConversionPattern::createString(const TData& data) const
+ * \fn template <typename TData, int CacheSize = 1024> QString Qpe::ConversionPattern<TData, CacheSize>::createString(
+ *         const TData& data) const
  * Возвращает преобразованную строку. \a data - значение которое будет передано в
  * ExpressionFunctor для элементов.
  */

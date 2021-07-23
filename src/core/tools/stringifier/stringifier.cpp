@@ -221,6 +221,10 @@ Stringifier::Stringifier(const QString& formatString)
 	d->setFormatString(formatString);
 }
 
+/*!
+ * \fn Stringifier::Stringifier(const Stringifier& other)
+ * Конструктор копировщик из \a other.
+ */
 Stringifier::Stringifier(const Stringifier& other)
 	: d_ptr(new StringifierPrivate(
 		other.d_ptr->base, other.d_ptr->leadingZero,
@@ -232,10 +236,18 @@ Stringifier::Stringifier(const Stringifier& other)
 	d->update();
 }
 
+/*!
+ * \fn Stringifier::~Stringifier()
+ * Деструктор.
+ */
 Stringifier::~Stringifier()
 {
 }
 
+/*!
+ * \fn Stringifier& Stringifier::operator=(const Stringifier& other)
+ * Присвоить текущему объекту значение из \a other.
+ */
 Stringifier& Stringifier::operator=(const Stringifier& other)
 {
 	if (this != &other) {

@@ -447,6 +447,10 @@ DateStringifier::DateStringifier(const QString& format /* = QString() */)
 	d->setFormatString(format);
 }
 
+/*!
+ * \fn DateStringifier::DateStringifier(const DateStringifier& other)
+ * Скопировать значение \a other.
+ */
 DateStringifier::DateStringifier(const DateStringifier& other)
 	: d_ptr(new DateStringifierPrivate())
 {
@@ -455,10 +459,18 @@ DateStringifier::DateStringifier(const DateStringifier& other)
 	d->setFormatString(other.d_ptr->format);
 }
 
+/*!
+ * \fn DateStringifier::~DateStringifier()
+ * Дестркутор.
+ */
 DateStringifier::~DateStringifier()
 {
 }
 
+/*!
+ * \fn DateStringifier& DateStringifier::operator=(const DateStringifier& other)
+ * Текущему классу присваивается значение \a other.
+ */
 DateStringifier& DateStringifier::operator=(const DateStringifier& other)
 {
 	if (this != &other) {

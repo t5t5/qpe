@@ -13,7 +13,7 @@
   Cron-формат - это простой, но мощный и гибкий способ описания времени и
   периодичности действий.
 
-  Cron-формат состоит из пяти полей или шести полей, разделенных пробелами:
+  Cron-формат состоит из пяти или шести полей, разделенных пробелами:
   \code
   <Минуты> <Часы> <Дни_месяца> <Месяцы> <Дни_недели>
   \endcode
@@ -317,8 +317,8 @@ CronTimerExpression::CronTimerExpression()
 
 /*!
  * \fn CronTimerExpression::CronTimerExpression(
-		const QString& cronFormat,
-		const QDateTime& startTime = QDateTime::currentDateTime())
+ *         const QString& cronFormat,
+ *         const QDateTime& startTime = QDateTime::currentDateTime())
  * Конструктор. Установить формат cron-таймера в \a cronFormat.
  * Время запуска таймера \a startTime необходимо для cron-выражения "?".
  */
@@ -347,8 +347,8 @@ QString CronTimerExpression::format() const
 
 /*!
  * \fn void CronTimerExpression::setFormat(
-		const QString& cronFormat,
-		const QDateTime& startTime = QDateTime::currentDateTime())
+ *         const QString& cronFormat,
+ *         const QDateTime& startTime = QDateTime::currentDateTime())
  * Установить формат cron-таймера в \a cronFormat.
  * Время запуска таймера \a startTime необходимо для cron-выражения "?".
  * Возвращает \c true, если формат установлен корректно, иначе \c false.

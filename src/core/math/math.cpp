@@ -14,7 +14,7 @@
  */
 
 /*!
-  \fn RT Qpe::math::ceil(T num)
+  \fn template <typename RT = int, typename T> RT Qpe::math::ceil(T num)
   Compile time ceil for \a num.
 
   Обзор:

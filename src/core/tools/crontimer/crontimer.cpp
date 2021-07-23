@@ -42,6 +42,10 @@ void CronTimerPrivate::testWakeUpTime()
 
 // ---------------------------------------------------------------------------
 
+/*!
+ * \fn CronTimer::CronTimer(QObject* parent = nullptr)
+ * Конструктор. \a parent - parent object.
+ */
 CronTimer::CronTimer(QObject* parent /* = nullptr */)
 	: QObject(parent)
 	, d_ptr(new CronTimerPrivate())
@@ -51,6 +55,10 @@ CronTimer::CronTimer(QObject* parent /* = nullptr */)
 	d->initialize();
 }
 
+/*!
+ * \fn CronTimer::~CronTimer()
+ * Деструктор.
+ */
 CronTimer::~CronTimer()
 {
 }

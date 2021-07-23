@@ -1,4 +1,6 @@
 #
+project = qpe-logger
+
 include($QPE_SRC_DIR/doc/common.qdocconf)
 
 sourcedirs += ../
