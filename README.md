@@ -23,7 +23,31 @@ Documentation can be built separately:
 make docs
 ```
 Additional processing is used to assemble the documentation, it's for complete logging and suppress of some error (script/tool/qdoc_wrapper.bat).
-Documenation build support only QDoc 5.10 (not above) on Windows.
+Documenation build tested on QDoc 5.15.2 on Windows.
+
+#### example build documentation on Windows
+
+core:
+```
+call C:\sources\qpe\script\tool\qdoc_wrapper.bat ^
+   --qdoc C:\Qt\5.15.2\mingw81_64\bin\qdoc.exe ^
+   --setenv "QPE_SRC_DIR=C:\sources\qpe" ^
+   --setenv "QT_INSTALL_DOCS=C:\Qt\Docs\Qt-5.15.2" ^
+   --setenv "QT_INSTALL_HEADERS=C:\Qt\5.15.2\mingw81_64\include" ^
+   --outputdir C:\sources\qpe-build\doc\qpecore ^
+   C:\sources\qpe\src\core\doc\core.qdocconf
+```
+
+logger:
+```
+call C:\sources\qpe\script\tool\qdoc_wrapper.bat ^
+   --qdoc C:\Qt\5.15.2\mingw81_64\bin\qdoc.exe ^
+   --setenv "QPE_SRC_DIR=C:\sources\qpe" ^
+   --setenv "QT_INSTALL_DOCS=C:\Qt\Docs\Qt-5.15.2" ^
+   --setenv "QT_INSTALL_HEADERS=C:\Qt\5.15.2\mingw81_64\include" ^
+   --outputdir C:\sources\qpe-build\doc\qpelogger ^
+   C:\sources\qpe\src\logger\doc\logger.qdocconf
+```
 
 ### clean
 Clean (and remove documentation if exists):
