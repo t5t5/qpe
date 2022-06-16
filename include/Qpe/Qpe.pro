@@ -14,6 +14,7 @@ HEADERS += \
 
 # core
 HEADERS += \
+    Core/Algorithm \
     Core/ConversionPattern \
     Core/CronTimer \
     Core/CronTimerExpression \

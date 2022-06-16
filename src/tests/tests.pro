@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 
 contains(DEFINES, QPE_CORE_MAKE_TESTS) {
+    SUBDIRS += test_algorithm
     SUBDIRS += test_conversion
     SUBDIRS += test_crontimer
     SUBDIRS += test_datestringifier
